@@ -1,4 +1,6 @@
 import Plot from 'react-plotly.js';
+import { Button } from './button';
+import Link from 'next/link';
 
 interface SimulationResultsProps {
   probPlotData: string;
@@ -12,6 +14,7 @@ const SimulationResults: React.FC<SimulationResultsProps> = ({ probPlotData, pha
   return (
     <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
       <div className="bg-black/50 border border-cyan-500/20 p-6 rounded-lg">
+        <Link href = 'http://localhost:8000/superpos/3dckt/'><Button className='text-2xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-purple-400"'>hello</Button></Link>
         <h2 className="text-lg font-semibold mb-4 text-gray-100">State Probabilities (Histogram)</h2>
         <Plot
           data={probPlot.data}

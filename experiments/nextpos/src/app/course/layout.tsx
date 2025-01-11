@@ -1,27 +1,72 @@
-import { ThemeProvider } from "../theme-provider"
-import { Navigation } from "@/components/ui/navigation"
+'use client'
 
-export default function CoursesLayout({
+import Link from 'next/link'
+import { usePathname } from 'next/navigation'
+import { cn } from '@/lib/utils'
+
+const courseStructure = {
+  beginner: [
+    { id: 1, title: "Introduction to Quantum Computing", path: "/course/beginner" },
+    { id: 2, title: "Qubits and Superposition", path: "/course/beginner/2" },
+    { id: 3, title: "Quantum Gates", path: "/course/beginner/3" },
+  ],
+  intermediate: [
+    { id: 1, title: "Quantum Circuits", path: "/course/intermediate" },
+    { id: 2, title: "Quantum Algorithms", path: "/course/intermediate/2" },
+    { id: 3, title: "Quantum Error Correction", path: "/course/intermediate/3" },
+  ],
+  advanced: [
+    { id: 1, title: "Quantum Machine Learning", path: "/course/advanced" },
+    { id: 2, title: "Quantum Cryptography", path: "/course/advanced/2" },
+    { id: 3, title: "Advanced Quantum Algorithms", path: "/course/advanced/3" },
+  ],
+}
+
+export default function CourseLayout({
   children,
 }: {
   children: React.ReactNode
 }) {
+  const pathname = usePathname()
+
   return (
-    <div className="min-h-screen bg-gradient-to-br from-blue-100 to-blue-200 dark:from-black dark:to-gray-900 text-gray-900 dark:text-gray-100">
-      <ThemeProvider attribute="class" defaultTheme="dark" enableSystem>
-        {/* Background grid */}
-        <div className="fixed inset-0 bg-grid-white/[0.02] bg-[length:50px_50px] pointer-events-none" />
-        <div className="fixed inset-0 bg-gradient-to-br from-transparent to-cyan-500/20 pointer-events-none" />
+    <div className="flex min-h-screen">
+      {/* Sidebar Navigation */}
+      <div className="w-64 bg-gray-900/50 backdrop-blur-sm border-r border-gray-800 p-4 fixed h-full overflow-y-auto">
+        <nav className="space-y-8">
+          {Object.entries(courseStructure).map(([level, courses]) => (
+            <div key={level} className="space-y-2">
+              <h3 className="text-lg font-semibold capitalize text-gradient bg-gradient-to-r from-cyan-500 to-purple-500 mb-2">
+                {level} Level
+              </h3>
+              <ul className="space-y-1">
+                {courses.map((course) => (
+                  <li key={course.path}>
+                    <Link
+                      href={course.path}
+                      className={cn(
+                        "block px-4 py-2 rounded-lg text-sm transition-colors",
+                        pathname === course.path
+                          ? "bg-gradient-to-r from-cyan-500/20 to-purple-500/20 text-white"
+                          : "text-gray-400 hover:text-white hover:bg-gray-800/50"
+                      )}
+                    >
+                      {course.id}. {course.title}
+                    </Link>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          ))}
+        </nav>
+      </div>
 
-        {/* Navigation Bar */}
-        <Navigation />
-
-        {/* Page Content */}
-        <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+      {/* Main Content */}
+      <div className="flex-1 ml-64">
+        <main className="p-8">
           {children}
         </main>
-      </ThemeProvider>
+      </div>
     </div>
   )
-}
-
+} 

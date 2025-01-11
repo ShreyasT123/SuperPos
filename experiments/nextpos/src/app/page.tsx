@@ -18,7 +18,7 @@ export default function WelcomePage() {
     console.log('Subscribed:', email)
     setEmail('')
   }
-
+ 
   return (
     <div className="space-y-24">
       <section className="relative overflow-hidden py-20 px-4 sm:px-6 lg:px-8">
@@ -37,7 +37,7 @@ export default function WelcomePage() {
               <Link href="/simulator">Try Simulator</Link>
             </Button>
             <Button size="lg" variant="outline" className="border-cyan-500 text-cyan-400 hover:bg-cyan-500/10" asChild>
-              <Link href="/courses">View Courses</Link>
+              <Link href="/course">View Courses</Link>
             </Button>
           </div>
         </div>

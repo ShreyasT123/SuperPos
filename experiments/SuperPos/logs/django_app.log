@@ -378,3 +378,42 @@ ERROR 2025-01-02 15:54:59,214 log Internal Server Error: /superpos/simulate
 ERROR 2025-01-02 15:54:59,241 basehttp "POST /superpos/simulate HTTP/1.1" 500 386
 ERROR 2025-01-02 15:55:22,642 log Internal Server Error: /superpos/simulate
 ERROR 2025-01-02 15:55:22,643 basehttp "POST /superpos/simulate HTTP/1.1" 500 386
+INFO 2025-01-10 21:29:21,037 autoreload Watching for file changes with StatReloader
+INFO 2025-01-10 21:30:30,154 basehttp "OPTIONS /superpos/simulate HTTP/1.1" 200 0
+INFO 2025-01-10 21:30:30,520 basehttp "POST /superpos/simulate HTTP/1.1" 200 19424
+INFO 2025-01-10 21:32:17,047 autoreload C:\Users\sstha\Desktop\WEB\FinalPos__\experiments\SuperPos\Pos\views.py changed, reloading.
+INFO 2025-01-10 21:32:17,876 autoreload Watching for file changes with StatReloader
+INFO 2025-01-10 21:32:47,518 autoreload C:\Users\sstha\Desktop\WEB\FinalPos__\experiments\SuperPos\Pos\urls.py changed, reloading.
+INFO 2025-01-10 21:32:48,298 autoreload Watching for file changes with StatReloader
+INFO 2025-01-10 21:33:41,203 autoreload C:\Users\sstha\Desktop\WEB\FinalPos__\experiments\SuperPos\Pos\urls.py changed, reloading.
+INFO 2025-01-10 21:33:41,990 autoreload Watching for file changes with StatReloader
+INFO 2025-01-10 21:37:45,475 basehttp "POST /superpos/simulate HTTP/1.1" 200 19034
+INFO 2025-01-10 21:37:54,712 basehttp "POST /superpos/simulate HTTP/1.1" 200 19034
+INFO 2025-01-10 21:37:57,690 basehttp "POST /superpos/simulate HTTP/1.1" 200 19034
+INFO 2025-01-10 21:38:42,402 basehttp "POST /superpos/simulate HTTP/1.1" 200 18985
+INFO 2025-01-10 21:38:48,840 basehttp "POST /superpos/simulate HTTP/1.1" 200 18985
+INFO 2025-01-10 21:38:59,502 basehttp "POST /superpos/simulate HTTP/1.1" 200 18985
+INFO 2025-01-10 21:39:06,369 basehttp "POST /superpos/simulate HTTP/1.1" 200 18985
+INFO 2025-01-10 21:39:09,998 basehttp "POST /superpos/simulate HTTP/1.1" 200 18985
+INFO 2025-01-10 21:39:16,258 basehttp "POST /superpos/simulate HTTP/1.1" 200 18985
+INFO 2025-01-11 11:58:35,592 autoreload Watching for file changes with StatReloader
+INFO 2025-01-11 11:59:08,012 autoreload Watching for file changes with StatReloader
+INFO 2025-01-11 11:59:39,093 basehttp "OPTIONS /superpos/simulate HTTP/1.1" 200 0
+INFO 2025-01-11 11:59:39,699 basehttp "POST /superpos/simulate HTTP/1.1" 200 18985
+INFO 2025-01-11 12:17:24,990 autoreload Watching for file changes with StatReloader
+INFO 2025-01-11 12:18:18,861 autoreload Watching for file changes with StatReloader
+INFO 2025-01-11 12:18:29,656 autoreload Watching for file changes with StatReloader
+WARNING 2025-01-11 12:18:35,073 log Not Found: /3dckt
+WARNING 2025-01-11 12:18:35,075 basehttp "GET /3dckt HTTP/1.1" 404 2344
+WARNING 2025-01-11 12:18:35,147 log Not Found: /favicon.ico
+WARNING 2025-01-11 12:18:35,148 basehttp "GET /favicon.ico HTTP/1.1" 404 2362
+INFO 2025-01-11 12:18:46,532 basehttp "GET /superpos/3dckt HTTP/1.1" 301 0
+INFO 2025-01-11 12:18:46,563 basehttp "GET /superpos/3dckt/ HTTP/1.1" 200 1192903
+INFO 2025-01-11 12:22:24,357 basehttp "POST /superpos/simulate HTTP/1.1" 200 18985
+INFO 2025-01-11 12:24:16,692 basehttp "POST /superpos/simulate HTTP/1.1" 200 18985
+INFO 2025-01-11 12:24:52,314 basehttp "GET /superpos/3dckt/ HTTP/1.1" 200 1192903
+INFO 2025-01-11 12:28:31,559 basehttp "POST /superpos/simulate HTTP/1.1" 200 19045
+INFO 2025-01-11 12:29:23,652 basehttp "GET /superpos/3dckt/ HTTP/1.1" 200 1192766
+INFO 2025-01-11 16:28:59,868 autoreload Watching for file changes with StatReloader
+INFO 2025-01-11 16:35:21,714 basehttp "OPTIONS /superpos/chat HTTP/1.1" 200 0
+INFO 2025-01-11 16:35:28,387 basehttp "POST /superpos/chat HTTP/1.1" 200 3868

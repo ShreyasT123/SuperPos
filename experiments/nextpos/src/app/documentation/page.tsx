@@ -115,9 +115,9 @@ function Docs() {
       </section>
 
       <footer className="text-center text-gray-400 max-w-4xl mx-auto">
-        <p>Need additional help? Our support team is available 24/7 to assist you.</p>
+        <p>Need additional help? Try posting in the forum</p>
         <Button className="mt-4 bg-gradient-to-r from-cyan-500 to-purple-500 hover:from-cyan-600 hover:to-purple-600 text-white" asChild>
-          <Link href="/support">Contact Support</Link>
+          <Link href="/forum">Forum</Link>
         </Button>
       </footer>
     </div>

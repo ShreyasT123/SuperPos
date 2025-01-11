@@ -3,11 +3,12 @@
 
 import { useState, useEffect } from 'react'
 import { motion } from 'framer-motion'
-import { ArrowRight, BookOpen, Clock, Award, Atom, Zap, Brain, Sparkles } from 'lucide-react'
+import { ArrowRight, BookOpen, Clock, Award, Atom, Zap, Brain, Sparkles, BrainCircuit } from 'lucide-react'
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle, CardFooter } from "@/components/ui/card"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
+import Link from 'next/link'
 // import { MermaidDiagram } from "@/components/ui/MermaidComponent"
 
 const courses = [
@@ -38,6 +39,15 @@ const courses = [
     instructor: "Dr. Entanglement",
     icon: <Brain className="h-6 w-6 text-green-400" />,
   },
+  {
+    id: 4,
+    title: "Quantum Machine Learning",
+    description: "Learn how to apply quantum machine learning techniques to solve complex problems.",
+    level: "Advanced",
+    duration: "8 weeks",
+    instructor: "Dr. Einstein",
+    icon: <BrainCircuit className="h-6 w-6 text-blue-700" />,
+  },
 ]
 
 export default function CoursesPage() {
@@ -52,30 +62,6 @@ export default function CoursesPage() {
     course.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
     course.description.toLowerCase().includes(searchTerm.toLowerCase())
   )
-
-//   const mermaidChart = `
-//     graph TD
-//       A[Start: No Quantum Knowledge] -->|Enroll| B(Quantum Computing Fundamentals)
-//       B --> C{Choose Path}
-//       C -->|Theoretical| D[Quantum Algorithms]
-//       C -->|Practical| E[Quantum Programming]
-//       D --> F[Advanced Quantum Theory]
-//       E --> G[Quantum Error Correction]
-//       F --> H[Quantum Research Topics]
-//       G --> H
-//       H --> I[Quantum Expert]
-      
-//       style A fill:#3B82F6,stroke:#60A5FA,stroke-width:2px
-//       style B fill:#10B981,stroke:#34D399,stroke-width:2px
-//       style C fill:#F59E0B,stroke:#FBBF24,stroke-width:2px
-//       style D fill:#8B5CF6,stroke:#A78BFA,stroke-width:2px
-//       style E fill:#EC4899,stroke:#F472B6,stroke-width:2px
-//       style F fill:#6366F1,stroke:#818CF8,stroke-width:2px
-//       style G fill:#14B8A6,stroke:#2DD4BF,stroke-width:2px
-//       style H fill:#7C3AED,stroke:#A78BFA,stroke-width:2px
-//       style I fill:#EF4444,stroke:#F87171,stroke-width:2px
-//   `
-
   return (
     <div className="space-y-12 relative">
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
@@ -138,9 +124,11 @@ export default function CoursesPage() {
           <p className="text-gray-300 mb-4">
             Follow this learning path to become a Quantum Computing Expert. Start with the fundamentals and choose your specialization as you progress.
           </p>
-          <Button className="bg-gradient-to-r from-cyan-500 to-purple-500 hover:from-cyan-600 hover:to-purple-600 text-white">
-            Start Your Quantum Journey
-          </Button>
+          <Link href="/course/beginner">
+            <Button className="bg-gradient-to-r from-cyan-500 to-purple-500 hover:from-cyan-600 hover:to-purple-600 text-white">
+              Start Your Quantum Journey
+            </Button>
+          </Link>
         </div>
       </section>
 

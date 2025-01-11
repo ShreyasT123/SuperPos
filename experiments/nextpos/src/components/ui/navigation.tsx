@@ -36,7 +36,7 @@ function ThemeToggle() {
 
 export function Navigation() {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
-  const { theme, setTheme } = useTheme()
+  // const { theme, setTheme } = useTheme()
 
   const toggleMenu = () => {
     setIsMenuOpen((prev) => !prev)
@@ -57,6 +57,9 @@ export function Navigation() {
                 <NavLink href="/simulator">Simulator</NavLink>
                 <NavLink href="/documentation">Documentation</NavLink>
                 <NavLink href="/course">Online Course</NavLink>
+                
+                <NavLink href="/applications">Applications</NavLink>
+
               </div>
             </div>
             <div className="flex items-center">

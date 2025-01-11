@@ -474,12 +474,6 @@ def get_3d(request):
     return render(request, 'Ckt3d.html')
 
 
-def docs(request):
-    return render(request, 'documentation.html')
-
-
-def index(request):
-    return render(request, 'welcome.html')
 
 
 def simulate_custom_circuit(request):
@@ -529,3 +523,4 @@ def simulate_custom_circuit(request):
     except Exception as e:
         print("Error:", str(e))
         return JsonResponse({'error': str(e), 'traceback': traceback.format_exc()}, status=500)
+

@@ -65,10 +65,13 @@ export default function Altersim() {
                     <input
                       type="number"
                       min="1"
-                      value={qubits}
-                      onChange={handleQubitsChange}
+                      max="10"
+                      value={qubits || ''}
+                      onChange={(e) => handleQubitsChange(e)}
+                      onBlur={() => !qubits && setQubits(1)} // Ensure a valid number on blur
                       className="w-16 px-2 py-1 bg-black/30 border border-cyan-500/20 rounded text-gray-100"
                     />
+
                   </div>
                   <div className="flex items-center space-x-2">
                     <label className="text-gray-300 text-sm">Steps:</label>
@@ -76,10 +79,12 @@ export default function Altersim() {
                       type="number"
                       min="1"
                       max="10"
-                      value={steps}
-                      onChange={handleStepsChange}
+                      value={steps || ''}
+                      onChange={(e) => handleStepsChange(e)}
+                      onBlur={() => !steps && setSteps(1)} // Ensure a valid number on blur
                       className="w-16 px-2 py-1 bg-black/30 border border-cyan-500/20 rounded text-gray-100"
                     />
+
                   </div>
                 </div>
               </div>
@@ -99,6 +104,7 @@ export default function Altersim() {
 
             {simResults && (
               <>
+
                 <SimulationResults 
                   probPlotData={simResults.prob_plot} 
                   phasePlotData={simResults.phase_plot} 
