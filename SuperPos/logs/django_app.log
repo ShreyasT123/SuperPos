@@ -1,0 +1,437 @@
+INFO 2025-03-16 11:24:36,009 autoreload Watching for file changes with StatReloader
+INFO 2025-03-16 11:40:14,679 autoreload C:\Users\sstha\Desktop\web\FinalPos__\SuperPos\Pos\views.py changed, reloading.
+INFO 2025-03-16 11:40:15,779 autoreload Watching for file changes with StatReloader
+INFO 2025-03-16 11:41:05,903 autoreload C:\Users\sstha\Desktop\web\FinalPos__\SuperPos\Pos\views.py changed, reloading.
+INFO 2025-03-16 11:41:06,727 autoreload Watching for file changes with StatReloader
+INFO 2025-03-16 11:41:39,335 autoreload C:\Users\sstha\Desktop\web\FinalPos__\SuperPos\Pos\urls.py changed, reloading.
+INFO 2025-03-16 11:41:40,147 autoreload Watching for file changes with StatReloader
+INFO 2025-03-16 11:48:02,163 autoreload C:\Users\sstha\Desktop\web\FinalPos__\SuperPos\Pos\urls.py changed, reloading.
+INFO 2025-03-16 11:48:03,194 autoreload Watching for file changes with StatReloader
+WARNING 2025-03-16 11:53:43,955 log Method Not Allowed: /superpos/factor
+WARNING 2025-03-16 11:53:43,956 basehttp "GET /superpos/factor HTTP/1.1" 405 11189
+INFO 2025-03-16 11:53:43,982 basehttp "GET /C:/Users/sstha/Desktop/WEB/FinalPos__/experiments/SuperPos/Pos/templates/rest_framework/css/bootstrap-tweaks.css HTTP/1.1" 200 3426
+INFO 2025-03-16 11:53:43,984 basehttp "GET /C:/Users/sstha/Desktop/WEB/FinalPos__/experiments/SuperPos/Pos/templates/rest_framework/css/bootstrap.min.css HTTP/1.1" 200 121457
+INFO 2025-03-16 11:53:43,987 basehttp "GET /C:/Users/sstha/Desktop/WEB/FinalPos__/experiments/SuperPos/Pos/templates/rest_framework/css/prettify.css HTTP/1.1" 200 817
+INFO 2025-03-16 11:53:43,989 basehttp "GET /C:/Users/sstha/Desktop/WEB/FinalPos__/experiments/SuperPos/Pos/templates/rest_framework/css/default.css HTTP/1.1" 200 1152
+INFO 2025-03-16 11:53:43,992 basehttp "GET /C:/Users/sstha/Desktop/WEB/FinalPos__/experiments/SuperPos/Pos/templates/rest_framework/js/ajax-form.js HTTP/1.1" 200 3796
+INFO 2025-03-16 11:53:43,993 basehttp "GET /C:/Users/sstha/Desktop/WEB/FinalPos__/experiments/SuperPos/Pos/templates/rest_framework/js/jquery-3.7.1.min.js HTTP/1.1" 200 87533
+INFO 2025-03-16 11:53:43,996 basehttp "GET /C:/Users/sstha/Desktop/WEB/FinalPos__/experiments/SuperPos/Pos/templates/rest_framework/js/bootstrap.min.js HTTP/1.1" 200 39680
+INFO 2025-03-16 11:53:43,996 basehttp "GET /C:/Users/sstha/Desktop/WEB/FinalPos__/experiments/SuperPos/Pos/templates/rest_framework/js/csrf.js HTTP/1.1" 200 1793
+INFO 2025-03-16 11:53:43,996 basehttp "GET /C:/Users/sstha/Desktop/WEB/FinalPos__/experiments/SuperPos/Pos/templates/rest_framework/js/default.js HTTP/1.1" 200 1268
+INFO 2025-03-16 11:53:43,996 basehttp "GET /C:/Users/sstha/Desktop/WEB/FinalPos__/experiments/SuperPos/Pos/templates/rest_framework/js/prettify-min.js HTTP/1.1" 200 13632
+INFO 2025-03-16 11:53:44,001 basehttp "GET /C:/Users/sstha/Desktop/WEB/FinalPos__/experiments/SuperPos/Pos/templates/rest_framework/js/load-ajax-form.js HTTP/1.1" 200 59
+INFO 2025-03-16 11:53:44,006 basehttp "GET /C:/Users/sstha/Desktop/WEB/FinalPos__/experiments/SuperPos/Pos/templates/rest_framework/img/grid.png HTTP/1.1" 200 1458
+WARNING 2025-03-16 11:53:44,056 log Not Found: /favicon.ico
+WARNING 2025-03-16 11:53:44,056 basehttp "GET /favicon.ico HTTP/1.1" 404 2362
+INFO 2025-03-16 11:53:57,105 basehttp "OPTIONS /superpos/factor HTTP/1.1" 200 11500
+INFO 2025-03-16 11:54:26,013 autoreload Watching for file changes with StatReloader
+INFO 2025-03-16 11:55:30,570 basehttp "POST /superpos/factor HTTP/1.1" 200 44
+INFO 2025-03-16 11:55:48,987 basehttp "POST /superpos/factor HTTP/1.1" 200 44
+INFO 2025-03-16 11:56:36,347 basehttp "POST /superpos/factor HTTP/1.1" 200 44
+INFO 2025-03-16 11:56:42,189 basehttp "POST /superpos/factor HTTP/1.1" 200 48
+INFO 2025-03-16 12:07:06,424 autoreload C:\Users\sstha\Desktop\web\FinalPos__\SuperPos\Pos\views.py changed, reloading.
+INFO 2025-03-16 12:07:07,275 autoreload Watching for file changes with StatReloader
+INFO 2025-03-16 12:07:28,980 autoreload C:\Users\sstha\Desktop\web\FinalPos__\SuperPos\Pos\views.py changed, reloading.
+INFO 2025-03-16 12:07:29,807 autoreload Watching for file changes with StatReloader
+INFO 2025-03-16 12:07:43,404 autoreload C:\Users\sstha\Desktop\web\FinalPos__\SuperPos\Pos\views.py changed, reloading.
+INFO 2025-03-16 12:07:44,177 autoreload Watching for file changes with StatReloader
+ERROR 2025-03-16 12:32:31,268 log Internal Server Error: /superpos/factor
+ERROR 2025-03-16 12:32:31,268 basehttp "POST /superpos/factor HTTP/1.1" 500 70
+INFO 2025-03-16 12:36:01,870 autoreload C:\Users\sstha\Desktop\web\FinalPos__\SuperPos\Pos\views.py changed, reloading.
+INFO 2025-03-16 12:36:02,697 autoreload Watching for file changes with StatReloader
+INFO 2025-03-16 12:36:07,381 basehttp "POST /superpos/factor HTTP/1.1" 200 38
+INFO 2025-03-16 12:36:17,214 basehttp "POST /superpos/factor HTTP/1.1" 200 38
+INFO 2025-03-16 12:37:49,679 basehttp "POST /superpos/factor HTTP/1.1" 200 42
+INFO 2025-03-17 13:58:57,199 autoreload Watching for file changes with StatReloader
+WARNING 2025-03-17 13:59:49,830 log Not Found: /
+WARNING 2025-03-17 13:59:49,831 basehttp "GET / HTTP/1.1" 404 2311
+WARNING 2025-03-17 13:59:50,019 log Not Found: /favicon.ico
+WARNING 2025-03-17 13:59:50,020 basehttp "GET /favicon.ico HTTP/1.1" 404 2362
+WARNING 2025-03-17 14:00:07,024 log Not Found: /hoem
+WARNING 2025-03-17 14:00:07,025 basehttp "GET /hoem HTTP/1.1" 404 2341
+WARNING 2025-03-17 14:00:10,237 log Not Found: /home
+WARNING 2025-03-17 14:00:10,237 basehttp "GET /home HTTP/1.1" 404 2341
+WARNING 2025-03-17 14:00:15,303 log Not Found: /products/
+WARNING 2025-03-17 14:00:15,303 basehttp "GET /products/ HTTP/1.1" 404 2356
+INFO 2025-03-17 14:11:18,299 autoreload C:\Users\sstha\Desktop\web\FinalPos__\SuperPos\Pos\views.py changed, reloading.
+INFO 2025-03-17 14:11:19,940 autoreload Watching for file changes with StatReloader
+INFO 2025-03-17 14:13:47,219 autoreload C:\Users\sstha\Desktop\web\FinalPos__\SuperPos\Pos\views.py changed, reloading.
+INFO 2025-03-17 14:13:48,752 autoreload Watching for file changes with StatReloader
+INFO 2025-03-17 14:16:44,635 autoreload C:\Users\sstha\Desktop\web\FinalPos__\SuperPos\Pos\urls.py changed, reloading.
+INFO 2025-03-17 14:16:46,084 autoreload Watching for file changes with StatReloader
+INFO 2025-03-17 14:18:13,105 basehttp "POST /superpos/rsa_generate_keys/ HTTP/1.1" 200 44
+INFO 2025-03-17 14:18:21,005 basehttp "OPTIONS /superpos/rsa_encrypt/ HTTP/1.1" 200 0
+INFO 2025-03-17 14:18:21,014 basehttp "POST /superpos/rsa_encrypt/ HTTP/1.1" 200 37
+INFO 2025-03-17 14:18:23,687 basehttp "POST /superpos/rsa_generate_keys/ HTTP/1.1" 200 46
+INFO 2025-03-17 14:18:25,151 basehttp "POST /superpos/rsa_encrypt/ HTTP/1.1" 200 37
+INFO 2025-03-17 14:18:33,741 basehttp "POST /superpos/rsa_generate_keys/ HTTP/1.1" 200 44
+INFO 2025-03-17 14:18:35,218 basehttp "POST /superpos/rsa_encrypt/ HTTP/1.1" 200 37
+INFO 2025-03-17 14:18:44,566 basehttp "OPTIONS /superpos/rsa_decrypt/ HTTP/1.1" 200 0
+INFO 2025-03-17 14:18:44,574 basehttp "POST /superpos/rsa_decrypt/ HTTP/1.1" 200 30
+INFO 2025-03-17 14:22:41,313 basehttp "POST /superpos/rsa_generate_keys/ HTTP/1.1" 200 44
+INFO 2025-03-17 14:22:43,186 basehttp "POST /superpos/rsa_encrypt/ HTTP/1.1" 200 57
+ERROR 2025-03-17 14:25:04,549 log Internal Server Error: /superpos/rsa_decrypt/
+Traceback (most recent call last):
+  File "C:\Users\sstha\anaconda3\envs\projectenv\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\sstha\anaconda3\envs\projectenv\Lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\sstha\anaconda3\envs\projectenv\Lib\site-packages\django\views\decorators\csrf.py", line 65, in _view_wrapper
+    return view_func(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\sstha\Desktop\web\FinalPos__\superpos\Pos\views.py", line 136, in rsa_decrypt
+    decrypted_message = decrypt_message(encrypted_message, d, n)
+                        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\sstha\Desktop\web\FinalPos__\superpos\Pos\views.py", line 95, in decrypt_message
+    encrypted_bytes = base64.b64decode(encrypted_base64)
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\sstha\anaconda3\envs\projectenv\Lib\base64.py", line 83, in b64decode
+    s = _bytes_from_decode_data(s)
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\sstha\anaconda3\envs\projectenv\Lib\base64.py", line 45, in _bytes_from_decode_data
+    raise TypeError("argument should be a bytes-like object or ASCII "
+TypeError: argument should be a bytes-like object or ASCII string, not 'NoneType'
+ERROR 2025-03-17 14:25:04,574 basehttp "POST /superpos/rsa_decrypt/ HTTP/1.1" 500 98600
+ERROR 2025-03-17 14:25:06,635 log Internal Server Error: /superpos/rsa_decrypt/
+Traceback (most recent call last):
+  File "C:\Users\sstha\anaconda3\envs\projectenv\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\sstha\anaconda3\envs\projectenv\Lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\sstha\anaconda3\envs\projectenv\Lib\site-packages\django\views\decorators\csrf.py", line 65, in _view_wrapper
+    return view_func(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\sstha\Desktop\web\FinalPos__\superpos\Pos\views.py", line 136, in rsa_decrypt
+    decrypted_message = decrypt_message(encrypted_message, d, n)
+                        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\sstha\Desktop\web\FinalPos__\superpos\Pos\views.py", line 95, in decrypt_message
+    encrypted_bytes = base64.b64decode(encrypted_base64)
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\sstha\anaconda3\envs\projectenv\Lib\base64.py", line 83, in b64decode
+    s = _bytes_from_decode_data(s)
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\sstha\anaconda3\envs\projectenv\Lib\base64.py", line 45, in _bytes_from_decode_data
+    raise TypeError("argument should be a bytes-like object or ASCII "
+TypeError: argument should be a bytes-like object or ASCII string, not 'NoneType'
+ERROR 2025-03-17 14:25:06,651 basehttp "POST /superpos/rsa_decrypt/ HTTP/1.1" 500 98600
+ERROR 2025-03-17 14:25:07,501 log Internal Server Error: /superpos/rsa_decrypt/
+Traceback (most recent call last):
+  File "C:\Users\sstha\anaconda3\envs\projectenv\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\sstha\anaconda3\envs\projectenv\Lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\sstha\anaconda3\envs\projectenv\Lib\site-packages\django\views\decorators\csrf.py", line 65, in _view_wrapper
+    return view_func(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\sstha\Desktop\web\FinalPos__\superpos\Pos\views.py", line 136, in rsa_decrypt
+    decrypted_message = decrypt_message(encrypted_message, d, n)
+                        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\sstha\Desktop\web\FinalPos__\superpos\Pos\views.py", line 95, in decrypt_message
+    encrypted_bytes = base64.b64decode(encrypted_base64)
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\sstha\anaconda3\envs\projectenv\Lib\base64.py", line 83, in b64decode
+    s = _bytes_from_decode_data(s)
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\sstha\anaconda3\envs\projectenv\Lib\base64.py", line 45, in _bytes_from_decode_data
+    raise TypeError("argument should be a bytes-like object or ASCII "
+TypeError: argument should be a bytes-like object or ASCII string, not 'NoneType'
+ERROR 2025-03-17 14:25:07,512 basehttp "POST /superpos/rsa_decrypt/ HTTP/1.1" 500 98600
+INFO 2025-03-17 14:25:17,642 basehttp "OPTIONS /superpos/rsa_decrypt/ HTTP/1.1" 200 0
+ERROR 2025-03-17 14:25:17,700 log Internal Server Error: /superpos/rsa_decrypt/
+Traceback (most recent call last):
+  File "C:\Users\sstha\anaconda3\envs\projectenv\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\sstha\anaconda3\envs\projectenv\Lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\sstha\anaconda3\envs\projectenv\Lib\site-packages\django\views\decorators\csrf.py", line 65, in _view_wrapper
+    return view_func(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\sstha\Desktop\web\FinalPos__\superpos\Pos\views.py", line 136, in rsa_decrypt
+    decrypted_message = decrypt_message(encrypted_message, d, n)
+                        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\sstha\Desktop\web\FinalPos__\superpos\Pos\views.py", line 95, in decrypt_message
+    encrypted_bytes = base64.b64decode(encrypted_base64)
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\sstha\anaconda3\envs\projectenv\Lib\base64.py", line 83, in b64decode
+    s = _bytes_from_decode_data(s)
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\sstha\anaconda3\envs\projectenv\Lib\base64.py", line 45, in _bytes_from_decode_data
+    raise TypeError("argument should be a bytes-like object or ASCII "
+TypeError: argument should be a bytes-like object or ASCII string, not 'NoneType'
+ERROR 2025-03-17 14:25:17,708 basehttp "POST /superpos/rsa_decrypt/ HTTP/1.1" 500 98865
+INFO 2025-03-17 14:25:18,971 basehttp "OPTIONS /superpos/rsa_decrypt/ HTTP/1.1" 200 0
+ERROR 2025-03-17 14:25:19,039 log Internal Server Error: /superpos/rsa_decrypt/
+Traceback (most recent call last):
+  File "C:\Users\sstha\anaconda3\envs\projectenv\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\sstha\anaconda3\envs\projectenv\Lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\sstha\anaconda3\envs\projectenv\Lib\site-packages\django\views\decorators\csrf.py", line 65, in _view_wrapper
+    return view_func(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\sstha\Desktop\web\FinalPos__\superpos\Pos\views.py", line 136, in rsa_decrypt
+    decrypted_message = decrypt_message(encrypted_message, d, n)
+                        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\sstha\Desktop\web\FinalPos__\superpos\Pos\views.py", line 95, in decrypt_message
+    encrypted_bytes = base64.b64decode(encrypted_base64)
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\sstha\anaconda3\envs\projectenv\Lib\base64.py", line 83, in b64decode
+    s = _bytes_from_decode_data(s)
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\sstha\anaconda3\envs\projectenv\Lib\base64.py", line 45, in _bytes_from_decode_data
+    raise TypeError("argument should be a bytes-like object or ASCII "
+TypeError: argument should be a bytes-like object or ASCII string, not 'NoneType'
+ERROR 2025-03-17 14:25:19,056 basehttp "POST /superpos/rsa_decrypt/ HTTP/1.1" 500 98865
+INFO 2025-03-17 14:25:19,809 basehttp "OPTIONS /superpos/rsa_decrypt/ HTTP/1.1" 200 0
+ERROR 2025-03-17 14:25:19,863 log Internal Server Error: /superpos/rsa_decrypt/
+Traceback (most recent call last):
+  File "C:\Users\sstha\anaconda3\envs\projectenv\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\sstha\anaconda3\envs\projectenv\Lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\sstha\anaconda3\envs\projectenv\Lib\site-packages\django\views\decorators\csrf.py", line 65, in _view_wrapper
+    return view_func(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\sstha\Desktop\web\FinalPos__\superpos\Pos\views.py", line 136, in rsa_decrypt
+    decrypted_message = decrypt_message(encrypted_message, d, n)
+                        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\sstha\Desktop\web\FinalPos__\superpos\Pos\views.py", line 95, in decrypt_message
+    encrypted_bytes = base64.b64decode(encrypted_base64)
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\sstha\anaconda3\envs\projectenv\Lib\base64.py", line 83, in b64decode
+    s = _bytes_from_decode_data(s)
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\sstha\anaconda3\envs\projectenv\Lib\base64.py", line 45, in _bytes_from_decode_data
+    raise TypeError("argument should be a bytes-like object or ASCII "
+TypeError: argument should be a bytes-like object or ASCII string, not 'NoneType'
+ERROR 2025-03-17 14:25:19,875 basehttp "POST /superpos/rsa_decrypt/ HTTP/1.1" 500 98865
+INFO 2025-03-17 14:26:39,835 autoreload C:\Users\sstha\Desktop\web\FinalPos__\SuperPos\Pos\views.py changed, reloading.
+INFO 2025-03-17 14:26:41,891 autoreload Watching for file changes with StatReloader
+INFO 2025-03-17 14:26:49,464 basehttp "OPTIONS /superpos/rsa_decrypt/ HTTP/1.1" 200 0
+ERROR 2025-03-17 14:26:49,529 log Internal Server Error: /superpos/rsa_decrypt/
+Traceback (most recent call last):
+  File "C:\Users\sstha\anaconda3\envs\projectenv\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\sstha\anaconda3\envs\projectenv\Lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\sstha\anaconda3\envs\projectenv\Lib\site-packages\django\views\decorators\csrf.py", line 65, in _view_wrapper
+    return view_func(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\sstha\Desktop\web\FinalPos__\superpos\Pos\views.py", line 137, in rsa_decrypt
+    decrypted_message = decrypt_message(encrypted_message, d, n)
+                        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\sstha\Desktop\web\FinalPos__\superpos\Pos\views.py", line 96, in decrypt_message
+    encrypted_bytes = base64.b64decode(encrypted_base64)
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\sstha\anaconda3\envs\projectenv\Lib\base64.py", line 83, in b64decode
+    s = _bytes_from_decode_data(s)
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\sstha\anaconda3\envs\projectenv\Lib\base64.py", line 45, in _bytes_from_decode_data
+    raise TypeError("argument should be a bytes-like object or ASCII "
+TypeError: argument should be a bytes-like object or ASCII string, not 'NoneType'
+ERROR 2025-03-17 14:26:49,537 basehttp "POST /superpos/rsa_decrypt/ HTTP/1.1" 500 98853
+INFO 2025-03-17 14:27:41,758 autoreload C:\Users\sstha\Desktop\web\FinalPos__\SuperPos\Pos\views.py changed, reloading.
+INFO 2025-03-17 14:27:43,235 autoreload Watching for file changes with StatReloader
+INFO 2025-03-17 14:27:51,001 basehttp "OPTIONS /superpos/rsa_decrypt/ HTTP/1.1" 200 0
+ERROR 2025-03-17 14:27:51,093 log Internal Server Error: /superpos/rsa_decrypt/
+Traceback (most recent call last):
+  File "C:\Users\sstha\anaconda3\envs\projectenv\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\sstha\anaconda3\envs\projectenv\Lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\sstha\anaconda3\envs\projectenv\Lib\site-packages\django\views\decorators\csrf.py", line 65, in _view_wrapper
+    return view_func(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\sstha\Desktop\web\FinalPos__\superpos\Pos\views.py", line 138, in rsa_decrypt
+    decrypted_message = decrypt_message(encrypted_message, d, n)
+                        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\sstha\Desktop\web\FinalPos__\superpos\Pos\views.py", line 96, in decrypt_message
+    encrypted_bytes = base64.b64decode(encrypted_base64)
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\sstha\anaconda3\envs\projectenv\Lib\base64.py", line 83, in b64decode
+    s = _bytes_from_decode_data(s)
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\sstha\anaconda3\envs\projectenv\Lib\base64.py", line 45, in _bytes_from_decode_data
+    raise TypeError("argument should be a bytes-like object or ASCII "
+TypeError: argument should be a bytes-like object or ASCII string, not 'NoneType'
+ERROR 2025-03-17 14:27:51,117 basehttp "POST /superpos/rsa_decrypt/ HTTP/1.1" 500 98853
+INFO 2025-03-17 14:29:03,699 basehttp "OPTIONS /superpos/rsa_decrypt/ HTTP/1.1" 200 0
+ERROR 2025-03-17 14:29:03,768 log Internal Server Error: /superpos/rsa_decrypt/
+Traceback (most recent call last):
+  File "C:\Users\sstha\anaconda3\envs\projectenv\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\sstha\anaconda3\envs\projectenv\Lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\sstha\anaconda3\envs\projectenv\Lib\site-packages\django\views\decorators\csrf.py", line 65, in _view_wrapper
+    return view_func(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\sstha\Desktop\web\FinalPos__\superpos\Pos\views.py", line 138, in rsa_decrypt
+    decrypted_message = decrypt_message(encrypted_message, d, n)
+                        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\sstha\Desktop\web\FinalPos__\superpos\Pos\views.py", line 96, in decrypt_message
+    encrypted_bytes = base64.b64decode(encrypted_base64)
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\sstha\anaconda3\envs\projectenv\Lib\base64.py", line 83, in b64decode
+    s = _bytes_from_decode_data(s)
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\sstha\anaconda3\envs\projectenv\Lib\base64.py", line 45, in _bytes_from_decode_data
+    raise TypeError("argument should be a bytes-like object or ASCII "
+TypeError: argument should be a bytes-like object or ASCII string, not 'NoneType'
+ERROR 2025-03-17 14:29:03,784 basehttp "POST /superpos/rsa_decrypt/ HTTP/1.1" 500 98853
+INFO 2025-03-17 14:29:42,203 autoreload C:\Users\sstha\Desktop\web\FinalPos__\SuperPos\Pos\views.py changed, reloading.
+INFO 2025-03-17 14:29:43,988 autoreload Watching for file changes with StatReloader
+INFO 2025-03-17 14:29:54,855 basehttp "OPTIONS /superpos/rsa_decrypt/ HTTP/1.1" 200 0
+INFO 2025-03-17 14:29:54,871 basehttp "POST /superpos/rsa_decrypt/ HTTP/1.1" 200 41
+INFO 2025-03-17 14:30:42,288 basehttp "POST /superpos/rsa_generate_keys/ HTTP/1.1" 200 42
+INFO 2025-03-17 14:30:44,024 basehttp "OPTIONS /superpos/rsa_encrypt/ HTTP/1.1" 200 0
+INFO 2025-03-17 14:30:44,031 basehttp "POST /superpos/rsa_encrypt/ HTTP/1.1" 200 69
+INFO 2025-03-17 14:31:19,989 autoreload C:\Users\sstha\Desktop\web\FinalPos__\SuperPos\Pos\views.py changed, reloading.
+INFO 2025-03-17 14:31:21,704 autoreload Watching for file changes with StatReloader
+INFO 2025-03-17 14:39:45,099 autoreload C:\Users\sstha\Desktop\web\FinalPos__\SuperPos\Pos\views.py changed, reloading.
+INFO 2025-03-17 14:39:46,918 autoreload Watching for file changes with StatReloader
+INFO 2025-03-17 14:42:03,810 basehttp "OPTIONS /superpos/run_fault_tolerance/ HTTP/1.1" 200 0
+WARNING 2025-03-17 14:42:03,855 log Not Found: /superpos/run_fault_tolerance/
+WARNING 2025-03-17 14:42:03,856 basehttp "POST /superpos/run_fault_tolerance/ HTTP/1.1" 404 3887
+INFO 2025-03-17 14:42:28,938 autoreload C:\Users\sstha\Desktop\web\FinalPos__\SuperPos\Pos\urls.py changed, reloading.
+INFO 2025-03-17 14:42:31,825 autoreload Watching for file changes with StatReloader
+INFO 2025-03-17 14:43:30,030 basehttp "OPTIONS /superpos/run_fault_tolerance/ HTTP/1.1" 200 0
+ERROR 2025-03-17 14:43:30,052 log Internal Server Error: /superpos/run_fault_tolerance/
+ERROR 2025-03-17 14:43:30,052 basehttp "POST /superpos/run_fault_tolerance/ HTTP/1.1" 500 36
+INFO 2025-03-17 14:43:33,320 basehttp "OPTIONS /superpos/run_fault_tolerance/ HTTP/1.1" 200 0
+ERROR 2025-03-17 14:43:33,330 log Internal Server Error: /superpos/run_fault_tolerance/
+ERROR 2025-03-17 14:43:33,333 basehttp "POST /superpos/run_fault_tolerance/ HTTP/1.1" 500 36
+INFO 2025-03-17 14:44:39,810 autoreload C:\Users\sstha\Desktop\web\FinalPos__\SuperPos\Pos\views.py changed, reloading.
+INFO 2025-03-17 14:44:41,927 autoreload Watching for file changes with StatReloader
+INFO 2025-03-17 14:44:49,354 basehttp "OPTIONS /superpos/run_fault_tolerance/ HTTP/1.1" 200 0
+ERROR 2025-03-17 14:44:49,354 log Internal Server Error: /superpos/run_fault_tolerance/
+ERROR 2025-03-17 14:44:49,368 basehttp "POST /superpos/run_fault_tolerance/ HTTP/1.1" 500 36
+INFO 2025-03-17 14:45:05,183 basehttp "OPTIONS /superpos/run_fault_tolerance/ HTTP/1.1" 200 0
+ERROR 2025-03-17 14:45:05,192 log Internal Server Error: /superpos/run_fault_tolerance/
+ERROR 2025-03-17 14:45:05,192 basehttp "POST /superpos/run_fault_tolerance/ HTTP/1.1" 500 36
+INFO 2025-03-17 14:46:24,744 autoreload C:\Users\sstha\Desktop\web\FinalPos__\SuperPos\Pos\views.py changed, reloading.
+INFO 2025-03-17 14:46:26,441 autoreload Watching for file changes with StatReloader
+INFO 2025-03-17 14:46:36,050 basehttp "OPTIONS /superpos/run_fault_tolerance/ HTTP/1.1" 200 0
+ERROR 2025-03-17 14:46:36,055 log Internal Server Error: /superpos/run_fault_tolerance/
+ERROR 2025-03-17 14:46:36,062 basehttp "POST /superpos/run_fault_tolerance/ HTTP/1.1" 500 36
+INFO 2025-03-17 14:46:51,985 basehttp "OPTIONS /superpos/run_fault_tolerance/ HTTP/1.1" 200 0
+ERROR 2025-03-17 14:46:51,999 log Internal Server Error: /superpos/run_fault_tolerance/
+ERROR 2025-03-17 14:46:52,004 basehttp "POST /superpos/run_fault_tolerance/ HTTP/1.1" 500 36
+INFO 2025-03-17 14:47:38,753 autoreload C:\Users\sstha\Desktop\web\FinalPos__\SuperPos\Pos\views.py changed, reloading.
+INFO 2025-03-17 14:47:40,326 autoreload Watching for file changes with StatReloader
+INFO 2025-03-17 14:47:47,092 basehttp "OPTIONS /superpos/run_fault_tolerance/ HTTP/1.1" 200 0
+ERROR 2025-03-17 14:47:47,103 log Internal Server Error: /superpos/run_fault_tolerance/
+ERROR 2025-03-17 14:47:47,103 basehttp "POST /superpos/run_fault_tolerance/ HTTP/1.1" 500 36
+INFO 2025-03-17 14:48:01,657 autoreload C:\Users\sstha\Desktop\web\FinalPos__\SuperPos\Pos\views.py changed, reloading.
+INFO 2025-03-17 14:48:03,328 autoreload Watching for file changes with StatReloader
+INFO 2025-03-17 14:48:14,288 basehttp "OPTIONS /superpos/run_fault_tolerance/ HTTP/1.1" 200 0
+ERROR 2025-03-17 14:48:14,309 log Internal Server Error: /superpos/run_fault_tolerance/
+ERROR 2025-03-17 14:48:14,309 basehttp "POST /superpos/run_fault_tolerance/ HTTP/1.1" 500 36
+INFO 2025-03-17 14:49:17,596 autoreload C:\Users\sstha\Desktop\web\FinalPos__\SuperPos\Pos\views.py changed, reloading.
+INFO 2025-03-17 14:49:19,295 autoreload Watching for file changes with StatReloader
+INFO 2025-03-17 14:49:26,515 basehttp "OPTIONS /superpos/run_fault_tolerance/ HTTP/1.1" 200 0
+ERROR 2025-03-17 14:49:26,536 log Internal Server Error: /superpos/run_fault_tolerance/
+ERROR 2025-03-17 14:49:26,539 basehttp "POST /superpos/run_fault_tolerance/ HTTP/1.1" 500 36
+INFO 2025-03-17 14:49:45,139 autoreload C:\Users\sstha\Desktop\web\FinalPos__\SuperPos\Pos\views.py changed, reloading.
+INFO 2025-03-17 14:49:46,622 autoreload Watching for file changes with StatReloader
+INFO 2025-03-17 14:49:56,311 basehttp "OPTIONS /superpos/run_fault_tolerance/ HTTP/1.1" 200 0
+ERROR 2025-03-17 14:49:56,327 log Internal Server Error: /superpos/run_fault_tolerance/
+ERROR 2025-03-17 14:49:56,327 basehttp "POST /superpos/run_fault_tolerance/ HTTP/1.1" 500 36
+INFO 2025-03-17 14:50:31,388 autoreload C:\Users\sstha\Desktop\web\FinalPos__\SuperPos\Pos\views.py changed, reloading.
+INFO 2025-03-17 14:50:33,747 autoreload Watching for file changes with StatReloader
+INFO 2025-03-17 14:50:44,748 basehttp "OPTIONS /superpos/run_fault_tolerance/ HTTP/1.1" 200 0
+ERROR 2025-03-17 14:50:44,762 log Internal Server Error: /superpos/run_fault_tolerance/
+ERROR 2025-03-17 14:50:44,762 basehttp "POST /superpos/run_fault_tolerance/ HTTP/1.1" 500 36
+INFO 2025-03-17 14:51:25,592 autoreload C:\Users\sstha\Desktop\web\FinalPos__\SuperPos\Pos\views.py changed, reloading.
+INFO 2025-03-17 14:51:27,274 autoreload Watching for file changes with StatReloader
+INFO 2025-03-17 14:51:34,474 basehttp "OPTIONS /superpos/run_fault_tolerance/ HTTP/1.1" 200 0
+ERROR 2025-03-17 14:51:34,486 log Internal Server Error: /superpos/run_fault_tolerance/
+ERROR 2025-03-17 14:51:34,487 basehttp "POST /superpos/run_fault_tolerance/ HTTP/1.1" 500 36
+INFO 2025-03-17 14:52:02,188 autoreload C:\Users\sstha\Desktop\web\FinalPos__\SuperPos\Pos\views.py changed, reloading.
+INFO 2025-03-17 14:52:03,817 autoreload Watching for file changes with StatReloader
+INFO 2025-03-17 14:52:10,416 basehttp "OPTIONS /superpos/run_fault_tolerance/ HTTP/1.1" 200 0
+INFO 2025-03-17 14:52:10,452 basehttp "POST /superpos/run_fault_tolerance/ HTTP/1.1" 200 158
+INFO 2025-03-17 14:52:27,871 basehttp "OPTIONS /superpos/run_fault_tolerance/ HTTP/1.1" 200 0
+INFO 2025-03-17 14:52:27,921 basehttp "POST /superpos/run_fault_tolerance/ HTTP/1.1" 200 146
+INFO 2025-03-17 14:54:28,226 basehttp "OPTIONS /superpos/run_fault_tolerance/ HTTP/1.1" 200 0
+INFO 2025-03-17 14:54:28,245 basehttp "POST /superpos/run_fault_tolerance/ HTTP/1.1" 200 146
+INFO 2025-03-17 14:56:20,402 basehttp "OPTIONS /superpos/run_fault_tolerance/ HTTP/1.1" 200 0
+INFO 2025-03-17 14:56:20,425 basehttp "POST /superpos/run_fault_tolerance/ HTTP/1.1" 200 126
+INFO 2025-03-17 14:58:47,168 autoreload C:\Users\sstha\Desktop\web\FinalPos__\SuperPos\Pos\views.py changed, reloading.
+INFO 2025-03-17 14:58:49,039 autoreload Watching for file changes with StatReloader
+INFO 2025-03-17 14:59:58,809 basehttp "OPTIONS /superpos/run_fault_tolerance/ HTTP/1.1" 200 0
+ERROR 2025-03-17 14:59:58,823 log Internal Server Error: /superpos/run_fault_tolerance/
+ERROR 2025-03-17 14:59:58,824 basehttp "POST /superpos/run_fault_tolerance/ HTTP/1.1" 500 36
+INFO 2025-03-17 15:03:42,910 basehttp "OPTIONS /superpos/run_fault_tolerance/ HTTP/1.1" 200 0
+ERROR 2025-03-17 15:03:42,926 log Internal Server Error: /superpos/run_fault_tolerance/
+ERROR 2025-03-17 15:03:42,926 basehttp "POST /superpos/run_fault_tolerance/ HTTP/1.1" 500 36
+INFO 2025-03-17 15:04:30,181 autoreload C:\Users\sstha\Desktop\web\FinalPos__\SuperPos\Pos\views.py changed, reloading.
+INFO 2025-03-17 15:04:31,701 autoreload Watching for file changes with StatReloader
+INFO 2025-03-17 15:04:41,699 basehttp "OPTIONS /superpos/run_fault_tolerance/ HTTP/1.1" 200 0
+INFO 2025-03-17 15:04:41,728 basehttp "POST /superpos/run_fault_tolerance/ HTTP/1.1" 200 832
+INFO 2025-03-17 15:05:47,362 basehttp "OPTIONS /superpos/run_fault_tolerance/ HTTP/1.1" 200 0
+INFO 2025-03-17 15:05:47,374 basehttp "POST /superpos/run_fault_tolerance/ HTTP/1.1" 200 461
+INFO 2025-03-17 15:10:26,068 autoreload C:\Users\sstha\Desktop\web\FinalPos__\SuperPos\Pos\views.py changed, reloading.
+INFO 2025-03-17 15:10:27,972 autoreload Watching for file changes with StatReloader
+INFO 2025-03-17 15:10:55,150 basehttp "OPTIONS /superpos/run_fault_tolerance/ HTTP/1.1" 200 0
+INFO 2025-03-17 15:10:55,218 basehttp "POST /superpos/run_fault_tolerance/ HTTP/1.1" 200 4476
+INFO 2025-03-17 15:17:15,893 autoreload C:\Users\sstha\Desktop\web\FinalPos__\SuperPos\Pos\views.py changed, reloading.
+INFO 2025-03-17 15:17:18,194 autoreload Watching for file changes with StatReloader
+INFO 2025-03-17 15:17:48,196 basehttp "OPTIONS /superpos/run_fault_tolerance/ HTTP/1.1" 200 0
+INFO 2025-03-17 15:17:48,269 basehttp "POST /superpos/run_fault_tolerance/ HTTP/1.1" 200 5421
+INFO 2025-03-17 15:19:15,861 autoreload C:\Users\sstha\Desktop\web\FinalPos__\SuperPos\Pos\views.py changed, reloading.
+INFO 2025-03-17 15:19:17,916 autoreload Watching for file changes with StatReloader
+INFO 2025-03-17 15:23:23,364 basehttp "OPTIONS /superpos/run_fault_tolerance/ HTTP/1.1" 200 0
+INFO 2025-03-17 15:23:23,448 basehttp "POST /superpos/run_fault_tolerance/ HTTP/1.1" 200 5453
+INFO 2025-03-17 15:25:32,675 basehttp "OPTIONS /superpos/run_fault_tolerance/ HTTP/1.1" 200 0
+INFO 2025-03-17 15:25:32,712 basehttp "POST /superpos/run_fault_tolerance/ HTTP/1.1" 200 5706
+INFO 2025-03-17 15:26:37,748 basehttp "OPTIONS /superpos/run_fault_tolerance/ HTTP/1.1" 200 0
+INFO 2025-03-17 15:26:37,757 basehttp "POST /superpos/run_fault_tolerance/ HTTP/1.1" 200 1259
+INFO 2025-03-17 15:27:28,942 autoreload C:\Users\sstha\Desktop\web\FinalPos__\SuperPos\Pos\views.py changed, reloading.
+INFO 2025-03-17 15:27:31,630 autoreload Watching for file changes with StatReloader
+INFO 2025-03-17 15:27:52,866 basehttp "OPTIONS /superpos/run_fault_tolerance/ HTTP/1.1" 200 0
+INFO 2025-03-17 15:27:52,898 basehttp "POST /superpos/run_fault_tolerance/ HTTP/1.1" 200 1280
+INFO 2025-03-17 15:28:31,518 basehttp "OPTIONS /superpos/run_fault_tolerance/ HTTP/1.1" 200 0
+INFO 2025-03-17 15:28:31,543 basehttp "POST /superpos/run_fault_tolerance/ HTTP/1.1" 200 1215
+INFO 2025-03-17 15:32:48,112 autoreload C:\Users\sstha\anaconda3\envs\projectenv\Lib\site-packages\google\protobuf\descriptor.py changed, reloading.
+INFO 2025-03-17 15:32:50,476 autoreload Watching for file changes with StatReloader
+INFO 2025-03-17 15:42:50,132 basehttp "POST /superpos/run_fault_tolerance/ HTTP/1.1" 200 5428
+INFO 2025-03-17 15:43:22,853 basehttp "POST /superpos/run_fault_tolerance/ HTTP/1.1" 200 5428
+INFO 2025-03-17 15:43:25,317 basehttp "POST /superpos/run_fault_tolerance/ HTTP/1.1" 200 5159
+INFO 2025-03-17 15:44:32,932 basehttp "POST /superpos/run_fault_tolerance/ HTTP/1.1" 200 5432
+INFO 2025-03-17 15:45:16,422 basehttp "POST /superpos/rsa_generate_keys/ HTTP/1.1" 200 43
+INFO 2025-03-17 15:45:22,218 basehttp "POST /superpos/rsa_encrypt/ HTTP/1.1" 200 37
+ERROR 2025-03-17 15:46:02,678 log Internal Server Error: /superpos/rsa_decrypt/
+Traceback (most recent call last):
+  File "C:\Users\sstha\anaconda3\envs\projectenv\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\sstha\anaconda3\envs\projectenv\Lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\sstha\anaconda3\envs\projectenv\Lib\site-packages\django\views\decorators\csrf.py", line 65, in _view_wrapper
+    return view_func(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\sstha\Desktop\web\FinalPos__\superpos\Pos\views.py", line 222, in rsa_decrypt
+    e = int(data.get('e'))
+        ^^^^^^^^^^^^^^^^^^
+ValueError: invalid literal for int() with base 10: ''
+ERROR 2025-03-17 15:46:02,685 basehttp "POST /superpos/rsa_decrypt/ HTTP/1.1" 500 85831
+INFO 2025-03-17 15:46:13,782 basehttp "POST /superpos/rsa_decrypt/ HTTP/1.1" 200 30
