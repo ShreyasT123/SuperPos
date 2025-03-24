@@ -19,46 +19,6 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 LOGGING_DIR = os.path.join(BASE_DIR, 'logs')
 os.makedirs(LOGGING_DIR, exist_ok=True)
 
-LOGGING = {
-    'version': 1,
-    'disable_existing_loggers': False,
-    'formatters': {
-        'verbose': {
-            'format': '{levelname} {asctime} {module} {message}',
-            'style': '{',
-        },
-        'simple': {
-            'format': '{levelname} {message}',
-            'style': '{',
-        },
-    },
-    'handlers': {
-        'console': {
-            'class': 'logging.StreamHandler',
-            'formatter': 'simple',
-        },
-        'file': {
-            'class': 'logging.FileHandler',
-            'filename': os.path.join(LOGGING_DIR, 'django_app.log'),
-            'formatter': 'verbose',
-            'level': 'INFO',  # Adjust the level here as per your requirement
-        },
-    },
-    'loggers': {
-        'django': {
-            'handlers': ['console', 'file'],
-            'level': 'INFO',  # You can adjust this level to capture more/less detailed logs
-            'propagate': True,
-        },
-        'Pos': {
-            'handlers': ['console', 'file'],  # Logs for your custom Django app 'Pos'
-            'level': 'INFO',  # You can change this to DEBUG for more detailed logging
-            'propagate': False,
-        },
-    },
-}
-
-
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/5.1/howto/deployment/checklist/
 
