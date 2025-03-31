@@ -22,7 +22,7 @@ export const GateButton: React.FC<GateButtonProps> = ({ gate, onDragStart }) => 
     gray: 'border-gray-500/20 bg-gray-500/10 hover:bg-gray-500/20 text-gray-400',
   };
 
-  const colorClasses = colorMap[gate.color] || colorMap.gray;
+  const colorClasses = colorMap[gate.color as keyof typeof colorMap] || colorMap.gray;
 
   return (
     <div

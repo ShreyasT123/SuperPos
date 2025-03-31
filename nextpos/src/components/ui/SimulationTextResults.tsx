@@ -1,7 +1,19 @@
 import React from 'react';
 
+interface StateVector {
+  binary: string;
+  magnitude: number;
+  phase: number;
+  probability: number;
+}
+
+interface SimulationResults {
+  state_vector: StateVector[];
+  circuit: string;
+}
+
 interface SimulationTextResultsProps {
-  results: any;
+  results: SimulationResults;
 }
 
 const SimulationTextResults: React.FC<SimulationTextResultsProps> = ({ results }) => {
@@ -23,7 +35,7 @@ const SimulationTextResults: React.FC<SimulationTextResultsProps> = ({ results }
         <pre className="text-sm">
           {state_vector
             .map(
-              (state: any) =>
+              (state: StateVector) =>
                 `State: ${state.binary}, Magnitude: ${state.magnitude.toFixed(4)}, Phase: ${state.phase.toFixed(
                   4
                 )}, Probability: ${state.probability.toFixed(4)}`

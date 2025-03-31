@@ -3,7 +3,7 @@ import { useState } from "react";
 
 export default function RSAEncryptionApp() {
     const [message, setMessage] = useState("");
-    const [keys, setKeys] = useState(null);
+    const [keys, setKeys] = useState<{ n: string; e: string } | null>(null);
     const [encryptedMessage, setEncryptedMessage] = useState("");
     const [decryptedMessage, setDecryptedMessage] = useState("");
     const [decryptInput, setDecryptInput] = useState({ encryptedMessage: "", n: "", e: "" });

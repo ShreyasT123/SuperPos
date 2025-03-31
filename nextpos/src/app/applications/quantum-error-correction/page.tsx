@@ -4,13 +4,23 @@ import { useState } from "react";
 
 export default function FaultToleranceSimulator() {
     const [numQubits, setNumQubits] = useState(3);
-    const [errors, setErrors] = useState([]);
+    const [errors, setErrors] = useState<number[]>([]);
     const [protocol, setProtocol] = useState("non_ft");
     const [syndromeRounds, setSyndromeRounds] = useState(3);
     const [measurementError, setMeasurementError] = useState(0.0);
-    const [simulationResult, setSimulationResult] = useState(null);
+    interface SimulationResult {
+        secret: string;
+        ideal_measurement: number[];
+        final_measurement: number[];
+        syndromeRounds: number;
+        corrected_state: string | null;
+        success: boolean;
+        circuit_text: string;
+    }
 
-    const toggleError = (qubit) => {
+    const [simulationResult, setSimulationResult] = useState<SimulationResult | null>(null);
+
+    const toggleError = (qubit: number) => {
         setErrors((prevErrors) =>
             prevErrors.includes(qubit)
                 ? prevErrors.filter((e) => e !== qubit)

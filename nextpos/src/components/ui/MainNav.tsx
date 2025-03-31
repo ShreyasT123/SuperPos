@@ -13,7 +13,6 @@ import {
   NavigationMenuTrigger,
   navigationMenuTriggerStyle
 } from "@/components/ui/navigation-menu";
-import { Button } from "./button";
 
 const components: { 
   id: string; 
@@ -233,8 +232,8 @@ export function MainNav() {
 }
 
 const ListItem = React.forwardRef<
-  React.ElementRef<"a">,
-  React.ComponentPropsWithoutRef<"a">
+  React.ElementRef<"button">,
+  React.ComponentPropsWithoutRef<"button">
 >(({ className, title, children, onClick, ...props }, ref) => {
   return (
     <li>
