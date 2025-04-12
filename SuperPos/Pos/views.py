@@ -690,14 +690,14 @@ def create_circuit_from_json(circuit_json):
     # Generate the 3D visualization
     ckt = cirq_web.Circuit3D(circuit)
     html_file = ckt.generate_html_file(
-        output_directory=r"C:\Users\sstha\Desktop\WEB\FinalPos__\experiments\SuperPos\Pos\templates"
+        output_directory=r"C:\Users\sstha\Desktop\WEB\FinalPos__\SuperPos\Pos\templates"
     )
 
     # Write the updated HTML content
     with open(html_file, "r") as f:
         html = f.readlines()
     with open(
-        r"C:\Users\sstha\Desktop\WEB\FinalPos__\experiments\SuperPos\Pos\templates\Ckt3d.html",
+        r"C:\Users\sstha\Desktop\WEB\FinalPos__\SuperPos\Pos\templates\Ckt3d.html",
         "w+",
         encoding="utf-8",
     ) as f:

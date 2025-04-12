@@ -132,7 +132,7 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/5.1/howto/static-files/
 
-STATIC_URL = 'C:/Users/sstha/Desktop/WEB/FinalPos__/experiments/SuperPos/Pos/templates/'
+STATIC_URL = 'C:/Users/sstha/Desktop/WEB/FinalPos__/SuperPos/Pos/templates/'
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.1/ref/settings/#default-auto-field
