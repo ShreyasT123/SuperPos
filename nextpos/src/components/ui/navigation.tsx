@@ -57,8 +57,8 @@ export function Navigation() {
                 <NavLink href="/simulator">Simulator</NavLink>
                 <NavLink href="/documentation">Documentation</NavLink>
                 <NavLink href="/course">Online Course</NavLink>
-                
                 <NavLink href="/applications">Applications</NavLink>
+                <NavLink href="/news" onClick={toggleMenu}>News</NavLink>
 
               </div>
             </div>
@@ -78,6 +78,7 @@ export function Navigation() {
             <NavLink href="/simulator" onClick={toggleMenu}>Simulator</NavLink>
             <NavLink href="/documentation" onClick={toggleMenu}>Documentation</NavLink>
             <NavLink href="/course" onClick={toggleMenu}>Online Course</NavLink>
+            <NavLink href="/news" onClick={toggleMenu}>News</NavLink>
           </div>
         </div>
       )}
