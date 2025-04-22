@@ -14,7 +14,7 @@ const demos = [
     id: 1,
     title: "Shor's Algorithm",
     description: "A quantum algorithm for factoring integers, which is exponentially faster than classical algorithms.",
-    link: "/applications/shors-algorithm",
+    link: "/applications/shors",
     icon: <Atom className="h-6 w-6 text-cyan-400" />,
   },
   {

@@ -6,17 +6,17 @@ import { cn } from '@/lib/utils'
 
 const courseStructure = {
   beginner: [
-    { id: 1, title: "Introduction to Quantum Computing", path: "/course/beginner" },
+    { id: 1, title: "Introduction to Quantum Computing", path: "/course/beginner/1" },
     { id: 2, title: "Qubits and Superposition", path: "/course/beginner/2" },
     { id: 3, title: "Quantum Gates", path: "/course/beginner/3" },
   ],
   intermediate: [
-    { id: 1, title: "Quantum Circuits", path: "/course/intermediate" },
+    { id: 1, title: "Quantum Circuits", path: "/course/intermediate/1" },
     { id: 2, title: "Quantum Algorithms", path: "/course/intermediate/2" },
     { id: 3, title: "Quantum Error Correction", path: "/course/intermediate/3" },
   ],
   advanced: [
-    { id: 1, title: "Quantum Machine Learning", path: "/course/advanced" },
+    { id: 1, title: "Quantum Machine Learning", path: "/course/advanced/1" },
     { id: 2, title: "Quantum Cryptography", path: "/course/advanced/2" },
     { id: 3, title: "Advanced Quantum Algorithms", path: "/course/advanced/3" },
   ],
