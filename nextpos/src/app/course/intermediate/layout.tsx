@@ -1,33 +1,44 @@
-'use client'
+"use client";
 
-import Link from 'next/link'
-import { usePathname } from 'next/navigation'
-import { cn } from '@/lib/utils'
+import Link from "next/link";
+import { usePathname } from "next/navigation";
+import { cn } from "@/lib/utils";
 
 const courseStructure = {
   beginner: [
-    { id: 1, title: "Introduction to Quantum Computing", path: "/course/beginner/1" },
+    {
+      id: 1,
+      title: "Introduction to Quantum Computing",
+      path: "/course/beginner/1",
+    },
     { id: 2, title: "Qubits and Superposition", path: "/course/beginner/2" },
     { id: 3, title: "Quantum Gates", path: "/course/beginner/3" },
+    { id: 4, title: "Beginner Quiz", path: "/course/beginner/quiz" },
   ],
   intermediate: [
     { id: 1, title: "Quantum Circuits", path: "/course/intermediate/1" },
     { id: 2, title: "Quantum Algorithms", path: "/course/intermediate/2" },
-    { id: 3, title: "Quantum Error Correction", path: "/course/intermediate/3" },
+    {
+      id: 3,
+      title: "Quantum Error Correction",
+      path: "/course/intermediate/3",
+    },
+    { id: 4, title: "Intermdiate Quiz", path: "/course/intermediate/quiz" },
   ],
   advanced: [
     { id: 1, title: "Quantum Machine Learning", path: "/course/advanced/1" },
     { id: 2, title: "Quantum Cryptography", path: "/course/advanced/2" },
     { id: 3, title: "Advanced Quantum Algorithms", path: "/course/advanced/3" },
+    { id: 4, title: "Advanced Quiz", path: "/course/advanced/quiz" },
   ],
-}
+};
 
 export default function CourseLayout({
   children,
 }: {
-  children: React.ReactNode
+  children: React.ReactNode;
 }) {
-  const pathname = usePathname()
+  const pathname = usePathname();
 
   return (
     <div className="flex min-h-screen">
@@ -63,10 +74,8 @@ export default function CourseLayout({
 
       {/* Main Content */}
       <div className="flex-1 ml-64">
-        <main className="p-8">
-          {children}
-        </main>
+        <main className="p-8">{children}</main>
       </div>
     </div>
-  )
-} 
+  );
+}
