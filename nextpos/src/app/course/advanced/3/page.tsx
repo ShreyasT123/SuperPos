@@ -1,40 +1,6 @@
 import React from 'react';
 import Head from 'next/head';
 
-// Reusable Video Player Component
-const VideoPlayer = ({
-    src,
-    poster,
-    controls = true,
-    width = "100%",
-    height = "auto"
-  }: {
-    src: string,
-    poster: string,
-    controls: boolean,
-    width?: string | number,
-    height?: string | number
-  }) => {
-    return (
-      <div style={{ maxWidth: '800px', margin: '0 auto' }}>
-        <video
-          src={src}
-          poster={poster}
-          controls={controls}
-          width={width}
-          height={height}
-          style={{
-            width: '640px', // Fixed width example
-            height: '360px', // Fixed height example
-            objectFit: 'contain',
-            borderRadius: '8px',
-          }}
-        >
-          Your browser does not support the video tag.
-        </video>
-      </div>
-    );
-}
 
 export default function AdvancedQuantumAlgorithmsPage() {
   return (
@@ -58,15 +24,7 @@ export default function AdvancedQuantumAlgorithmsPage() {
       <div className="mb-8">
         <h3 className="text-xl font-semibold mb-4 text-white">Module 3: Complex Quantum Procedures</h3>
         <div className="bg-gray-900 rounded-lg p-6">
-          <VideoPlayer
-            src="/placeholder-video.mp4" // Replace with actual video path
-            poster="/placeholder-poster.jpg" // Replace with actual poster image path
-            controls={true}
-            width={640}
-            height={360}
-          />
           <div className="mt-4">
-            <h4 className="text-lg font-medium mb-2 text-white">Lesson Summary</h4>
             <p className="text-gray-300">
               Topics explored in detail:
             </p>

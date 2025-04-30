@@ -1,45 +1,6 @@
 import React from "react";
 import Head from "next/head";
 
-// Reusable Video Player Component (Assuming it's imported or defined elsewhere)
-const VideoPlayer = ({
-  src,
-  poster,
-  controls = true,
-  width = "100%", // Default to 100% for responsive container
-  height = "auto", // Default to auto for aspect ratio
-}: {
-  src: string;
-  poster: string;
-  controls?: boolean; // Make controls optional
-  width?: string | number;
-  height?: string | number;
-}) => {
-  return (
-    // Container ensures max-width and centering
-    <div style={{ maxWidth: "800px", margin: "0 auto" }}>
-      <video
-        src={src}
-        poster={poster}
-        controls={controls}
-        // Apply width/height to the video element itself for explicit sizing if needed
-        // but rely on CSS for responsiveness within the container
-        style={{
-          display: "block", // Prevents extra space below video
-          maxWidth: "100%", // Ensures video scales down
-          width: typeof width === "number" ? `${width}px` : width, // Apply width if specified
-          height: typeof height === "number" ? `${height}px` : height, // Apply height if specified, else auto
-          objectFit: "contain", // Ensures entire video is visible
-          borderRadius: "8px",
-          margin: "0 auto", // Center video element if container is wider
-        }}
-      >
-        Your browser does not support the video tag.
-      </video>
-    </div>
-  );
-};
-
 export default function QuantumGatesPage() {
   return (
     <div className="max-w-4xl mx-auto px-4 py-8 text-gray-300">
@@ -64,19 +25,7 @@ export default function QuantumGatesPage() {
       {/* Main Content Area */}
       <div className="space-y-8">
         {/* Video Section (Placeholder) */}
-        <div className="bg-gray-900 rounded-lg p-6 shadow-lg">
-          <h2 className="text-2xl font-semibold mb-4 text-white text-center">
-            Lesson Video: Introducing Quantum Gates
-          </h2>
-          <VideoPlayer
-            src="/placeholder-video-gates.mp4" // Replace with actual video path
-            poster="/placeholder-poster-gates.jpg" // Replace with actual poster image path
-            controls={true}
-            width={640} // Example fixed size, CSS handles responsiveness
-            height={360}
-          />
-          {/* You could add a brief summary or key takeaways from the video here if desired */}
-        </div>
+
 
         {/* Reading Material Sections */}
         <div className="bg-gray-800 rounded-lg p-6 shadow-md">

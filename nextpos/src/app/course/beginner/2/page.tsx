@@ -1,45 +1,6 @@
 import React from "react";
 import Head from "next/head";
 
-// Reusable Video Player Component (Consider moving to a shared components folder)
-const VideoPlayer = ({
-  src,
-  poster,
-  controls = true,
-  width = "100%",
-  height = "auto",
-}: {
-  src: string;
-  poster: string;
-  controls?: boolean; // Added optional flag
-  width?: string | number;
-  height?: string | number;
-}) => {
-  return (
-    <div style={{ maxWidth: "800px", margin: "0 auto" }}>
-      <video
-        src={src}
-        poster={poster}
-        controls={controls}
-        width={width}
-        height={height}
-        style={{
-          // Adjust styling for responsiveness within the container
-          display: "block", // Prevent extra space below video
-          maxWidth: "100%", // Ensure video scales down
-          height: "auto", // Maintain aspect ratio
-          maxHeight: "450px", // Optional: Limit max height
-          objectFit: "contain",
-          borderRadius: "8px",
-          margin: "0 auto", // Center the video element itself if needed
-        }}
-      >
-        Your browser does not support the video tag.
-      </video>
-    </div>
-  );
-};
-
 export default function QubitsSuperpositionPage() {
   return (
     <div className="max-w-4xl mx-auto px-4 py-8 text-gray-300">
@@ -66,19 +27,6 @@ export default function QubitsSuperpositionPage() {
       </p>
       {/* Main Content Area */}
       <div className="space-y-8">
-        {/* Video Section */}
-        <div className="bg-gray-900 rounded-lg p-6 shadow-lg">
-          <h2 className="text-2xl font-semibold mb-4 text-white text-center">
-            Lesson Video: Understanding Qubits
-          </h2>
-          <VideoPlayer
-            src="/placeholder-video-qubits.mp4" // Replace with actual video path
-            poster="/placeholder-poster-qubits.jpg" // Replace with actual poster image path
-            controls={true}
-            // Let the CSS in the component handle sizing for responsiveness
-          />
-        </div>
-
         {/* Reading Material Section */}
         <div className="bg-gray-800 rounded-lg p-6 shadow-md">
           <h3 className="text-2xl font-semibold mb-4 text-white border-b border-gray-700 pb-2">

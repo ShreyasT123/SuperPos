@@ -1,47 +1,6 @@
 import React from "react";
 import Head from "next/head";
 
-// Reusable Video Player Component (Assuming it's imported or defined elsewhere)
-const VideoPlayer = ({
-  src,
-  poster,
-  controls = true,
-  width = "100%", // Default to 100% for responsive container
-  height = "auto", // Default to auto for aspect ratio
-}: {
-  src: string;
-  poster: string;
-  controls?: boolean; // Make controls optional
-  width?: string | number;
-  height?: string | number;
-}) => {
-  return (
-    // Container ensures max-width and centering
-    <div style={{ maxWidth: "800px", margin: "0 auto" }}>
-      <video
-        src={src}
-        poster={poster}
-        controls={controls}
-        // Apply width/height to the video element itself for explicit sizing if needed
-        // but rely on CSS for responsiveness within the container
-        style={{
-          display: "block", // Prevents extra space below video
-          maxWidth: "100%", // Ensures video scales down
-          width: typeof width === "number" ? `${width}px` : width, // Apply width if specified
-          height: typeof height === "number" ? `${height}px` : height, // Apply height if specified, else auto
-          maxHeight: "450px", // Add max height to prevent overly tall videos
-          objectFit: "contain", // Ensures entire video is visible
-          borderRadius: "8px",
-          margin: "0 auto", // Center video element if container is wider
-          backgroundColor: "#000", // Add black background for letterboxing if needed
-        }}
-      >
-        Your browser does not support the video tag.
-      </video>
-    </div>
-  );
-};
-
 // Renamed component to reflect the course content
 export default function QuantumCircuitsPage() {
   return (
@@ -68,32 +27,6 @@ export default function QuantumCircuitsPage() {
       </p>
       {/* Main Content Area */}
       <div className="space-y-8">
-        {/* Video Section (Placeholder) */}
-        <section className="bg-gray-900 rounded-lg p-6 shadow-lg">
-          <h2 className="text-2xl font-semibold mb-4 text-white text-center">
-            Lesson Video: Building with Quantum Circuits
-          </h2>
-          <VideoPlayer
-            src="/placeholder-video-circuits.mp4" // *** Replace with actual video path ***
-            poster="/placeholder-poster-circuits.jpg" // *** Replace with actual poster image path ***
-            controls={true}
-            // Width/Height handled by component's responsive styles
-          />
-          {/* Summary points relevant to circuits */}
-          <div className="mt-6">
-            <h4 className="text-lg font-medium mb-2 text-white text-center">
-              Key Concepts Covered:
-            </h4>
-            <ul className="list-disc list-inside text-gray-300 mt-2 space-y-1 max-w-md mx-auto">
-              <li>Reading quantum circuit diagrams.</li>
-              <li>The role of qubits, gates, and measurement.</li>
-              <li>Constructing basic circuits (e.g., for Bell states).</li>
-              <li>Understanding circuit width and depth.</li>
-              <li>Introduction to circuit simulators.</li>
-            </ul>
-          </div>
-        </section>
-
         {/* Reading Material Sections */}
         <section className="bg-gray-800 rounded-lg p-6 shadow-md">
           <h2 className="text-2xl font-semibold mb-4 text-white border-b border-gray-700 pb-2">

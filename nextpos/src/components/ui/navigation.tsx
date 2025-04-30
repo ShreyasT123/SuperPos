@@ -58,7 +58,8 @@ export function Navigation() {
                 <NavLink href="/documentation">Documentation</NavLink>
                 <NavLink href="/course">Online Course</NavLink>
                 <NavLink href="/applications">Applications</NavLink>
-                <NavLink href="/news" onClick={toggleMenu}>News</NavLink>
+                <NavLink href="/news" >News</NavLink>
+                <NavLink href="/forum" >Forum</NavLink>
 
               </div>
             </div>
