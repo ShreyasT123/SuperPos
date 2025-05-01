@@ -165,7 +165,7 @@ export default function FaultToleranceSimulator() {
 
       <div className="max-w-4xl mx-auto">
         <h1 className="text-3xl font-bold text-center mb-8 bg-clip-text text-transparent bg-gradient-to-r from-teal-400 to-blue-500">
-          Quantum Fault Tolerance Simulation (Repetition Code)
+          Quantum Fault Tolerance Simulation 
         </h1>
 
         {/* Explanatory Text Section */}

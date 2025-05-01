@@ -3,9 +3,9 @@
 import Link from 'next/link'
 // Importing necessary and relevant icons
 import {
-    ArrowRight, Book, Code, CircuitBoard, FlaskConical, ShieldCheck,
-    GraduationCap, LayoutList, Github, HelpCircle, Milestone,
-    Cpu, Server, Database, BrainCircuit, Cloud, Rocket, Puzzle, BarChart3, Orbit, Layers3, Newspaper, BotMessageSquare
+    ArrowRight, Book, Code, CircuitBoard, FlaskConical, 
+    GraduationCap, Github, HelpCircle, Milestone,
+    Server, Database, BrainCircuit, Cloud, Puzzle, BarChart3, Layers3, Newspaper, BotMessageSquare
 } from 'lucide-react'
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle, CardFooter } from "@/components/ui/card"
@@ -82,7 +82,7 @@ function documentation() {
             icon={<Puzzle className="h-8 w-8 text-orange-400" />} // Changed icon
             title="Quantum Application Demos"
             description="Explore key quantum algorithms through hands-on simulations."
-            content="Includes simulations for Shor's Algorithm (RSA factoring demo) and Fault Tolerance (repetition code QEC demo) to illustrate practical concepts."
+            content="Includes simulations for Shor's Algorithm (RSA factoring demo) and Fault Tolerance to illustrate practical concepts."
             link="/applications" // Adjust link
             linkText="Application Demos"
             borderColor="border-orange-500/30 hover:border-orange-500/60" // Changed color
@@ -180,37 +180,6 @@ function documentation() {
           </div>
       </section>
 
-       {/* --- System Architecture Section --- */}
-       <section className="max-w-4xl mx-auto text-center">
-           <h2 className="text-3xl sm:text-4xl font-bold mb-8 text-transparent bg-clip-text bg-gradient-to-r from-orange-400 to-red-500">
-            System Architecture
-           </h2>
-           <p className="text-lg text-gray-400 mb-10 max-w-3xl mx-auto">
-               Superpos employs a client-server architecture designed for interactive quantum simulations and seamless integration with external AI and news services.
-           </p>
-            {/* Simplified Flow Description */}
-           <div className="text-left bg-gray-800/50 border border-gray-700 rounded-lg p-6 shadow-lg space-y-4 mb-10">
-                <h3 className="text-xl font-semibold text-orange-400 mb-3">Core Simulation Flow:</h3>
-                 <ol className="list-decimal list-inside space-y-2 text-gray-300">
-                    <li><strong className="text-cyan-300">User Interaction (Frontend):</strong> User designs a circuit via the Next.js/ShadCN UI.</li>
-                    <li><strong className="text-cyan-300">Request Submission (Frontend):</strong> Circuit definition (JSON) sent asynchronously (Axios) to the backend.</li>
-                    <li><strong className="text-purple-300">API Handling (Backend):</strong> Django REST controller receives, validates, and routes the request.</li>
-                    <li><strong className="text-purple-300">Circuit Processing (Backend):</strong> Circuit Interpreter parses JSON; Quantum Circuit Builder creates a Cirq object.</li>
-                     <li><strong className="text-pink-300">Simulation (Backend):</strong> Simulation Processor executes the circuit using Cirq.</li>
-                    <li><strong className="text-purple-300">Result Analysis (Backend):</strong> Result Analyzer formats simulation output (state vector, probabilities).</li>
-                    <li><strong className="text-lime-300">Visualization Data Prep (Backend):</strong> Data prepared for Plotly.js / Three.js.</li>
-                    <li><strong className="text-cyan-300">Response & Display (Frontend):</strong> Frontend receives processed data/visualization specs and renders results using React components.</li>
-                 </ol>
-                <p className="text-sm text-gray-500 mt-3">Separate flows handle requests for News (Tavily API -> Backend -> Frontend) and Chatbot Assistance (User -> Frontend -> Backend -> Gemini API -> Backend -> Frontend).</p>
-           </div>
-            {/* Link to more detailed diagram/documentation if available */}
-            <Button variant="link" className="text-orange-400 hover:text-orange-300">
-                <Link href="/documentation/architecture" className="flex items-center"> {/* Fix 3: Added className and wrapped Link content */}
-                    View Detailed Architecture Diagram <ArrowRight className="ml-2 h-4 w-4" />
-                </Link>
-            </Button>
-       </section>
-
 
       {/* --- Documentation Guide Section (Using DocLinkCard) --- */}
       <section className="max-w-5xl mx-auto bg-gray-800/50 border border-gray-700 rounded-lg p-8 shadow-lg">
@@ -219,12 +188,11 @@ function documentation() {
          </h2>
          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
            <DocLinkCard icon={<Milestone className="text-cyan-400" />} title="Platform Overview" description="Mission, core features, target audience." href="/documentation/overview" />
-           <DocLinkCard icon={<CircuitBoard className="text-lime-400" />} title="Circuit Builder" description="Using the visual editor, gates, simulation controls." href="/documentation/circuit-builder" />
+           <DocLinkCard icon={<CircuitBoard className="text-lime-400" />} title="Circuit Builder" description="Using the visual editor, gates, simulation controls." href="/documentation/simulator" />
            <DocLinkCard icon={<FlaskConical className="text-orange-400" />} title="Application Demos" description="Guides for RSA/Shor's and Fault Tolerance simulators." href="/documentation/applications" />
            <DocLinkCard icon={<Book className="text-purple-400" />} title="Quantum Concepts" description="Explanations of superposition, entanglement, gates, etc." href="/documentation/concepts" />
             <DocLinkCard icon={<BotMessageSquare className="text-blue-400" />} title="Quantum Chatbot" description="How to use the AI assistant effectively." href="/documentation/chatbot" />
            <DocLinkCard icon={<Code className="text-pink-400" />} title="Technology & API" description="Details on the tech stack and backend API (if public)." href="/documentation/tech-api" /> {/* Combined Tech/API */}
-           <DocLinkCard icon={<Layers3 className="text-yellow-400" />} title="Architecture" description="High-level system design and component interactions." href="/documentation/architecture-detail"/>
            <DocLinkCard icon={<Newspaper className="text-teal-400" />} title="Quantum News Feed" description="Understanding the news aggregation feature." href="/documentation/news-feed"/>
            <DocLinkCard icon={<HelpCircle className="text-red-400" />} title="FAQ & Glossary" description="Common questions and quantum term definitions." href="/documentation/faq-glossary"/>
          </div>

@@ -189,7 +189,7 @@ export default function CoursesPage() {
             Follow our structured path or choose topics that interest you. Start with the fundamentals.
           </p>
           {/* Updated Link to the first beginner course */}
-          <Link href="/beginner/1-introduction-to-quantum-computing" passHref>
+          <Link href="/course/beginner/1" passHref>
             <Button className="bg-gradient-to-r from-cyan-500 to-purple-500 hover:from-cyan-600 hover:to-purple-600 text-white">
               Start Your Quantum Journey
             </Button>

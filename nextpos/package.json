@@ -41,6 +41,7 @@
     "plotly.js-dist": "^2.35.3",
     "react": "18.2.0",
     "react-dom": "18.2.0",
+    "react-katex": "^3.0.1",
     "react-plotly.js": "^2.6.0",
     "supabase": "^2.22.6",
     "tailwind-merge": "^2.5.5",

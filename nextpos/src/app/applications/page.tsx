@@ -3,7 +3,7 @@
 
 import { useState, useEffect } from 'react'
 import { motion } from 'framer-motion'
-import { ArrowRight, Atom, Zap, Brain, Sparkles } from 'lucide-react'
+import { ArrowRight, Atom, Brain, Sparkles } from 'lucide-react'
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle, CardFooter } from "@/components/ui/card"
@@ -19,20 +19,6 @@ const demos = [
   },
   {
     id: 2,
-    title: "Grover's Algorithm",
-    description: "A quantum search algorithm that provides a quadratic speedup over classical search algorithms.",
-    link: "/applications/grovers-algorithm",
-    icon: <Zap className="h-6 w-6 text-purple-400" />,
-  },
-  {
-    id: 3,
-    title: "Quantum Machine Learning",
-    description: "Explore how quantum computing can enhance machine learning models and techniques.",
-    link: "/applications/quantum-ml",
-    icon: <Brain className="h-6 w-6 text-green-400" />,
-  },
-  {
-    id: 4,
     title: "Quantum Error Correction",
     description: "Learn about quantum error correction techniques to protect quantum information from errors.",
     link: "/applications/quantum-error-correction",

@@ -13,26 +13,6 @@ function ClientOnly({ children }: { children: React.ReactNode }) {
   return <>{children}</>;
 }
 
-function ThemeToggle() {
-  const [mounted, setMounted] = useState(false)
-  const { theme, setTheme } = useTheme()
-
-  useEffect(() => setMounted(true), [])
-
-  if (!mounted) return null
-
-  return (
-    <Button 
-      variant="ghost" 
-      size="icon" 
-      onClick={() => setTheme(theme === 'dark' ? 'light' : 'dark')} 
-      className="text-gray-300 hover:text-white"
-    >
-      {theme === 'dark' ? '🌞' : '🌙'}
-      <span className="sr-only">Toggle theme</span>
-    </Button>
-  )
-}
 
 export function Navigation() {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
@@ -64,11 +44,11 @@ export function Navigation() {
               </div>
             </div>
             <div className="flex items-center">
-              <ThemeToggle />
+              {/* <ThemeToggle />
               <Button variant="ghost" size="icon" onClick={toggleMenu} className="md:hidden text-gray-300 hover:text-white">
                 <Menu className="h-5 w-5" />
                 <span className="sr-only">Open menu</span>
-              </Button>
+              </Button> */}
             </div>
           </div>
         </div>

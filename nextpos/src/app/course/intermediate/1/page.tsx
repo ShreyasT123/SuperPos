@@ -278,13 +278,6 @@ export default function QuantumCircuitsPage() {
           </p>
           <ul className="list-disc list-inside space-y-3 pl-4">
             <li>
-              <strong className="text-cyan-400">SuperPOS:</strong> A platform
-              highlighted for its visual, drag-and-drop interface, making it
-              excellent for hands-on learning and constructing circuits
-              intuitively. (Note: Assuming &quot;SuperPOS&quot; is the intended name based
-              on the text, adjust if it&apos;s different).
-            </li>
-            <li>
               <strong className="text-purple-400">Qiskit:</strong> An
               open-source Python framework developed by IBM. Widely used for
               programming quantum computers, simulating circuits, and running

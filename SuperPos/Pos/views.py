@@ -49,15 +49,21 @@ def run_fault_tolerance(request):
     if request.method == 'POST':
         try:
             data = json.loads(request.body)
-            num_qubits = data.get("numQubits", 3)
+            print("data",data)
+            num_qubits = data.get("num_qubits", 3)
             errors = data.get("errors", [])
             protocol = data.get("protocol", "non_ft")
-            syndrome_rounds = data.get("syndromeRounds", 3)
-            meas_error_prob = data.get("meas_error_prob", 0.0)
-
+            syndrome_rounds = data.get("syndrome_rounds", 3)
+            meas_error_prob = data.get("measurement_error_prob", 0.0)
+            print("meas_error_prob",meas_error_prob)
             explanation = []
+            
+
+
             qubits = [cirq.LineQubit(i) for i in range(num_qubits)]
+
             secret = random.choice([0, 1])
+
             explanation.append(f"Secret encoded logical bit: {secret}")
 
             circuit = cirq.Circuit()
@@ -66,6 +72,7 @@ def run_fault_tolerance(request):
                 explanation.append("Applied X gate on qubit 0 to encode logical 1.")
             else:
                 explanation.append("No X gate applied; qubit 0 remains in |0> for logical 0.")
+
 
             if num_qubits > 1:
                 for i in range(1, num_qubits):
@@ -82,10 +89,12 @@ def run_fault_tolerance(request):
             circuit_text = str(circuit)  # Cirq's built-in textual representation
             explanation.append("Circuit constructed successfully.")
 
+
             simulator = cirq.Simulator()
             result = simulator.run(circuit, repetitions=1)
             ideal_meas = result.measurements['result'][0].tolist()
             explanation.append(f"Ideal measurement result: {ideal_meas}")
+
 
             final_meas = ideal_meas
             if protocol == 'ft':
@@ -108,7 +117,7 @@ def run_fault_tolerance(request):
 
             success = corrected_state == secret if corrected_state is not None else False
             explanation.append("Fault tolerance successful!" if success else "Fault tolerance failed.")
-
+            print("Success:")
             return JsonResponse({
                 "secret": secret,
                 "ideal_measurement": ideal_meas,
@@ -216,7 +225,7 @@ def rsa_decrypt(request):
     """Decrypt a message using Shor's algorithm (simulated)."""
     data = json.loads(request.body)
     # encrypted_message = data.get('encrypted_message')
-    encrypted_message = data.get('encryptedMessage')
+    encrypted_message = data.get('encrypted_message')
     print("hwkegrk",encrypted_message)
     n = int(data.get('n'))
     e = int(data.get('e'))
