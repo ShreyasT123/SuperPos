@@ -1,0 +1,12 @@
+django>=5.1.4
+djangorestframework
+django-cors-headers
+python-dotenv
+whitenoise
+gunicorn
+cirq
+cirq-web
+numpy
+plotly
+google-generativeai
+sympy

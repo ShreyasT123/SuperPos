@@ -1,42 +1,16 @@
 'use client'
 
 import './globals.css'
+import '@fontsource/rajdhani/500.css';
+import '@fontsource/rajdhani/600.css';
+import '@fontsource/rajdhani/700.css';
+import '@fontsource/inter/400.css';
+import '@fontsource/inter/600.css';
+
 import { useState, useEffect } from 'react'
-import { motion } from 'framer-motion'
 import { ThemeProvider } from './theme-provider'
 import { ChatWindow } from '@/components/ui/ChatWindow'
 import { Navigation } from '@/components/ui/navigation'
-// Separate component for animated background bubbles
-function AnimatedBackground() {
-  return (
-    <div className="absolute inset-0 overflow-hidden pointer-events-none">
-      <div className="absolute inset-0">
-        {[...Array(20)].map((_, i) => (
-          <motion.div
-            key={i}
-            className="absolute bg-cyan-500 rounded-full opacity-30"
-            style={{
-              width: Math.random() * 100 + 50,
-              height: Math.random() * 100 + 50,
-              top: `${Math.random() * 100}%`,
-              left: `${Math.random() * 100}%`,
-            }}
-            animate={{
-              scale: [1, 2, 2, 1, 1],
-              rotate: [0, 0, 270, 270, 0],
-              opacity: [0.3, 0.5, 0.5, 0.3, 0.3],
-            }}
-            transition={{
-              duration: Math.random() * 10 + 20,
-              ease: "linear",
-              repeat: Infinity,
-            }}
-          />
-        ))}
-      </div>
-    </div>
-  )
-}
 
 export default function RootLayout({
   children,
@@ -52,27 +26,38 @@ export default function RootLayout({
   if (!mounted) {
     return (
       <html lang="en" className="dark" suppressHydrationWarning>
-        <body className="min-h-screen bg-black text-gray-100" />
+        <body className="min-h-screen bg-black text-gray-100 font-body" />
       </html>
     )
   }
 
   return (
-    <html lang="en" suppressHydrationWarning>
-      <body className="min-h-screen bg-gradient-to-br from-blue-100 to-blue-200 dark:from-black dark:to-gray-900 text-gray-900 dark:text-gray-100 overflow-x-hidden">
-        <ThemeProvider attribute="class" defaultTheme="dark" enableSystem>
-          <AnimatedBackground />
-          
-          <div className="fixed inset-0 bg-grid-white/[0.02] bg-[length:50px_50px] pointer-events-none" />
-          
-          <div className="fixed inset-0 bg-gradient-to-br from-transparent to-cyan-500/20 pointer-events-none" />
-          
-          <div className="relative z-10">
+    <html lang="en" className="dark" suppressHydrationWarning>
+      <body className="min-h-screen bg-background text-foreground font-body overflow-x-hidden selection:bg-cyan-500/30 selection:text-cyan-100">
+        <ThemeProvider attribute="class" defaultTheme="dark" enableSystem={false}>
+
+          {/* Deep Space Schematic Background */}
+          <div className="fixed inset-0 z-[-1] pointer-events-none">
+            {/* Void Black Base */}
+            <div className="absolute inset-0 bg-black" />
+            {/* Schematic Grid Pattern */}
+            <div className="absolute inset-0 bg-schematic-grid opacity-20" />
+            {/* Gradient Overlay for Depth */}
+            <div className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-black/80" />
+            <div className="absolute inset-0 bg-gradient-to-r from-cyan-900/5 via-transparent to-purple-900/5" />
+          </div>
+
+          <div className="relative z-10 flex flex-col min-h-screen">
             <Navigation />
-            
-            <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+
+            <main className="flex-grow max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-24 relative">
               {children}
             </main>
+
+            <footer className="border-t border-white/5 py-8 text-center text-sm text-zinc-400 font-heading tracking-widest uppercase text-glow">
+              SuperPos // Quantum Learning Initiative
+            </footer>
+
             <ChatWindow />
           </div>
         </ThemeProvider>

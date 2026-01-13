@@ -1,339 +1,210 @@
 'use client'
 
 import Link from 'next/link'
-// Importing necessary and relevant icons
-import {
-    ArrowRight, Book, Code, CircuitBoard, FlaskConical, 
-    GraduationCap, Github, HelpCircle, Milestone,
-    Server, Database, BrainCircuit, Cloud, Puzzle, BarChart3, Layers3, Newspaper, BotMessageSquare
-} from 'lucide-react'
-import { Button } from "@/components/ui/button"
-import { Card, CardContent, CardDescription, CardHeader, CardTitle, CardFooter } from "@/components/ui/card"
+import Image from 'next/image'
 import React from 'react'
+import {
+  ArrowRight, CircuitBoard,
+  BrainCircuit,
+  Layers3, Newspaper, Terminal, Plus, Activity
+} from 'lucide-react'
 
-function documentation() {
+export default function DocumentationPage() {
   return (
-    // Increased vertical padding and spacing, adjusted background
-    <div className="min-h-screen space-y-20 px-4 sm:px-6 lg:px-8 py-20 bg-gradient-to-b from-gray-950 via-black to-gray-950 text-gray-300">
+    <main className="min-h-screen bg-black text-white selection:bg-zinc-800 overflow-x-hidden relative">
 
-      {/* --- Hero Section --- */}
-      <section className="relative overflow-hidden rounded-lg py-16 px-8 bg-gray-900/80 border border-cyan-500/20 shadow-2xl backdrop-blur-sm">
-         <div className="absolute inset-0 opacity-10 bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-purple-900 via-transparent to-transparent"></div>
-         <div className="absolute inset-0 opacity-5 bg-[url('/path/to/subtle/circuit/pattern.svg')] bg-repeat"></div> {/* Optional subtle pattern */}
-
-        <div className="relative z-10 max-w-4xl mx-auto text-center">
-          <h1 className="text-4xl sm:text-5xl lg:text-6xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-cyan-300 via-purple-400 to-pink-400 mb-6 leading-tight">
-            Superpos Documentation Hub
-          </h1>
-          {/* Updated description based on Problem Statement */}
-          <p className="text-lg sm:text-xl text-gray-400 mb-6 max-w-3xl mx-auto">
-            Quantum computing is advancing rapidly, creating a need for effective educational tools. Superpos addresses the complexity and accessibility barriers of existing simulators by providing a <strong className="text-cyan-400">free, web-based interactive platform</strong> designed to democratize quantum education.
-          </p>
-          <p className="text-lg sm:text-xl text-gray-400 mb-8 max-w-3xl mx-auto">
-            Our goal is to offer an <strong className="text-purple-400">intuitive environment</strong> for constructing, visualizing, and simulating quantum circuits, complete with real-time feedback, dynamic visualizations, courses, and news updates for learners of all levels.
-          </p>
-          <div className="flex flex-col sm:flex-row justify-center gap-4">
-            <Button size="lg" className="bg-gradient-to-r from-cyan-500 to-purple-500 hover:from-cyan-600 hover:to-purple-600 text-white shadow-lg">
-              <Link href="/simulator" className="flex items-center"> {/* Fix 1: Added className and wrapped Link content */}
-                Launch Circuit Builder <CircuitBoard className="ml-2 h-5 w-5" />
-              </Link>
-            </Button>
-            <Button size="lg" variant="outline" className="border-cyan-500 text-cyan-400 hover:bg-cyan-500/10 hover:text-cyan-300 shadow-lg backdrop-blur-sm">
-               <Link href="/course" className="flex items-center"> {/* Fix 2: Added className and wrapped Link content */}
-                 Explore Courses <GraduationCap className="ml-2 h-5 w-5" />
-               </Link>
-            </Button>
-          </div>
+      {/* 1. ATMOSPHERIC SCHEMATICS (Background Layers) */}
+      <div className="fixed inset-0 z-0">
+        <div className="absolute inset-0 opacity-10 mix-blend-overlay pointer-events-none">
+          <Image src="/marble-bg.png" alt="Texture" fill className="object-cover" />
         </div>
-      </section>
-
-      {/* --- Core Features Section (Enhanced with Report Details) --- */}
-      <section className="max-w-6xl mx-auto">
-        <h2 className="text-3xl sm:text-4xl font-bold text-center mb-12 text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-purple-400">
-          Superpos Core Functionality
-        </h2>
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {/* Card 1: Circuit Builder & Simulation */}
-          <FeatureCard
-            icon={<CircuitBoard className="h-8 w-8 text-cyan-400" />}
-            title="Circuit Design & Simulation"
-            description="Intuitive drag-and-drop interface supporting up to 10 qubits and various gates (H, X, CNOT, CCX, etc.)."
-            content="Real-time simulation via the Cirq backend provides instant state vectors and measurement outputs. Dynamic JSON generation aids learning."
-            link="/documentation/simulator"
-            linkText="Builder Guide"
-            borderColor="border-cyan-500/30 hover:border-cyan-500/60"
-            iconBg="bg-cyan-500/10"
-          />
-
-          {/* Card 2: Visualization */}
-           <FeatureCard
-            icon={<BarChart3 className="h-8 w-8 text-lime-400" />} // Changed icon
-            title="Interactive Visualization"
-            description="Understand quantum states with comprehensive 2D and 3D visualizations."
-            content="Includes probability histograms, state phase plots (Plotly.js), and rotatable 3D circuit views (Three.js) for in-depth analysis."
-            link="/documentation/visualization" // Adjust link
-            linkText="Visualization Tools"
-            borderColor="border-lime-500/30 hover:border-lime-500/60" // Changed color
-            iconBg="bg-lime-500/10"
-          />
-
-          {/* Card 3: Quantum Applications */}
-           <FeatureCard
-            icon={<Puzzle className="h-8 w-8 text-orange-400" />} // Changed icon
-            title="Quantum Application Demos"
-            description="Explore key quantum algorithms through hands-on simulations."
-            content="Includes simulations for Shor's Algorithm (RSA factoring demo) and Fault Tolerance to illustrate practical concepts."
-            link="/applications" // Adjust link
-            linkText="Application Demos"
-            borderColor="border-orange-500/30 hover:border-orange-500/60" // Changed color
-            iconBg="bg-orange-500/10"
-          />
-
-           {/* Card 4: Learning Environment */}
-           <FeatureCard
-            icon={<GraduationCap className="h-8 w-8 text-purple-400" />} // Changed icon
-            title="Interactive Learning"
-            description="Structured courses and AI assistance to guide your quantum journey."
-            content="Access beginner, intermediate, and advanced courses. Get real-time help and explanations from the Gemini-powered Quantum Chatbot."
-            link="/courses"
-            linkText="View Courses & Chatbot"
-            borderColor="border-purple-500/30 hover:border-purple-500/60" // Changed color
-            iconBg="bg-purple-500/10"
-          />
-
-           {/* Card 5: Quantum News */}
-           <FeatureCard
-            icon={<Newspaper className="h-8 w-8 text-blue-400" />} // Changed icon
-            title="Quantum News Feed"
-            description="Stay updated with the latest developments in quantum technology."
-            content="Features real-time news fetched via the Tavily API, summarized and categorized using Gemini AI for quick insights."
-            link="/news" // Adjust link
-            linkText="Latest News"
-            borderColor="border-blue-500/30 hover:border-blue-500/60" // Changed color
-            iconBg="bg-blue-500/10"
-          />
-
-           {/* Card 6: Target Audience */}
-           <FeatureCard
-            icon={<Book className="h-8 w-8 text-pink-400" />} // Changed icon
-            title="Education & Research Tool"
-            description="Designed to bridge theory and practice for diverse users."
-            content="Superpos serves students learning quantum concepts, researchers needing quick simulations, and educators demonstrating quantum principles."
-            link="/documentation/overview" // Adjust link
-            linkText="About Superpos"
-            borderColor="border-pink-500/30 hover:border-pink-500/60" // Changed color
-            iconBg="bg-pink-500/10"
-          />
+        {/* Logic Grid Overlay (Your Image 5) */}
+        <div className="absolute inset-0 opacity-50 blend-screen mask-radial pointer-events-none">
+          <Image src="/bg_images/portal.jpg" alt="Blueprint" fill className="object-cover" />
         </div>
-      </section>
+      </div>
+      <div className="fixed inset-0 z-[100] pointer-events-none grain-overlay" />
 
-      {/* --- Technology Stack Section --- */}
-      <section className="max-w-5xl mx-auto bg-gray-800/60 border border-gray-700 rounded-lg p-8 shadow-lg">
-          <h2 className="text-3xl sm:text-4xl font-bold text-center mb-10 text-transparent bg-clip-text bg-gradient-to-r from-lime-400 to-emerald-500">
-            Technology Stack
-          </h2>
-          <p className="text-center text-gray-400 mb-10 max-w-2xl mx-auto">
-              Superpos leverages a modern stack chosen for performance, user experience, and robust quantum simulation capabilities.
-          </p>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-              {/* Frontend */}
-              <TechCategory
-                  icon={<Layers3 className="text-cyan-400" />}
-                  title="Frontend Development"
-                  items={[
-                      { name: "Next.js", reason: "Dynamic UI, SSR for performance, API routes." },
-                      { name: "ShadCN UI", reason: "Modern, customizable components for a clean UX." },
-                      { name: "Plotly.js", reason: "Interactive 2D data visualization (histograms, phases)." },
-                      { name: "Three.js", reason: "Dynamic 3D circuit rendering (improved compatibility)." },
-                      { name: "Axios", reason: "Efficient asynchronous HTTP requests to backend." },
-                       { name: "Tailwind CSS", reason: "Utility-first CSS for rapid UI development." },
-                  ]}
-              />
-              {/* Backend */}
-              <TechCategory
-                  icon={<Server className="text-purple-400" />}
-                  title="Backend Development"
-                  items={[
-                      { name: "Django REST Framework", reason: "Efficient & secure API management, Python-based." },
-                      { name: "Python", reason: "Core backend language, extensive library support." },
-                  ]}
-              />
-               {/* Quantum & AI */}
-              <TechCategory
-                  icon={<BrainCircuit className="text-pink-400" />}
-                  title="Quantum & AI Libraries"
-                  items={[
-                      { name: "Cirq", reason: "Primary engine for quantum circuit simulation." },
-                      { name: "Tavily API", reason: "Real-time fetching of quantum news articles." },
-                      { name: "Gemini AI API", reason: "AI assistance (chatbot) & news summarization." },
-                  ]}
-              />
-               {/* Development Tools */}
-              <TechCategory
-                  icon={<Code className="text-yellow-400" />}
-                  title="Development Tools"
-                  items={[
-                      { name: "VS Code / PyCharm", reason: "Code editing and debugging." },
-                      { name: "Git", reason: "Version control and collaboration." },
-                  ]}
-              />
-          </div>
-      </section>
-
-
-      {/* --- Documentation Guide Section (Using DocLinkCard) --- */}
-      <section className="max-w-5xl mx-auto bg-gray-800/50 border border-gray-700 rounded-lg p-8 shadow-lg">
-         <h2 className="text-3xl font-bold text-center mb-10 text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-purple-400">
-           Documentation Guide
-         </h2>
-         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-           <DocLinkCard icon={<Milestone className="text-cyan-400" />} title="Platform Overview" description="Mission, core features, target audience." href="/documentation/overview" />
-           <DocLinkCard icon={<CircuitBoard className="text-lime-400" />} title="Circuit Builder" description="Using the visual editor, gates, simulation controls." href="/documentation/simulator" />
-           <DocLinkCard icon={<FlaskConical className="text-orange-400" />} title="Application Demos" description="Guides for RSA/Shor's and Fault Tolerance simulators." href="/documentation/applications" />
-           <DocLinkCard icon={<Book className="text-purple-400" />} title="Quantum Concepts" description="Explanations of superposition, entanglement, gates, etc." href="/documentation/concepts" />
-            <DocLinkCard icon={<BotMessageSquare className="text-blue-400" />} title="Quantum Chatbot" description="How to use the AI assistant effectively." href="/documentation/chatbot" />
-           <DocLinkCard icon={<Code className="text-pink-400" />} title="Technology & API" description="Details on the tech stack and backend API (if public)." href="/documentation/tech-api" /> {/* Combined Tech/API */}
-           <DocLinkCard icon={<Newspaper className="text-teal-400" />} title="Quantum News Feed" description="Understanding the news aggregation feature." href="/documentation/news-feed"/>
-           <DocLinkCard icon={<HelpCircle className="text-red-400" />} title="FAQ & Glossary" description="Common questions and quantum term definitions." href="/documentation/faq-glossary"/>
-         </div>
-       </section>
-
-        {/* --- Future Prospects Section --- */}
-        <section className="max-w-4xl mx-auto text-center">
-            <h2 className="text-3xl sm:text-4xl font-bold mb-8 text-transparent bg-clip-text bg-gradient-to-r from-yellow-400 to-amber-500">
-                Future Prospects
-            </h2>
-            <p className="text-lg text-gray-400 mb-10 max-w-3xl mx-auto">
-                Superpos is continuously evolving. Here are some exciting directions we plan to explore:
-            </p>
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-8 text-left">
-                <FutureProspectCard
-                    icon={<Database className="text-yellow-400" />}
-                    title="Multi-Backend Support"
-                    description="Integrate with various quantum simulators and real hardware providers (e.g., IBM Quantum, Rigetti) for broader simulation options and practical experience."
-                />
-                <FutureProspectCard
-                    icon={<Cloud className="text-sky-400" />}
-                    title="Cloud Integration"
-                    description="Leverage cloud computing resources to simulate larger, more complex circuits beyond local hardware limitations, enhancing scalability."
-                />
-                 <FutureProspectCard
-                    icon={<Puzzle className="text-green-400" />} // Using Puzzle again for gamification
-                    title="Gamification"
-                    description="Introduce achievements, progress tracking, and challenges to make learning more engaging, interactive, and rewarding."
-                />
+      {/* 2. HERO SECTION: "The Archive Entry" */}
+      <section className="relative z-10 pt-40 pb-24 px-12 max-w-7xl mx-auto border-b border-white/5">
+        <div className="flex flex-col md:flex-row gap-16 items-end justify-between">
+          <div className="space-y-6 max-w-3xl">
+            <div className="flex items-center gap-3 font-mono text-[10px] uppercase tracking-[0.5em] text-zinc-500">
+              <Terminal size={14} />
+              <span>Central_Intelligence_Base</span>
             </div>
+            <h1 className="text-7xl md:text-9xl font-didone uppercase tracking-tighter text-quantum text-glow">
+              The <br /> <span className="italic font-serif-italic capitalize tracking-normal text-zinc-500">Archive</span>
+            </h1>
+            <p className="text-xs md:text-sm font-mono uppercase tracking-[0.2em] leading-loose text-zinc-400">
+              Democratizing quantum education through high-fidelity simulation <br />
+              and interactive modular intelligence.
+            </p>
+          </div>
+
+          <div className="flex flex-col gap-4">
+            <Link href="/simulator" className="group flex items-center gap-6 px-10 py-5 rounded-full border border-white/10 bg-white text-black font-mono text-[10px] uppercase tracking-[0.3em] hover:bg-zinc-200 transition-all">
+              Launch_Lab <ArrowRight size={16} />
+            </Link>
+          </div>
+        </div>
+      </section>
+
+      <div className="relative z-10 max-w-7xl mx-auto px-12 py-32 space-y-40 pb-60">
+
+        {/* 3. CORE FUNCTIONALITY: "Protocol Manifest" */}
+        <section className="space-y-16">
+          <div className="flex items-center gap-4 opacity-30 font-mono text-[10px] uppercase tracking-widest">
+            <Activity size={12} />
+            <span>System_Protocols</span>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-10">
+            <ManifestCard
+              id="01"
+              title="Circuit_Synthesis"
+              desc="Intuitive gate architecture supporting up to 10 qubits with real-time Cirq backend synchronization."
+              icon={<CircuitBoard size={24} />}
+              href="/documentation/simulator"
+            />
+            <ManifestCard
+              id="02"
+              title="Data_Visualization"
+              desc="Analytical 2D/3D projections including probability histograms and state phase analysis."
+              icon={<Layers3 size={24} />}
+              href="/documentation/visualization"
+            />
+            <ManifestCard
+              id="03"
+              title="Quantum_Briefings"
+              desc="Real-time research intelligence gathered via Tavily x Gemini decoding logic."
+              icon={<Newspaper size={24} />}
+              href="/quantum-news"
+            />
+            <ManifestCard
+              id="04"
+              title="System_Assistant"
+              desc="Gemini-powered orbital assistant for real-time theoretical explanations."
+              icon={<BrainCircuit size={24} />}
+              href="/documentation/chatbot"
+            />
+          </div>
         </section>
 
+        {/* 4. TECHNOLOGY STACK: "Hardware Component Manifest" */}
+        <section className="glass-pane-dark rounded-[60px] p-20 dusty-visual border border-white/10">
+          <div className="grid md:grid-cols-2 gap-20">
+            <div className="space-y-8">
+              <h2 className="text-6xl font-serif-italic tracking-tighter uppercase text-glow">The Stack</h2>
+              <p className="font-mono text-[11px] text-zinc-500 uppercase leading-[2] max-w-sm">
+                Superpos leverages a distributed micro-architecture optimized for low-latency quantum circuit execution and rendering.
+              </p>
+            </div>
 
-      {/* --- Developer / Contribution Section --- */}
-       <section className="max-w-4xl mx-auto text-center border-t border-gray-800 pt-12">
-         <h2 className="text-2xl font-semibold mb-4 text-gray-400">Contribute to Superpos</h2>
-         <p className="text-gray-500 mb-4">
-           Superpos is an open project. We welcome contributions! Find our repository and contribution guidelines on GitHub.
-         </p>
-         <Button variant="ghost" className="text-cyan-400 hover:text-cyan-300">
-           <Link href="https://github.com/your-repo/superpos" target="_blank" rel="noopener noreferrer" className="flex items-center"> {/* Fix 4: Added className and wrapped Link content */}
-             <Github className="mr-2 h-5 w-5" /> View on GitHub
-           </Link>
-         </Button>
-       </section>
+            <div className="grid grid-cols-2 gap-8 font-mono text-[9px] uppercase tracking-widest">
+              <div className="space-y-4">
+                <span className="text-zinc-600 block border-b border-white/5 pb-2">Core_Engine</span>
+                <ul className="space-y-2 text-zinc-400">
+                  <li>Next.js_14</li>
+                  <li>Django_REST</li>
+                  <li>Cirq_v1.4</li>
+                </ul>
+              </div>
+              <div className="space-y-4">
+                <span className="text-zinc-600 block border-b border-white/5 pb-2">Graphics_Layer</span>
+                <ul className="space-y-2 text-zinc-400">
+                  <li>Plotly.js</li>
+                  <li>Three.js</li>
+                  <li>Tailwind_CSS</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </section>
 
-       {/* --- Footer --- */}
-      <footer className="text-center text-gray-500 max-w-4xl mx-auto border-t border-gray-800 pt-10 mt-16">
-        <p>Need help or want to discuss quantum computing?</p>
-        <Button className="mt-4 bg-gradient-to-r from-cyan-600 to-purple-600 hover:from-cyan-700 hover:to-purple-700 text-white">
-          <Link href="/forum" className="text-white"> {/* Fix 5: Added className */}
-            Visit the Community Forum 
-          </Link>
-        </Button>
-         <p className="text-xs mt-8">© {new Date().getFullYear()} Superpos Project. All rights reserved.</p> {/* Optional copyright */}
+        {/* 5. DOCUMENTATION DIRECTORY: "The Ledger" */}
+        <section className="space-y-16">
+          <h2 className="text-4xl font-didone uppercase tracking-widest text-center opacity-40">Documentation_Ledger</h2>
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-1">
+            <LedgerItem title="Platform Overview" href="/documentation/overview" />
+            <LedgerItem title="Circuit Builder" href="/documentation/simulator" />
+            <LedgerItem title="Algorithms" href="/documentation/algorithms" />
+            <LedgerItem title="Visualization" href="/documentation/visualization" />
+            <LedgerItem title="AI Interaction" href="/documentation/chatbot" />
+            <LedgerItem title="News Feeds" href="/documentation/news-feed" />
+          </div>
+        </section>
+
+      </div>
+
+      {/* 6. FOOTER */}
+      <footer className="relative z-10 border-t border-white/5 py-24 px-12 max-w-4xl mx-auto text-center space-y-12">
+        <div className="flex flex-col items-center gap-6">
+          <div className="w-12 h-[1px] bg-white/20" />
+          <p className="font-mono text-[10px] uppercase tracking-[0.4em] text-zinc-500">
+            Contribute to the Archive on <Link href="#" className="text-white hover:text-glow transition-all underline underline-offset-8">GitHub</Link>
+          </p>
+        </div>
+        <button className="px-10 py-4 rounded-full border border-white/10 hover:bg-white hover:text-black transition-all font-mono text-[9px] uppercase tracking-[0.5em]">
+          Visit_Community_Forum
+        </button>
       </footer>
-    </div>
+    </main>
   )
 }
 
-// --- Helper Components (Keep FeatureCard and DocLinkCard as before, add TechCategory and FutureProspectCard) ---
+/* --- RESKINNED SUB-COMPONENTS --- */
 
-// Feature Card (Minor style tweaks)
-const FeatureCard = ({ icon, title, description, content, link, linkText, borderColor, iconBg }) => (
-  <Card className={`bg-gray-900/70 border ${borderColor} transition-all duration-300 flex flex-col shadow-lg hover:shadow-cyan-500/10 hover:scale-[1.02]`}>
-    <CardHeader>
-      <div className={`mb-3 rounded-lg ${iconBg} p-3 w-14 h-14 flex items-center justify-center border border-white/10 shadow-inner`}>
-        {icon}
+function ManifestCard({ id, title, desc, icon, href }: any) {
+  return (
+    <Link href={href} className="group relative glass-pane-dark p-12 rounded-[48px] overflow-hidden transition-all duration-700 hover:px-16 hover:bg-zinc-900/80">
+      <div className="flex justify-between items-start mb-12">
+        <span className="font-mono text-[11px] opacity-20 group-hover:opacity-100 transition-opacity">SYS_REF_{id}</span>
+        <div className="w-12 h-12 rounded-2xl border border-white/5 flex items-center justify-center bg-white/[0.02] group-hover:bg-white group-hover:text-black transition-all duration-500">
+          {icon}
+        </div>
       </div>
-      <CardTitle className="text-xl font-semibold text-gray-100">
+      <div className="space-y-4">
+        <h3 className="text-4xl font-serif-italic tracking-tight text-white/90 group-hover:text-glow transition-all">{title}</h3>
+        <p className="text-[11px] font-mono text-zinc-500 uppercase leading-relaxed tracking-tight group-hover:text-zinc-300 transition-colors">
+          {desc}
+        </p>
+      </div>
+      <Plus className="absolute bottom-10 right-10 opacity-0 group-hover:opacity-40 transition-opacity" size={16} />
+    </Link>
+  )
+}
+function LedgerItem({ title, href }: any) {
+  return (
+    <Link
+      href={href}
+      className="
+        group flex items-center justify-between p-8 
+        /* GLASSY BASE: Translucent white tint + Heavy Blur */
+        bg-white/[0.005] backdrop-blur-xl border border-white/10
+        /* TRANSITION: Slower, elegant ease */
+        transition-all duration-700 ease-out
+        /* HOVER: Solid flip with a subtle scale-up and outer glow */
+        hover:bg-white hover:text-black hover:scale-[1.01]
+        hover:shadow-[0_0_40px_rgba(255,255,255,0.05)]
+        relative overflow-hidden
+      "
+    >
+      {/* Editorial Text */}
+      <span className="font-mono text-[10px] uppercase tracking-[0.3em] relative z-10 transition-colors duration-500">
         {title}
-      </CardTitle>
-      <CardDescription className="text-gray-400 pt-1">
-        {description}
-      </CardDescription>
-    </CardHeader>
-    <CardContent className="flex-grow">
-      <p className="text-gray-300 text-sm">
-        {content}
-      </p>
-    </CardContent>
-    <CardFooter>
-      <Button variant="link" className="text-cyan-400 hover:text-cyan-300 px-0">
-        <Link href={link} className="flex items-center"> {/* Fix 6: Added className and wrapped Link content */}
-          {linkText} <ArrowRight className="ml-2 h-4 w-4" />
-        </Link>
-      </Button>
-    </CardFooter>
-  </Card>
-);
+      </span>
 
-// Documentation Link Card (Minor style tweaks)
-const DocLinkCard = ({ icon, title, description, href }) => (
-   <Link href={href} className="block group">
-     <div className="bg-gray-800 hover:bg-gray-700/80 p-4 rounded-lg border border-gray-700 hover:border-cyan-500/50 transition-all duration-300 h-full flex flex-col hover:shadow-md">
-       <div className="flex items-center mb-2">
-         <div className="mr-3 p-1.5 bg-gray-700 group-hover:bg-cyan-900/50 transition-colors rounded-md border border-gray-600 group-hover:border-cyan-700">
-            {/* Ensure icon color contrasts or is set explicitly if needed */}
-           {React.cloneElement(icon, { className: `h-5 w-5` })}
-         </div>
-         <h4 className="text-lg font-semibold text-gray-100 group-hover:text-cyan-400 transition-colors">{title}</h4>
-       </div>
-       <p className="text-sm text-gray-400 flex-grow mb-2">{description}</p>
-        <div className="text-xs text-cyan-500 mt-auto flex items-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-            Go to Section <ArrowRight className="ml-1 h-3 w-3" />
-        </div>
-     </div>
-   </Link>
- );
+      {/* Action Icon */}
+      <div className="relative z-10 flex items-center">
+        <ArrowRight
+          size={14}
+          className="opacity-0 group-hover:opacity-100 -translate-x-4 group-hover:translate-x-0 transition-all duration-500"
+        />
+      </div>
 
-// New Helper: Tech Category Card
-const TechCategory = ({ icon, title, items }) => (
-    <div className="bg-gray-900/50 p-5 rounded-lg border border-gray-700">
-        <div className="flex items-center mb-4">
-             <div className="p-2 mr-3 bg-gray-700 rounded-md">
-                 {React.cloneElement(icon, { className: "h-6 w-6" })}
-            </div>
-            <h3 className="text-xl font-semibold text-gray-100">{title}</h3>
-        </div>
-        <ul className="space-y-2">
-            {items.map(item => (
-                <li key={item.name} className="text-sm">
-                    <strong className="text-gray-200">{item.name}:</strong>
-                    <span className="text-gray-400 ml-1">{item.reason}</span>
-                </li>
-            ))}
-        </ul>
-    </div>
-);
-
-// New Helper: Future Prospect Card
-const FutureProspectCard = ({ icon, title, description }) => (
-     <div className="bg-gray-800/60 p-6 rounded-lg border border-gray-700 hover:border-yellow-500/50 transition-colors duration-300">
-        <div className="flex items-center mb-3">
-            <div className="p-2 mr-3 bg-gray-700 rounded-md">
-                 {React.cloneElement(icon, { className: "h-6 w-6" })}
-            </div>
-            <h4 className="text-lg font-semibold text-gray-100">{title}</h4>
-        </div>
-        <p className="text-sm text-gray-400">{description}</p>
-    </div>
-);
-
-export default documentation;
+      {/* OPTIONAL: A faint "dusty" texture that only appears on hover inside the glass */}
+      <div className="absolute inset-0 dusty-visual opacity-0 group-hover:opacity-[0.03] transition-opacity pointer-events-none" />
+    </Link>
+  )
+}

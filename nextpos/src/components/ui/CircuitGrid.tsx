@@ -26,7 +26,7 @@ export const CircuitGrid: React.FC<CircuitGridProps> = ({
     e.preventDefault();
     const gateData = e.dataTransfer.getData('gate');
     const gate: GateDefinition = JSON.parse(gateData);
-  
+
     if (gate.qubits === 1) {
       // Single qubit gate
       onGateAdd({

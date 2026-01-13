@@ -1,269 +1,135 @@
+"use client";
+
 import React from "react";
-import Head from "next/head";
+import Image from "next/image";
+import {
+  Atom, Box, Grid, Globe,
+  Terminal, Activity
+} from "lucide-react";
 
-export default function QubitsSuperpositionPage() {
+export default function QubitsPage() {
   return (
-    <div className="max-w-4xl mx-auto px-4 py-8 text-gray-300">
-      {" "}
-      {/* Default text color */}
-      <Head>
-        <title>
-          🧪 Course 2: Beginner – Qubits and Superposition | Quantum Course
-        </title>
-        <meta
-          name="description"
-          content="Learn about the fundamental quantum bit (qubit), the concept of superposition, and how it powers quantum computation."
-        />
-      </Head>
-      {/* Gradient Title */}
-      <h1 className="text-4xl font-bold mb-6 text-center bg-clip-text text-transparent bg-gradient-to-r from-cyan-400 to-purple-500">
-        🧪 Course 2: Beginner – Qubits and Superposition
-      </h1>
-      {/* Optional Intro Quote */}
-      <p className="text-center italic text-lg text-gray-400 mb-8">
-        &quot;Imagine being in two places at once. Now imagine doing two
-        calculations, two thoughts, or two simulations—simultaneously. That’s a
-        qubit’s life.&quot;
-      </p>
-      {/* Main Content Area */}
-      <div className="space-y-8">
-        {/* Reading Material Section */}
-        <div className="bg-gray-800 rounded-lg p-6 shadow-md">
-          <h3 className="text-2xl font-semibold mb-4 text-white border-b border-gray-700 pb-2">
-            🎲 Qubit: The Quantum Bit
-          </h3>
-          <p className="mb-3">Let’s compare:</p>
-          <ul className="list-disc list-inside mb-4 space-y-1 pl-4">
-            <li>
-              <strong className="text-cyan-400">Classical bit:</strong> Off or
-              On (represented as 0 or 1). Simple, definitive states.
-            </li>
-            <li>
-              <strong className="text-purple-400">Qubit:</strong> A combination
-              of 0 and 1, existing in a{" "}
-              <em className="text-yellow-400">superposition</em> until you
-              measure it.
-            </li>
-          </ul>
-          <p className="mb-3">
-            A qubit&apos;s state, often denoted by |ψ⟩ (pronounced &quot;ket psi&quot;),
-            is described mathematically as:
-          </p>
-          <div className="bg-gray-900 p-3 rounded mb-4 text-center font-mono text-lg">
-            <code>|ψ⟩ = α|0⟩ + β|1⟩</code>
-          </div>
-          <p className="mb-4">
-            Here, <code className="text-green-400">α</code> and{" "}
-            <code className="text-green-400">β</code> are complex numbers called{" "}
-            <strong className="text-yellow-300">probability amplitudes</strong>.
-            The square of their magnitudes represents the probability of
-            measuring the qubit in the corresponding state:
-          </p>
-          <ul className="list-disc list-inside mb-4 space-y-1 pl-4">
-            <li>
-              Probability of measuring |0⟩ is{" "}
-              <code className="text-green-400">|α|²</code>
-            </li>
-            <li>
-              Probability of measuring |1⟩ is{" "}
-              <code className="text-green-400">|β|²</code>
-            </li>
-          </ul>
-          <p className="mb-4">
-            Crucially, these probabilities must sum to 1 (or 100%):
-          </p>
-          <div className="bg-gray-900 p-3 rounded my-2 text-center font-mono text-lg">
-            <code>|α|² + |β|² = 1</code>
-          </div>
-          <p className="italic text-gray-400">
-            Think of it like your GPS showing a 70% probability you&apos;re in New
-            York (<code className="text-green-400">|α|² = 0.7</code>) and a 30%
-            probability you&apos;re in London (
-            <code className="text-green-400">|β|² = 0.3</code>)—a physically
-            impossible superposition! But the moment someone checks your phone&apos;s
-            location, it definitively pins you to *one* spot (measurement
-            collapses the superposition).
-          </p>
-        </div>
+    <main className="min-h-screen bg-black text-white selection:bg-zinc-800 overflow-x-hidden relative">
 
-        <div className="bg-gray-800 rounded-lg p-6 shadow-md">
-          <h3 className="text-2xl font-semibold mb-4 text-white border-b border-gray-700 pb-2">
-            🌐 Visualizing Qubits with the Bloch Sphere
-          </h3>
-          <p className="mb-3">
-            Imagine a globe. The Bloch sphere is a way to visualize the state of
-            a single qubit:
-          </p>
-          <ul className="list-disc list-inside mb-4 space-y-1 pl-4">
-            <li>
-              The <strong className="text-cyan-400">North Pole</strong>{" "}
-              represents the definite state |0⟩.
-            </li>
-            <li>
-              The <strong className="text-purple-400">South Pole</strong>{" "}
-              represents the definite state |1⟩.
-            </li>
-            <li>
-              <strong className="text-yellow-400">
-                Any other point on the surface
-              </strong>{" "}
-              of the sphere represents a unique superposition state (|ψ⟩ = α|0⟩
-              + β|1⟩).
-            </li>
-          </ul>
-          <p className="bg-gray-900 p-3 rounded font-semibold text-yellow-300">
-            <span className="font-bold">Fun Fact:</span> Unlike classical
-            probabilities, the <strong className="text-pink-400">phases</strong>{" "}
-            (the complex nature of α and β) matter in quantum mechanics. They
-            determine how different quantum states interfere with each other,
-            which is key to many quantum algorithms. It’s not just *what* result
-            you get, but *how* the underlying amplitudes combine or cancel out.
-          </p>
+      {/* 1. ATMOSPHERIC SCHEMATICS */}
+      <div className="fixed inset-0 z-0">
+        {/* <div className="absolute inset-0 grayscale opacity-10 mix-blend-overlay pointer-events-none bg-[url('/marble-bg.png')] bg-cover" /> */}
+        {/* Atom Schematic: Image 2 */}
+        <div className="absolute inset-0 opacity-20 blend-screen mask-radial pointer-events-none">
+          <Image src="/bg_images/compass.jpg" alt="Logic Grid" fill className="object-cover object-center scale-110" />
         </div>
-
-        <div className="bg-gray-800 rounded-lg p-6 shadow-md">
-          <h3 className="text-2xl font-semibold mb-4 text-white border-b border-gray-700 pb-2">
-            🔍 What’s Superposition?
-          </h3>
-          <p className="mb-3">
-            Superposition is the core quantum principle allowing a qubit to
-            exist in a combination of multiple states (
-            <em className="text-yellow-400">both</em> |0⟩ and |1⟩)
-            simultaneously.
-          </p>
-          <p className="mb-4">
-            It’s like a spinning coin: while it&apos;s spinning, it&apos;s not
-            definitively heads or tails but exists in a state encompassing both
-            possibilities. Only when it lands (is measured) does it settle into
-            one definite outcome (collapses to |0⟩ or |1⟩). Before that moment
-            of measurement, the qubit truly contains the potential for all its
-            possible outcomes.
-          </p>
-        </div>
-
-        <div className="bg-gray-800 rounded-lg p-6 shadow-md">
-          <h3 className="text-2xl font-semibold mb-4 text-white border-b border-gray-700 pb-2">
-            🔗 Example: Quantum Chess
-          </h3>
-          <p className="mb-3">Imagine a game of chess:</p>
-          <ul className="list-disc list-inside mb-4 space-y-1 pl-4">
-            <li>
-              A <strong className="text-cyan-400">classical pawn</strong> can
-              only be on *one* square at any given time.
-            </li>
-            <li>
-              A <strong className="text-purple-400">quantum pawn</strong>,
-              thanks to superposition, could exist on *multiple* squares
-              simultaneously. Its next move wouldn&apos;t just be a single step but
-              could depend on the complex{" "}
-              <strong className="text-pink-400">interference</strong> patterns
-              between its possible positions—like waves colliding to either
-              reinforce or cancel each other out at different locations on the
-              board.
-            </li>
-          </ul>
-        </div>
-
-        <div className="bg-gray-800 rounded-lg p-6 shadow-md">
-          <h3 className="text-2xl font-semibold mb-4 text-white border-b border-gray-700 pb-2">
-            🧪 Use in Algorithms
-          </h3>
-          <p className="mb-3">
-            Superposition is the powerhouse behind the speedup in many quantum
-            algorithms:
-          </p>
-          <ul className="list-disc list-inside mb-4 space-y-2 pl-4">
-            <li>
-              <strong className="text-cyan-400">
-                Grover&apos;s algorithm:
-              </strong>{" "}
-              Uses superposition to effectively explore an entire unstructured
-              search database simultaneously, finding a target item much faster
-              than classical algorithms.
-            </li>
-            <li>
-              <strong className="text-purple-400">
-                Shor&apos;s algorithm:
-              </strong>{" "}
-              Leverages superposition (and entanglement) to perform calculations
-              on many numbers at once, allowing it to factor large numbers
-              exponentially faster than the best known classical methods.
-            </li>
-          </ul>
-        </div>
-
-        <div className="bg-gray-800 rounded-lg p-6 shadow-md">
-          <h3 className="text-2xl font-semibold mb-4 text-white border-b border-gray-700 pb-2">
-            🎓 Real-World Analogies
-          </h3>
-          <p className="mb-4">
-            While analogies are imperfect, they can help grasp the strangeness
-            of superposition:
-          </p>
-          <div className="overflow-x-auto">
-            {" "}
-            {/* Make table responsive */}
-            <table className="w-full text-left border-collapse">
-              <thead className="bg-gray-900 text-cyan-400">
-                <tr>
-                  <th className="border border-gray-700 p-2">Analogy</th>
-                  <th className="border border-gray-700 p-2">
-                    Meaning Related to Superposition
-                  </th>
-                </tr>
-              </thead>
-              <tbody className="bg-gray-850">
-                <tr>
-                  <td className="border border-gray-700 p-2 font-medium">
-                    Spinning Coin
-                  </td>
-                  <td className="border border-gray-700 p-2">
-                    Represents an equal superposition of heads (|0⟩) and tails
-                    (|1⟩) before landing (measurement).
-                  </td>
-                </tr>
-                <tr>
-                  <td className="border border-gray-700 p-2 font-medium">
-                    Music Chord
-                  </td>
-                  <td className="border border-gray-700 p-2">
-                    Multiple distinct notes (states) sounding simultaneously to
-                    create a combined sound (superposition).
-                  </td>
-                </tr>
-                <tr>
-                  <td className="border border-gray-700 p-2 font-medium">
-                    Paint Mixing
-                  </td>
-                  <td className="border border-gray-700 p-2">
-                    Blending primary colors (basis states) creates a new color
-                    (superposition state). Measuring might mean identifying
-                    *one* of the original colors present.
-                  </td>
-                </tr>
-                <tr>
-                  <td className="border border-gray-700 p-2 font-medium">
-                    Parallel Universes (Conceptual)
-                  </td>
-                  <td className="border border-gray-700 p-2">
-                    In some interpretations, superposition implies all possible
-                    outcomes are coexisting until a measurement forces one
-                    reality.
-                  </td>
-                </tr>
-              </tbody>
-            </table>
-          </div>
-        </div>
-      </div>{" "}
-      {/* End Main Content Area */}
-      {/* Footer/Metadata */}
-      <div className="mt-12 pt-6 border-t border-gray-700 text-center">
-        <p className="text-gray-400 italic text-sm">
-          Estimated Duration: 1 Lesson | Difficulty: Beginner | Prerequisites:
-          Basic understanding of bits.
-        </p>
       </div>
-    </div>
+      <div className="fixed inset-0 z-[100] pointer-events-none grain-overlay" />
+
+      {/* 2. HEADER */}
+      <header className="relative z-10 pt-40 pb-20 px-12 max-w-5xl mx-auto border-b border-white/5">
+        <div className="space-y-6">
+          <div className="flex items-center gap-4 font-mono text-[10px] uppercase tracking-[0.6em] text-zinc-500">
+            <Terminal size={14} />
+            <span>Module_02 // Qubits</span>
+          </div>
+          <h1 className="text-7xl md:text-8xl font-didone uppercase tracking-tighter text-quantum text-glow">
+            Superposition <br /> <span className="italic font-serif-italic capitalize tracking-normal text-zinc-500">Logic</span>
+          </h1>
+          <p className="text-xl font-serif-italic text-zinc-400 italic leading-relaxed max-w-2xl">
+            "Existing in two places at once. The fundamental duality of quantum information."
+          </p>
+        </div>
+      </header>
+
+      <div className="relative z-20 max-w-5xl mx-auto px-12 py-24 space-y-32 pb-60">
+
+        {/* SECTION 1: THE MATH */}
+        <section className="grid md:grid-cols-12 gap-12 items-start">
+          <div className="md:col-span-4 font-mono text-[9px] uppercase tracking-[0.5em] text-zinc-600 sticky top-40">
+            01 // The_State_Vector
+          </div>
+          <div className="md:col-span-8 space-y-12">
+            <div className="glass-pane-dark p-12 rounded-[40px] border border-white/10 dusty-visual space-y-8">
+              <p className="text-[11px] font-mono text-zinc-500 uppercase leading-[2.2]">
+                A qubit's state |ψ⟩ is a linear combination of the basis states |0⟩ and |1⟩.
+              </p>
+
+              {/* Math Block */}
+              <div className="bg-black/60 border border-white/10 rounded-2xl p-8 flex justify-center">
+                <code className="font-serif-italic text-3xl text-white">
+                  |ψ⟩ = α|0⟩ + β|1⟩
+                </code>
+              </div>
+
+              <div className="grid grid-cols-2 gap-8">
+                <div className="space-y-2">
+                  <span className="text-[9px] font-mono uppercase tracking-widest text-zinc-500">Alpha (α)</span>
+                  <p className="text-sm text-zinc-300">Probability Amplitude for state |0⟩.</p>
+                </div>
+                <div className="space-y-2">
+                  <span className="text-[9px] font-mono uppercase tracking-widest text-zinc-500">Beta (β)</span>
+                  <p className="text-sm text-zinc-300">Probability Amplitude for state |1⟩.</p>
+                </div>
+              </div>
+
+              <div className="p-4 border-t border-white/5 text-center font-mono text-[10px] text-zinc-500 uppercase tracking-widest">
+                |α|² + |β|² = 1 (Unity Condition)
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* SECTION 2: BLOCH SPHERE ANALOGY */}
+        <section className="glass-pane-dark rounded-[60px] p-20 border border-white/10 relative overflow-hidden group">
+          {/* Background Sphere: Image 2 scale up */}
+          <div className="absolute -right-20 -top-20 w-[60vw] h-[60vw] opacity-30 blend-screen pointer-events-none mask-radial dusty-visual">
+            <Image src="/bg_images/compass.jpg" alt="Bloch Sphere" fill className="object-contain rotate-12 scale-125" />
+          </div>
+
+          <div className="relative z-10 grid md:grid-cols-2 gap-20">
+            <div className="space-y-10">
+              <div className="flex items-center gap-3 font-mono text-[10px] uppercase tracking-widest text-zinc-500">
+                <Globe size={18} className="animate-pulse" />
+                <span>02 // Bloch_Representation</span>
+              </div>
+              <h2 className="text-5xl font-serif-italic tracking-tighter uppercase text-glow">
+                Geometric <br /> <span className="italic text-zinc-600">Visualization</span>
+              </h2>
+              <ul className="space-y-6 font-mono text-[10px] text-zinc-400 uppercase tracking-widest">
+                <li className="flex gap-4"><div className="w-1 h-1 bg-white mt-1.5" /> North Pole: State |0⟩</li>
+                <li className="flex gap-4"><div className="w-1 h-1 bg-white mt-1.5" /> South Pole: State |1⟩</li>
+                <li className="flex gap-4"><div className="w-1 h-1 bg-white mt-1.5" /> Equator: Superposition States</li>
+              </ul>
+            </div>
+          </div>
+        </section>
+
+        {/* SECTION 3: ANALOGY GRID */}
+        <section className="space-y-12">
+          <div className="flex items-center gap-4 opacity-30 font-mono text-[10px] uppercase tracking-widest">
+            <Activity size={12} />
+            <span>Conceptual_Analogies</span>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <AnalogyTile title="Spinning Coin" desc="While spinning, it is neither heads nor tails. It is a probability distribution of both." icon={<Atom size={20} />} />
+            <AnalogyTile title="Musical Chord" desc="Multiple frequencies (states) resonating simultaneously to create a complex waveform." icon={<Activity size={20} />} />
+            <AnalogyTile title="Paint Mixing" desc="Basis colors blending to form a new hue (superposition), distinct from its parts." icon={<Grid size={20} />} />
+            <AnalogyTile title="Schrödinger's Box" desc="The unobserved state holds both outcomes (Alive/Dead) in coherent suspension." icon={<Box size={20} />} />
+          </div>
+        </section>
+
+      </div>
+    </main>
   );
+}
+
+function AnalogyTile({ title, desc, icon }: any) {
+  return (
+    <div className="glass-pane-dark p-10 rounded-[32px] border border-white/5 hover:border-white/20 transition-all group">
+      <div className="flex items-center justify-between mb-6">
+        <h4 className="font-serif-italic text-2xl text-zinc-200 group-hover:text-glow">{title}</h4>
+        <div className="p-3 bg-white/[0.03] rounded-xl text-zinc-500 group-hover:text-white transition-colors">{icon}</div>
+      </div>
+      <p className="font-mono text-[10px] text-zinc-500 uppercase leading-relaxed tracking-wide group-hover:text-zinc-300">
+        {desc}
+      </p>
+    </div>
+  )
 }

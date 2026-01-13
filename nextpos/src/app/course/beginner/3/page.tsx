@@ -1,301 +1,126 @@
+"use client";
+
 import React from "react";
-import Head from "next/head";
+import Image from "next/image";
+import {
+  Binary, Atom, RotateCw, Combine,
+  Terminal, ArrowRight, Zap
+} from "lucide-react";
 
 export default function QuantumGatesPage() {
   return (
-    <div className="max-w-4xl mx-auto px-4 py-8 text-gray-300">
-      {" "}
-      {/* Default text color */}
-      <Head>
-        <title>🔧 Course 3: Beginner – Quantum Gates | Quantum Course</title>
-        <meta
-          name="description"
-          content="Learn about the fundamental quantum gates (X, H, Z, CNOT) used to manipulate qubits and build quantum circuits."
-        />
-      </Head>
-      {/* Gradient Title */}
-      <h1 className="text-4xl font-bold mb-6 text-center bg-clip-text text-transparent bg-gradient-to-r from-cyan-400 to-purple-500">
-        🔧 Course 3: Beginner – Quantum Gates
-      </h1>
-      {/* Optional Intro Quote */}
-      <p className="text-center italic text-lg text-gray-400 mb-8">
-        &quot;If qubits are actors, quantum gates are the directors—deciding how
-        the story unfolds.&quot;
-      </p>
-      {/* Main Content Area */}
-      <div className="space-y-8">
-        {/* Video Section (Placeholder) */}
+    <main className="min-h-screen bg-black text-white selection:bg-zinc-800 relative">
 
-
-        {/* Reading Material Sections */}
-        <div className="bg-gray-800 rounded-lg p-6 shadow-md">
-          <h3 className="text-2xl font-semibold mb-4 text-white border-b border-gray-700 pb-2">
-            🏗️ What Are Quantum Gates?
-          </h3>
-          <p className="mb-3">
-            Quantum gates are the fundamental operations performed on qubits to
-            change their state. Think of them as the quantum equivalent of
-            classical logic gates (like AND, OR, NOT).
-          </p>
-          <p className="mb-3">
-            However, instead of simple logic tables, quantum gates are described
-            by{" "}
-            <strong className="text-yellow-300">mathematical operations</strong>{" "}
-            (specifically, unitary matrices from linear algebra) that transform
-            the quantum state vector (
-            <code className="text-green-400">|ψ⟩ = α|0⟩ + β|1⟩</code>).
-          </p>
-          <p>
-            They are the building blocks used to create quantum circuits and
-            algorithms.
-          </p>
+      {/* 1. ATMOSPHERIC SCHEMATICS */}
+      <div className="fixed inset-0 z-0">
+        {/* Note: The sidebar's z-50 will now sit ON TOP of this z-0 background */}
+        {/* <div className="absolute inset-0 grayscale opacity-10 mix-blend-overlay pointer-events-none bg-[url('/marble-bg.png')] bg-cover" /> */}
+        <div className="absolute inset-0 opacity-20 blend-screen mask-radial pointer-events-none">
+          <Image src="/bg_images/compass.jpg" alt="Logic Grid" fill className="object-cover object-center scale-110" />
         </div>
+      </div>
+      <div className="fixed inset-0 z-[100] pointer-events-none grain-overlay" />
 
-        <div className="bg-gray-800 rounded-lg p-6 shadow-md">
-          <h3 className="text-2xl font-semibold mb-4 text-white border-b border-gray-700 pb-2">
-            🔄 Reversibility – A Key Difference
-          </h3>
-          <p className="mb-3">
-            A crucial distinction: unlike many classical gates (e.g., AND, which
-            loses information about the inputs),{" "}
-            <strong className="text-cyan-400">
-              all quantum gates must be reversible
-            </strong>
-            .
-          </p>
-          <p className="mb-3">
-            This means no information is lost during the operation. If you know
-            the final state and the gate applied, you can always determine the
-            initial state by applying the inverse gate. This property stems from
-            the principles of quantum mechanics (unitarity).
-          </p>
-          <p className="italic text-gray-400">
-            Imagine twisting a Rubik’s Cube. Each twist is like a quantum gate.
-            As long as you remember the sequence of twists (the gates), you can
-            always reverse them to return the cube to its original solved state.
-            Information about the sequence of moves isn&apos;t lost.
-          </p>
-        </div>
-
-        <div className="bg-gray-800 rounded-lg p-6 shadow-md">
-          <h3 className="text-2xl font-semibold mb-4 text-white border-b border-gray-700 pb-2">
-            🎼 Key Single-Qubit Gates
-          </h3>
-          <p className="mb-4">
-            These gates operate on a single qubit at a time, often visualized as
-            rotations on the Bloch Sphere:
-          </p>
-          <div className="overflow-x-auto">
-            {" "}
-            {/* Make table responsive */}
-            <table className="w-full text-left border-collapse">
-              <thead className="bg-gray-900 text-cyan-400">
-                <tr>
-                  <th className="border border-gray-700 p-2">Gate Name</th>
-                  <th className="border border-gray-700 p-2">Symbol</th>
-                  <th className="border border-gray-700 p-2">Action</th>
-                  <th className="border border-gray-700 p-2">
-                    Visual Analogy / Bloch Sphere Effect
-                  </th>
-                </tr>
-              </thead>
-              <tbody className="bg-gray-850">
-                <tr>
-                  <td className="border border-gray-700 p-2 font-medium">
-                    Pauli-X (NOT)
-                  </td>
-                  <td className="border border-gray-700 p-2 font-mono text-lg text-center">
-                    X
-                  </td>
-                  <td className="border border-gray-700 p-2">
-                    Flips the state:{" "}
-                    <code className="text-green-400">|0⟩ ↔ |1⟩</code>.
-                  </td>
-                  <td className="border border-gray-700 p-2">
-                    Rotation by 180° around the X-axis.
-                  </td>
-                </tr>
-                <tr>
-                  <td className="border border-gray-700 p-2 font-medium">
-                    Hadamard
-                  </td>
-                  <td className="border border-gray-700 p-2 font-mono text-lg text-center">
-                    H
-                  </td>
-                  <td className="border border-gray-700 p-2">
-                    Creates superposition:{" "}
-                    <code className="text-green-400">|0⟩ → (|0⟩ + |1⟩)/√2</code>
-                    ,{" "}
-                    <code className="text-green-400">|1⟩ → (|0⟩ - |1⟩)/√2</code>
-                    .
-                  </td>
-                  <td className="border border-gray-700 p-2">
-                    Rotation by 180° around the axis midway between X and Z.
-                    Maps basis states to superposition states.
-                  </td>
-                </tr>
-                <tr>
-                  <td className="border border-gray-700 p-2 font-medium">
-                    Pauli-Z
-                  </td>
-                  <td className="border border-gray-700 p-2 font-mono text-lg text-center">
-                    Z
-                  </td>
-                  <td className="border border-gray-700 p-2">
-                    Applies a phase flip to{" "}
-                    <code className="text-green-400">|1⟩</code>:{" "}
-                    <code className="text-green-400">|1⟩ → -|1⟩</code>. Leaves{" "}
-                    <code className="text-green-400">|0⟩</code> unchanged.
-                  </td>
-                  <td className="border border-gray-700 p-2">
-                    Rotation by 180° around the Z-axis. Changes phase, not
-                    probability amplitudes. Like changing rhythm, not volume.
-                  </td>
-                </tr>
-                <tr>
-                  <td className="border border-gray-700 p-2 font-medium">
-                    Phase (S) / π/8 (T)
-                  </td>
-                  <td className="border border-gray-700 p-2 font-mono text-lg text-center">
-                    S / T
-                  </td>
-                  <td className="border border-gray-700 p-2">
-                    Rotates the phase of the{" "}
-                    <code className="text-green-400">|1⟩</code> component (S by
-                    90°, T by 45°).
-                  </td>
-                  <td className="border border-gray-700 p-2">
-                    Rotations around the Z-axis by smaller angles (90° for S,
-                    45° for T). Like finely tuning the phase - spinning the coin
-                    while it spins.
-                  </td>
-                </tr>
-              </tbody>
-            </table>
+      {/* 2. HEADER */}
+      <header className="relative z-10 pt-40 pb-20 px-12 max-w-5xl mx-auto border-b border-white/5">
+        <div className="space-y-6">
+          <div className="flex items-center gap-4 font-mono text-[10px] uppercase tracking-[0.6em] text-zinc-500">
+            <Terminal size={14} />
+            <span>Module_03 // Logic_Gates</span>
           </div>
+          <h1 className="text-7xl md:text-8xl font-didone uppercase tracking-tighter text-quantum text-glow">
+            Unitary <br /> <span className="italic font-serif-italic capitalize tracking-normal text-zinc-500">Operators</span>
+          </h1>
+          <p className="text-xl font-serif-italic text-zinc-400 italic leading-relaxed max-w-2xl">
+            "If qubits are the actors, quantum gates are the directors—orchestrating the collapse."
+          </p>
         </div>
+      </header>
 
-        <div className="bg-gray-800 rounded-lg p-6 shadow-md">
-          <h3 className="text-2xl font-semibold mb-4 text-white border-b border-gray-700 pb-2">
-            🔗 Multi-Qubit Gates
-          </h3>
-          <p className="mb-3">
-            These gates operate on two or more qubits, allowing for interaction
-            and entanglement:
-          </p>
-          <ul className="list-disc list-inside mb-4 space-y-2 pl-4">
-            <li>
-              <strong className="text-purple-400">
-                Controlled-NOT (CNOT or CX):
-              </strong>
-              Acts on two qubits (control and target). If the control qubit is
-              in state <code className="text-green-400">|1⟩</code>, it applies
-              an X (NOT) gate to the target qubit. Otherwise, it does nothing to
-              the target. Essential for creating entanglement.
-              {/* Visual/Symbol can be added here if needed */}
-            </li>
-            <li>
-              <strong className="text-purple-400">SWAP:</strong>
-              Exchanges the states of two qubits.{" "}
-              <code className="text-green-400">|ψ⟩|φ⟩ → |φ⟩|ψ⟩</code>.
-            </li>
-            <li>
-              <strong className="text-purple-400">
-                Toffoli (CCNOT or Controlled-Controlled-NOT):
-              </strong>
-              A three-qubit gate. If the first two control qubits are both in
-              state <code className="text-green-400">|1⟩</code>, it flips the
-              third (target) qubit. It&apos;s a reversible version of the
-              classical AND gate and is universal for classical computation.
-            </li>
-          </ul>
-          <p className="font-semibold text-yellow-300">
-            Multi-qubit gates, especially CNOT, are crucial for generating{" "}
-            <strong className="text-pink-400">entanglement</strong>—the strange
-            quantum connection where qubits become correlated, sharing the same
-            fate even when physically separated.
-          </p>
-        </div>
+      <div className="relative z-20 max-w-5xl mx-auto px-12 py-24 space-y-32 pb-60">
 
-        <div className="bg-gray-800 rounded-lg p-6 shadow-md">
-          <h3 className="text-2xl font-semibold mb-4 text-white border-b border-gray-700 pb-2">
-            🔭 Quantum Gate Design Philosophy
-          </h3>
-          <p className="mb-3">
-            When working with quantum gates, it helps to shift your thinking:
-          </p>
-          <ul className="list-disc list-inside mb-4 space-y-2 pl-4">
-            <li>
-              Think in terms of{" "}
-              <strong className="text-cyan-400">rotations</strong> on the Bloch
-              sphere, not just classical logic (0s and 1s). Gates manipulate the
-              direction of the qubit state vector.
-            </li>
-            <li>
-              Remember that{" "}
-              <strong className="text-pink-400">phase matters</strong>. Gates
-              can change the complex amplitudes (α and β), affecting
-              interference, even if they don&apos;t change the measurement
-              probabilities (|α|² and |β|²).
-            </li>
-            <li>
-              Visualize operations as orchestrating a complex dance or ballet –
-              precise, mathematical, and governed by the rules of quantum
-              mechanics.
-            </li>
-          </ul>
-        </div>
+        {/* SECTION 1: THE FUNDAMENTAL UNIT */}
+        <section className="grid md:grid-cols-12 gap-12 items-start">
+          <div className="md:col-span-4 font-mono text-[9px] uppercase tracking-[0.5em] text-zinc-600 sticky top-40">
+            01 // The_Mechanics
+          </div>
+          <div className="md:col-span-8 space-y-12">
+            <div className="glass-pane-dark p-12 rounded-[40px] border border-white/10 dusty-visual space-y-8">
+              <h2 className="text-4xl font-serif-italic italic text-white/90">Reversible Logic.</h2>
+              <p className="text-[11px] font-mono text-zinc-500 uppercase leading-[2.2]">
+                Unlike classical gates (AND, OR) which lose information, quantum gates are <span className="text-white">Unitary Matrices</span>. They transform the state vector |ψ⟩ without loss of data, making every operation reversible.
+              </p>
+            </div>
+          </div>
+        </section>
 
-        <div className="bg-gray-800 rounded-lg p-6 shadow-md">
-          <h3 className="text-2xl font-semibold mb-4 text-white border-b border-gray-700 pb-2">
-            🧠 Intuition Builder: Gate Sequence Example
-          </h3>
-          <p className="mb-3">
-            Let&apos;s trace the state of a qubit through a sequence of gates.
-            Try this thought experiment:
-          </p>
-          <ol className="list-decimal list-inside mb-4 space-y-2 pl-4 bg-gray-900 p-4 rounded">
-            <li>
-              Start with the qubit in the ground state:{" "}
-              <code className="text-green-400">|0⟩</code>.
-            </li>
-            <li>
-              Apply the <strong className="text-cyan-400">Hadamard (H)</strong>{" "}
-              gate. The state becomes superposition:{" "}
-              <code className="text-green-400">(|0⟩ + |1⟩)/√2</code>.
-            </li>
-            <li>
-              Apply the <strong className="text-purple-400">Pauli-Z (Z)</strong>{" "}
-              gate. This flips the phase of the |1⟩ component:{" "}
-              <code className="text-green-400">(|0⟩ - |1⟩)/√2</code>.
-            </li>
-            <li>
-              Apply the <strong className="text-cyan-400">Hadamard (H)</strong>{" "}
-              gate again. Due to interference effects (the H gate acting on the
-              Z-modified superposition), the state transforms to:{" "}
-              <code className="text-green-400">|1⟩</code>.
-            </li>
-          </ol>
-          <p className="font-semibold text-yellow-300">
-            Result: Applying H, then Z, then H to the initial state |0⟩ results
-            in the final state |1⟩!
-          </p>
-          <p className="mt-3 italic text-gray-400">
-            This demonstrates how combining gates can lead to non-intuitive
-            outcomes because of the interplay between superposition, phase
-            shifts, and interference – the core mechanics manipulated by quantum
-            algorithms.
-          </p>
-        </div>
-      </div>{" "}
-      {/* End Main Content Area */}
-      {/* Footer/Metadata */}
-      <div className="mt-12 pt-6 border-t border-gray-700 text-center">
-        <p className="text-gray-400 italic text-sm">
-          Estimated Duration: 1-2 Lessons | Difficulty: Beginner |
-          Prerequisites: Course 2 (Qubits and Superposition)
+        {/* SECTION 2: SINGLE QUBIT GATES */}
+        <section className="space-y-12">
+          <div className="flex items-center gap-4 opacity-30 font-mono text-[10px] uppercase tracking-widest">
+            <Atom size={12} />
+            <span>Single_Qubit_Ops</span>
+          </div>
+
+          <div className="grid grid-cols-1 gap-4">
+            <GateSpecimen
+              symbol="X" name="Pauli-X (NOT)"
+              desc="Flips state |0⟩ to |1⟩. Equivalent to a 180° rotation around the X-axis."
+              icon={<Binary size={20} />}
+            />
+            <GateSpecimen
+              symbol="H" name="Hadamard"
+              desc="Creates Superposition. Maps basis states |0⟩ and |1⟩ to equal probability amplitudes."
+              icon={<Atom size={20} />}
+            />
+            <GateSpecimen
+              symbol="Z" name="Pauli-Z"
+              desc="Phase Flip. Changes the phase of the |1⟩ component without affecting probability."
+              icon={<RotateCw size={20} />}
+            />
+          </div>
+        </section>
+
+        {/* SECTION 3: MULTI-QUBIT GATES */}
+        <section className="grid md:grid-cols-12 gap-12 items-start">
+          <div className="md:col-span-4 font-mono text-[9px] uppercase tracking-[0.5em] text-zinc-600 sticky top-40">
+            03 // Entanglement_Ops
+          </div>
+          <div className="md:col-span-8 grid gap-6">
+            <GateSpecimen
+              symbol="CNOT" name="Controlled-NOT"
+              desc="The 'If-Then' logic of quantum. Flips the target qubit only if the control is |1⟩. Essential for entanglement."
+              icon={<Combine size={20} />}
+            />
+            <GateSpecimen
+              symbol="SWAP" name="Exchange Gate"
+              desc="Swaps the state of two qubits perfectly. |ψ⟩|φ⟩ → |φ⟩|ψ⟩."
+              icon={<ArrowRight size={20} />}
+            />
+            <GateSpecimen
+              symbol="CCX" name="Toffoli Gate"
+              desc="Controlled-Controlled-NOT. A reversible version of the classical AND gate."
+              icon={<Zap size={20} />}
+            />
+          </div>
+        </section>
+
+      </div>
+    </main>
+  );
+}
+
+function GateSpecimen({ symbol, name, desc, icon }: any) {
+  return (
+    <div className="group flex items-start gap-8 p-10 bg-zinc-950/40 border border-white/5 hover:bg-white hover:text-black transition-all duration-700 rounded-[32px]">
+      <div className="w-16 h-16 flex items-center justify-center bg-white/[0.03] border border-white/10 rounded-2xl group-hover:bg-black/5 group-hover:border-black/10 transition-colors">
+        <span className="font-mono text-xl font-bold">{symbol}</span>
+      </div>
+      <div className="space-y-2">
+        <h4 className="font-serif-italic text-2xl text-zinc-200 group-hover:text-black transition-colors">{name}</h4>
+        <p className="font-mono text-[10px] text-zinc-500 uppercase leading-relaxed tracking-wide group-hover:text-zinc-600">
+          {desc}
         </p>
       </div>
     </div>
-  );
+  )
 }

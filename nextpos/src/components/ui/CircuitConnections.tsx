@@ -16,7 +16,7 @@ export const CircuitConnections: React.FC<CircuitConnectionsProps> = ({ circuit 
           const control = gate.controls[0];
           const target = gate.targets[0];
           const step = gate.step;
-          
+
           const x = leftOffset + step * cellSize + cellSize / 2;
           const y1 = control * cellSize + cellSize / 2;
           const y2 = target * cellSize + cellSize / 2;
@@ -56,7 +56,7 @@ export const CircuitConnections: React.FC<CircuitConnectionsProps> = ({ circuit 
           const target1 = gate.targets[0];
           const target2 = gate.targets[1];
           const step = gate.step;
-          
+
           const x = leftOffset + step * cellSize + cellSize / 2;
           const y1 = target1 * cellSize + cellSize / 2;
           const y2 = target2 * cellSize + cellSize / 2;

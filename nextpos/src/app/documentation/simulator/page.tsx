@@ -1,71 +1,90 @@
-import Head from 'next/head';
-import { CircuitBoard, MousePointerClick, Settings, Play, FileJson, ZoomIn } from 'lucide-react'; // Example icons
-import Link from 'next/link';
+"use client";
+
+import React from "react";
+import Image from "next/image";
+import {
+  CircuitBoard,
+  Activity
+} from "lucide-react";
 
 export default function CircuitBuilderPage() {
   return (
-    <div className="max-w-3xl mx-auto px-4 py-8 text-gray-300">
-      <Head>
-        <title>Circuit Builder Tutorial | Superpos Docs</title>
-      </Head>
+    <main className="min-h-screen bg-black text-white selection:bg-zinc-800 overflow-x-hidden relative">
 
-      <div className="flex items-center mb-6">
-        <CircuitBoard className="h-8 w-8 mr-3 text-lime-400" />
-        <h1 className="text-3xl font-bold text-gray-100">Using the Quantum Circuit Builder</h1>
+      {/* 1. BLUEPRINT BACKGROUND */}
+      <div className="fixed inset-0 z-0">
+        {/* <div className="absolute inset-0 opacity-40 mix-blend-overlay pointer-events-none bg-[url('/marble-bg.png')] bg-cover" /> */}
+        {/* Logic Grid: Image 5 */}
+        <div className="absolute inset-0 opacity-30 blend-screen mask-radial pointer-events-none translate-y-20">
+          <Image src="/bg_images/portal.jpg" alt="Blueprint" fill className="object-cover" />
+        </div>
       </div>
+      <div className="fixed inset-0 z-[100] pointer-events-none grain-overlay" />
 
-      <p className="text-lg text-gray-400 mb-8">
-        The Superpos Circuit Builder provides an intuitive drag-and-drop interface to design, simulate, and visualize quantum circuits. This guide will walk you through its core functionalities.
-      </p>
+      {/* 2. HEADER */}
+      <header className="relative z-10 pt-40 pb-20 px-12 max-w-6xl mx-auto">
+        <div className="space-y-6">
+          <div className="flex items-center gap-4 font-mono text-[10px] uppercase tracking-[0.6em] text-zinc-500">
+            <CircuitBoard size={14} className="opacity-40" />
+            <span>Operation_Manual // LAB_ARCH_01</span>
+          </div>
+          <h1 className="text-7xl md:text-9xl font-didone uppercase tracking-tighter text-glow">
+            Circuit <br /> <span className="italic font-serif-italic capitalize tracking-normal text-zinc-500">Synthesis</span>
+          </h1>
+          <p className="text-xl font-mono uppercase tracking-widest text-zinc-400 max-w-2xl leading-relaxed">
+            A guide to constructing quantum logical gates within the Superpos drafting layer.
+          </p>
+        </div>
+      </header>
 
-      <h2 className="text-2xl font-semibold text-gray-100 mb-4">Interface Layout</h2>
-      <p className="mb-6">The builder is typically divided into these main areas:</p>
-      <ul className="list-disc list-inside space-y-2 mb-8 pl-4">
-        <li><strong className="text-gray-200">Gate Toolbar:</strong> Contains available quantum gates (H, X, Z, CNOT, CCX, SWAP, custom gates, etc.).</li>
-        <li><strong className="text-gray-200">Circuit Canvas:</strong> The main area where you drag gates onto qubit wires across different time steps (columns).</li>
-        <li><strong className="text-gray-200">Configuration Panel:</strong> Options to set the number of qubits and simulation steps/depth.</li>
-        <li><strong className="text-gray-200">Output/Visualization Panel:</strong> Displays simulation results like the state vector, probabilities, and visualizations after running the simulation.</li>
-      </ul>
+      <div className="relative z-20 max-w-6xl mx-auto px-12 py-32 space-y-40 pb-60">
 
-       <h2 className="text-2xl font-semibold text-gray-100 mb-4">Building Your First Circuit</h2>
-       <div className="space-y-4">
-           <Step icon={<Settings size={18}/>} title="1. Configure Qubits & Steps"> Use the configuration panel to set the desired number of qubits (e.g., 2) and steps (e.g., 4).</Step>
-           <Step icon={<MousePointerClick size={18}/>} title="2. Add Gates"> Drag gates from the toolbar onto the desired qubit wire at the specific time step on the canvas. For multi-qubit gates like CNOT, drag the control part first, then connect the target.</Step>
-           <Step icon={<Play size={18}/>} title="3. Run Simulation"> Once your circuit is designed, click the 'Run Simulation' or 'Simulate' button.</Step>
-           <Step icon={<FileJson size={18}/>} title="4. Interpret Results"> Examine the Output Panel. Check the State Vector table (State, Magnitude, Phase, Probability), view the Probability Histogram, and explore the 2D/3D circuit visualizations.</Step>
-           <Step icon={<ZoomIn size={18}/>} title="5. Explore & Iterate"> Modify the circuit by adding/removing/moving gates and re-run the simulation to observe how the quantum state evolves.</Step>
-       </div>
+        {/* SECTION: WORKFLOW SEQUENCES */}
+        <section className="space-y-16">
+          <div className="flex items-center gap-4 opacity-30 font-mono text-[10px] uppercase tracking-widest">
+            <Activity size={12} />
+            <span>Command_Sequence</span>
+          </div>
 
-       <h2 className="text-2xl font-semibold text-gray-100 mt-8 mb-4">Available Gates</h2>
-       <p className="mb-4">Superpos supports a range of standard quantum gates, including:</p>
-       {/* Ideally, list gates with brief descriptions or link to a separate gate reference */}
-       <ul className="list-disc list-inside space-y-1 pl-4 mb-6">
-           <li>Single-Qubit Gates: Hadamard (H), Pauli-X, Pauli-Y, Pauli-Z, S, T, Rotation Gates (RX, RY, RZ)...</li>
-           <li>Multi-Qubit Gates: CNOT, SWAP, CZ, CY, Controlled Rotations (CRZ), Toffoli (CCX)...</li>
-           <li>Measurement Gate</li>
-       </ul>
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-1">
+            <SequenceStep id="01" title="Config_Init" desc="Set physical qubit count and simulation depth within the Configuration Panel." />
+            <SequenceStep id="02" title="Gate_Drift" desc="Drag unitary operators from the Inventory onto the timeline wires." />
+            <SequenceStep id="03" title="Param_Set" desc="Specify rotation angles for RZ, RX, and RY gates before placement." />
+            <SequenceStep id="04" title="Logic_Link" desc="Establish control-target dependencies for multi-qubit gates (CNOT, SWAP)." />
+            <SequenceStep id="05" title="Execution" desc="Trigger the Simulate sequence to engage the Cirq Kernel." />
+            <SequenceStep id="06" title="Analysis" desc="Observe the resulting state-vector collapse and probability histograms." />
+          </div>
+        </section>
 
-       <h2 className="text-2xl font-semibold text-gray-100 mt-8 mb-4">Advanced Features (Optional)</h2>
-       <ul className="list-disc list-inside space-y-1 pl-4">
-        <li>Viewing the generated JSON representation of the circuit.</li>
-        <li>Saving/Loading circuit designs (if implemented).</li>
-        <li>Using the 3D visualization controls (rotate, zoom).</li>
-       </ul>
+        {/* SECTION: GATE MANIFEST */}
+        <section className="glass-pane-dark p-16 rounded-[60px] border border-white/10 grid md:grid-cols-2 gap-20 overflow-hidden relative">
+          <div className="space-y-8 relative z-10">
+            <h2 className="text-5xl font-serif-italic tracking-tighter uppercase text-glow">Unitary <br /> Manifest</h2>
+            <p className="font-mono text-[10px] text-zinc-500 uppercase leading-[2.5] tracking-widest">
+              SUPERPOS SUPPORTS STANDARD <br />
+              CLIFORD+T AND PARAMETRIC GATES. <br />
+              H / X / Y / Z / S / T <br />
+              CNOT / CCX / SWAP / MEASURE
+            </p>
+          </div>
+          <div className="relative aspect-square opacity-60 blend-screen scale-150 translate-x-20 mask-radial dusty-visual">
+            <Image src="/bg_images/atoms.jpg" alt="Atoms" fill className="object-cover" />
+          </div>
+        </section>
 
-        <p className="mt-8 border-t border-gray-700 pt-4 text-gray-400 text-sm">
-            Need more help? Try asking the <Link href="/docs/chatbot" className="text-cyan-400 hover:underline">Quantum Chatbot</Link> or check the <Link href="/docs/faq-glossary" className="text-cyan-400 hover:underline">FAQ</Link>.
-        </p>
-    </div>
+      </div>
+    </main>
   );
 }
 
-// Helper for steps
-const Step = ({icon, title, children}: {icon: React.ReactNode, title: string, children: React.ReactNode}) => (
-    <div className="flex items-start p-3 bg-gray-800/50 rounded border border-gray-700">
-        <span className="mr-3 text-lime-400 mt-1">{icon}</span>
-        <div>
-            <h3 className="font-semibold text-gray-100">{title}</h3>
-            <p className="text-sm text-gray-400">{children}</p>
-        </div>
+function SequenceStep({ id, title, desc }: any) {
+  return (
+    <div className="group bg-zinc-950/90 border border-white/5 p-12 transition-all duration-700 hover:bg-white hover:text-black cursor-default">
+      <span className="block font-mono text-[8px] opacity-20 uppercase tracking-[0.5em] mb-8 group-hover:text-black group-hover:opacity-100 transition-all">SEQ_P_{id}</span>
+      <h4 className="text-3xl font-serif-italic tracking-tight uppercase mb-4 group-hover:text-glow-none">{title}</h4>
+      <p className="font-mono text-[10px] text-zinc-500 uppercase leading-relaxed tracking-tight group-hover:text-black transition-colors">
+        {desc}
+      </p>
     </div>
-);
+  )
+}

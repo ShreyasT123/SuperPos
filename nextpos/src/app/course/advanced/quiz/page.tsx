@@ -345,11 +345,10 @@ export default function AdvancedQuizPage() {
                   {q.options.map((opt) => (
                     <label
                       key={opt.id}
-                      className={`block p-3 rounded border transition-all cursor-pointer ${
-                        showResults
+                      className={`block p-3 rounded border transition-all cursor-pointer ${showResults
                           ? getFeedbackClass(q, opt.id)
                           : "border-gray-600 hover:bg-gray-700"
-                      } ${userAnswers[q.id] === opt.id ? "bg-gray-700" : ""}`}
+                        } ${userAnswers[q.id] === opt.id ? "bg-gray-700" : ""}`}
                     >
                       <input
                         type="radio"
@@ -406,15 +405,13 @@ export default function AdvancedQuizPage() {
                 <div className="flex space-x-4">
                   {/* True Option */}
                   <label
-                    className={`flex-1 p-3 rounded border text-center transition-all cursor-pointer ${
-                      showResults
+                    className={`flex-1 p-3 rounded border text-center transition-all cursor-pointer ${showResults
                         ? getTFFeedbackClass(q, true)
                         : "border-gray-600 hover:bg-gray-700"
-                    } ${
-                      userAnswers[q.id] === true || userAnswers[q.id] === "true"
+                      } ${userAnswers[q.id] === true || userAnswers[q.id] === "true"
                         ? "bg-gray-700"
                         : ""
-                    }`}
+                      }`}
                   >
                     <input
                       type="radio"
@@ -446,16 +443,14 @@ export default function AdvancedQuizPage() {
 
                   {/* False Option */}
                   <label
-                    className={`flex-1 p-3 rounded border text-center transition-all cursor-pointer ${
-                      showResults
+                    className={`flex-1 p-3 rounded border text-center transition-all cursor-pointer ${showResults
                         ? getTFFeedbackClass(q, false)
                         : "border-gray-600 hover:bg-gray-700"
-                    } ${
-                      userAnswers[q.id] === false ||
-                      userAnswers[q.id] === "false"
+                      } ${userAnswers[q.id] === false ||
+                        userAnswers[q.id] === "false"
                         ? "bg-gray-700"
                         : ""
-                    }`}
+                      }`}
                   >
                     <input
                       type="radio"
@@ -491,8 +486,8 @@ export default function AdvancedQuizPage() {
                     ? true
                     : userAnswers[q.id] === false ||
                       userAnswers[q.id] === "false"
-                    ? false
-                    : undefined) !== q.correctAnswer && (
+                      ? false
+                      : undefined) !== q.correctAnswer && (
                     <p className="mt-2 text-sm text-green-400">
                       Correct Answer: {q.correctAnswer ? "True" : "False"}
                     </p>

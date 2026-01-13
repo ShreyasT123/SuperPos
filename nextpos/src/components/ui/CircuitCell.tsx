@@ -39,9 +39,8 @@ export const CircuitCell: React.FC<CircuitCellProps> = ({
 
   return (
     <div
-      className={`w-16 h-16 border-r border-b border-gray-200 flex items-center justify-center ${
-        isSelected ? 'bg-blue-50' : isDragOver ? 'bg-gray-100' : ''
-      }`}
+      className={`w-16 h-16 border-r border-b border-gray-200 flex items-center justify-center ${isSelected ? 'bg-blue-50' : isDragOver ? 'bg-gray-100' : ''
+        }`}
       onDragOver={(e) => {
         onDragOver(e);
         setIsDragOver(true);

@@ -1,8 +1,13 @@
 'use client'
 import React, { useState } from 'react';
-import Head from 'next/head';
+import Image from 'next/image';
+import {
+  ShieldCheck, ShieldAlert, Terminal, Check, X,
+  Circle, Activity, ArrowRight
+} from 'lucide-react';
+import { motion } from 'framer-motion';
 
-// Quiz Data (Structured from your input)
+// --- DATA (Same as before) ---
 const quizData = {
   multipleChoice: [
     {
@@ -21,44 +26,44 @@ const quizData = {
       question: 'Which gate is responsible for putting a qubit into superposition?',
       options: [
         { id: 'A', text: 'X Gate' },
-        { id: 'B', text: 'Hadamard Gate' },
+        { id: 'B', text: 'Hadamard' },
         { id: 'C', text: 'Z Gate' },
-        { id: 'D', text: 'CNOT Gate' },
+        { id: 'D', text: 'CNOT' },
       ],
       correctAnswer: 'B',
     },
     {
-        id: 'mc3',
-        question: 'Which of the following states represent a qubit in superposition?',
-        options: [
-            { id: 'A', text: '|0⟩' },
-            { id: 'B', text: '|1⟩' },
-            { id: 'C', text: '0.6|0⟩ + 0.8|1⟩' },
-            { id: 'D', text: 'None of the above' },
-        ],
-        correctAnswer: 'C',
+      id: 'mc3',
+      question: 'Which state represents a qubit in superposition?',
+      options: [
+        { id: 'A', text: '|0⟩' },
+        { id: 'B', text: '|1⟩' },
+        { id: 'C', text: '0.6|0⟩ + 0.8|1⟩' },
+        { id: 'D', text: 'Null' },
+      ],
+      correctAnswer: 'C',
     },
     {
-        id: 'mc4',
-        question: 'Which gate flips the state of a qubit from |0⟩ to |1⟩ or vice versa?',
-        options: [
-            { id: 'A', text: 'H Gate' },
-            { id: 'B', text: 'Z Gate' },
-            { id: 'C', text: 'X Gate' },
-            { id: 'D', text: 'T Gate' },
-        ],
-        correctAnswer: 'C',
+      id: 'mc4',
+      question: 'Which gate flips the state from |0⟩ to |1⟩?',
+      options: [
+        { id: 'A', text: 'H Gate' },
+        { id: 'B', text: 'Z Gate' },
+        { id: 'C', text: 'X Gate' },
+        { id: 'D', text: 'T Gate' },
+      ],
+      correctAnswer: 'C',
     },
-     {
-        id: 'mc5',
-        question: 'What does measurement in quantum computing do?',
-        options: [
-            { id: 'A', text: 'Runs a program' },
-            { id: 'B', text: 'Creates entanglement' },
-            { id: 'C', text: 'Collapses a qubit to |0⟩ or |1⟩' },
-            { id: 'D', text: 'Encrypts the qubit' },
-        ],
-        correctAnswer: 'C',
+    {
+      id: 'mc5',
+      question: 'What does measurement in quantum computing do?',
+      options: [
+        { id: 'A', text: 'Execution' },
+        { id: 'B', text: 'Entanglement' },
+        { id: 'C', text: 'Collapse' },
+        { id: 'D', text: 'Encryption' },
+      ],
+      correctAnswer: 'C',
     },
   ],
   trueFalse: [
@@ -69,261 +74,250 @@ const quizData = {
     },
     {
       id: 'tf2',
-      question: 'Quantum gates are always irreversible.',
-      correctAnswer: false,
-    },
-    {
-      id: 'tf3',
-      question: 'Classical computers can simulate basic quantum systems with enough resources.',
+      question: 'Quantum gates are always reversible.',
       correctAnswer: true,
     },
     {
-      id: 'tf4',
-      question: 'Applying the Hadamard gate twice returns the qubit to its original state.',
-      correctAnswer: true, // H * H = I (Identity)
-    },
-     {
-      id: 'tf5',
+      id: 'tf3',
       question: 'Superposition violates the laws of classical physics.',
-      correctAnswer: true, // Classical physics doesn't allow an object to be in multiple states simultaneously in this way.
+      correctAnswer: true,
     },
   ],
 };
 
 export default function BeginnerQuizPage() {
-  // State to store user answers { questionId: answer }
   const [userAnswers, setUserAnswers] = useState<Record<string, string | boolean>>({});
-  // State to track if the quiz results should be shown
   const [showResults, setShowResults] = useState(false);
-  // State to store the calculated score
   const [score, setScore] = useState(0);
 
   const totalQuestions = quizData.multipleChoice.length + quizData.trueFalse.length;
 
-  // Handle changes in radio button selections
   const handleAnswerChange = (questionId: string, answer: string | boolean) => {
-    // Don't allow changes after submitting
     if (showResults) return;
-
-    setUserAnswers((prevAnswers) => ({
-      ...prevAnswers,
-      [questionId]: answer,
-    }));
+    setUserAnswers((prev) => ({ ...prev, [questionId]: answer }));
   };
 
-  // Calculate score and show results
   const handleSubmit = () => {
-    if (showResults) return; // Prevent re-submission
-
+    if (showResults) return;
     let calculatedScore = 0;
-    // Check Multiple Choice Answers
-    quizData.multipleChoice.forEach((q) => {
-      if (userAnswers[q.id] === q.correctAnswer) {
-        calculatedScore++;
-      }
-    });
-    // Check True/False Answers
-    // Note: Comparing boolean strings/values carefully
+    quizData.multipleChoice.forEach((q) => { if (userAnswers[q.id] === q.correctAnswer) calculatedScore++; });
     quizData.trueFalse.forEach((q) => {
-       const userAnswer = userAnswers[q.id];
-       // Convert string 'true'/'false' from radio value to boolean if necessary
-       const userAnswerBool = typeof userAnswer === 'string' ? userAnswer === 'true' : userAnswer;
-      if (userAnswerBool === q.correctAnswer) {
-        calculatedScore++;
-      }
+      const ans = userAnswers[q.id];
+      const boolAns = typeof ans === 'string' ? ans === 'true' : ans;
+      if (boolAns === q.correctAnswer) calculatedScore++;
     });
-
     setScore(calculatedScore);
-    setShowResults(true); // Show feedback and results
+    setShowResults(true);
   };
-
-   // Helper function to get feedback class for options
-  const getFeedbackClass = (question: { id: string; question?: string; options?: { id: string; text: string; }[]; correctAnswer: string | boolean; }, optionId: string | boolean) => {
-    if (!showResults) return ''; // No feedback before submission
-
-    const userAnswer = userAnswers[question.id];
-    const isCorrect = question.correctAnswer === optionId;
-    const isSelected = userAnswer === optionId;
-
-    if (isCorrect) {
-        return 'border-green-500 ring-2 ring-green-500'; // Highlight correct answer
-    }
-    if (isSelected && !isCorrect) {
-        return 'border-red-500 ring-2 ring-red-500'; // Highlight wrong selected answer
-    }
-    return 'border-gray-600'; // Default border for unselected/non-correct
-  };
-
-   // Helper function for True/False feedback
-   const getTFFeedbackClass = (question: { id: string; question?: string; correctAnswer: boolean; }, optionValue: boolean) => {
-       if (!showResults) return '';
-
-        const userAnswer = userAnswers[question.id];
-        const userAnswerBool = typeof userAnswer === 'string' ? userAnswer === 'true' : userAnswer;
-        const isCorrect = question.correctAnswer === optionValue;
-        const isSelected = userAnswerBool === optionValue;
-
-        if(isCorrect) {
-             return 'border-green-500 ring-2 ring-green-500';
-        }
-        if(isSelected && !isCorrect) {
-            return 'border-red-500 ring-2 ring-red-500';
-        }
-        return 'border-gray-600';
-   }
 
   return (
-    <div className="max-w-4xl mx-auto px-4 py-8 text-gray-300">
-      <Head>
-        <title>🟢 Beginner Quiz | Quantum Computing Courses</title>
-        <meta name="description" content="Test your knowledge of introductory quantum computing concepts, qubits, superposition, and basic quantum gates." />
-      </Head>
+    <main className="min-h-screen bg-black text-white selection:bg-zinc-800 overflow-x-hidden relative">
 
-      {/* Gradient Title */}
-      <h1 className="text-4xl font-bold mb-6 text-center bg-clip-text text-transparent bg-gradient-to-r from-green-400 to-blue-500">
-        🟢 Beginner Level Quiz
-      </h1>
-      <p className="text-center text-gray-400 mb-8">
-        Covers: Intro to Quantum Computing, Qubits & Superposition, Quantum Gates
-      </p>
+      {/* 1. ATMOSPHERIC BACKGROUND */}
+      <div className="fixed inset-0 z-0">
+        {/* <div className="absolute inset-0 grayscale opacity-10 mix-blend-overlay pointer-events-none bg-[url('/marble-bg.jpg')] bg-cover" /> */}
+        <div className="absolute inset-0 opacity-20 blend-screen mask-radial pointer-events-none">
+          <Image src="/bg_images/compass.jpg" alt="Grid" fill className="object-cover" />
+        </div>
+      </div>
+      <div className="fixed inset-0 z-[100] pointer-events-none grain-overlay" />
 
-      <div className="space-y-10">
-        {/* Multiple Choice Section */}
-        <section>
-          <h2 className="text-2xl font-semibold mb-4 text-white border-b border-gray-700 pb-2">
-            📘 Multiple Choice Questions
-          </h2>
-          <div className="space-y-6">
-            {quizData.multipleChoice.map((q, index) => (
-              <div key={q.id} className="bg-gray-800 p-5 rounded-lg shadow-md">
-                <p className="text-lg font-medium mb-3 text-gray-100">
-                  {index + 1}. {q.question}
-                </p>
-                <div className="space-y-2">
-                  {q.options.map((opt) => (
-                    <label
-                      key={opt.id}
-                      className={`block p-3 rounded border transition-all cursor-pointer ${
-                        showResults
-                        ? getFeedbackClass(q, opt.id)
-                        : 'border-gray-600 hover:bg-gray-700'
-                       } ${userAnswers[q.id] === opt.id ? 'bg-gray-700' : ''}`}
-                    >
-                      <input
-                        type="radio"
-                        name={q.id}
-                        value={opt.id}
-                        checked={userAnswers[q.id] === opt.id}
-                        onChange={() => handleAnswerChange(q.id, opt.id)}
-                        className="mr-3 accent-cyan-500"
-                        disabled={showResults} // Disable after submit
-                      />
-                      <span className="font-mono mr-2 text-cyan-400">{opt.id})</span>
-                      {opt.text}
-                      {showResults && q.correctAnswer === opt.id && <span className="ml-2 text-green-400 font-bold">(Correct)</span>}
-                       {showResults && userAnswers[q.id] === opt.id && q.correctAnswer !== opt.id && <span className="ml-2 text-red-400 font-bold">(Your Answer - Incorrect)</span>}
-                    </label>
-                  ))}
+      {/* 2. HEADER */}
+      <header className="relative z-10 pt-32 pb-20 px-12 max-w-5xl mx-auto border-b border-white/10">
+        <div className="flex flex-col md:flex-row md:items-end justify-between gap-8">
+          <div className="space-y-4">
+            <div className="flex items-center gap-3 font-mono text-[10px] uppercase tracking-[0.6em] text-zinc-500">
+              <Terminal size={12} />
+              <span>Examination_Protocol</span>
+            </div>
+            <h1 className="text-6xl font-didone uppercase tracking-tighter text-quantum text-glow">
+              Proficiency <br /> <span className="italic font-serif-italic text-zinc-500">Check_01</span>
+            </h1>
+          </div>
+          <div className="text-right font-mono text-[10px] uppercase tracking-widest text-zinc-600">
+            <p>Status: {showResults ? "COMPLETED" : "IN_PROGRESS"}</p>
+            <p>Questions: {totalQuestions}</p>
+          </div>
+        </div>
+      </header>
+
+      <div className="relative z-20 max-w-5xl mx-auto px-12 py-24 pb-60 space-y-32">
+
+        {/* SECTION A: MULTIPLE CHOICE */}
+        <section className="space-y-0">
+          {quizData.multipleChoice.map((q, index) => {
+            const isSelected = (optId: string) => userAnswers[q.id] === optId;
+            const isCorrect = (optId: string) => q.correctAnswer === optId;
+            const statusColor = showResults
+              ? (isCorrect(userAnswers[q.id] as string) ? 'text-emerald-500' : 'text-red-500')
+              : 'text-zinc-500';
+
+            return (
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: index * 0.1 }}
+                key={q.id}
+                className="group relative border-b border-white/5 py-16 grid md:grid-cols-12 gap-12"
+              >
+                {/* Left: Index & Status */}
+                <div className="md:col-span-4 flex flex-col justify-between">
+                  <span className="font-didone text-5xl opacity-20 group-hover:opacity-60 transition-opacity">0{index + 1}</span>
+                  <div className="font-mono text-[9px] uppercase tracking-[0.3em] flex items-center gap-2">
+                    <Activity size={10} className={statusColor} />
+                    <span className={statusColor}>
+                      {showResults
+                        ? (isCorrect(userAnswers[q.id] as string) ? "CORRECT_RESPONSE" : "ERROR_DETECTED")
+                        : "AWAITING_INPUT"}
+                    </span>
+                  </div>
                 </div>
-                 {/* Optional: Show correct answer text if user was wrong */}
-                 {showResults && userAnswers[q.id] !== q.correctAnswer && (
-                    <p className="mt-2 text-sm text-green-400">
-                      Correct Answer: {q.correctAnswer}) {q.options.find(o => o.id === q.correctAnswer)?.text}
-                    </p>
-                 )}
-              </div>
-            ))}
+
+                {/* Right: Question & Options */}
+                <div className="md:col-span-8 space-y-10">
+                  <h3 className="font-serif-italic text-2xl text-zinc-200 leading-relaxed">
+                    {q.question}
+                  </h3>
+
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                    {q.options.map((opt) => {
+                      const selected = isSelected(opt.id);
+
+                      // GLASS EFFECT LOGIC:
+                      // 1. Default: bg-white/[0.02] (2% white) + subtle border -> "Frosted Glass"
+                      // 2. Hover: bg-white/[0.05] (5% white) + bright border -> "Active Glass"
+                      // 3. Selected: bg-white (Solid) -> "Collapsed State"
+
+                      let btnStyle = "bg-white/[0.02] border-white/10 text-zinc-500 hover:bg-white/[0.05] hover:border-white/40 hover:text-white backdrop-blur-xl transition-all duration-500";
+
+                      if (showResults) {
+                        if (isCorrect(opt.id)) btnStyle = "bg-white text-black border-white shadow-[0_0_20px_rgba(255,255,255,0.3)]";
+                        else if (selected) btnStyle = "border-red-500 text-red-500 bg-red-500/10";
+                        else btnStyle = "border-white/5 text-zinc-700 opacity-30 bg-transparent";
+                      } else if (selected) {
+                        btnStyle = "bg-white text-black border-white shadow-[0_0_20px_rgba(255,255,255,0.1)]";
+                      }
+
+                      return (
+                        <label key={opt.id} className={`
+                                            cursor-pointer p-6 border transition-all duration-300 relative group/opt
+                                            ${btnStyle}
+                                        `}>
+                          <input
+                            type="radio" name={q.id} value={opt.id}
+                            checked={selected}
+                            onChange={() => handleAnswerChange(q.id, opt.id)}
+                            className="hidden" disabled={showResults}
+                          />
+                          <div className="flex justify-between items-center">
+                            <span className="font-mono text-[10px] uppercase tracking-widest">{opt.text}</span>
+                            <span className="font-mono text-[9px] opacity-50 group-hover/opt:opacity-100">[{opt.id}]</span>
+                          </div>
+                        </label>
+                      )
+                    })}
+                  </div>
+                </div>
+              </motion.div>
+            )
+          })}
+        </section>
+
+        {/* SECTION B: LOGIC VALIDATION (True/False) */}
+        <section className="border-t border-white/20 pt-24 space-y-16">
+          <div className="flex items-center gap-4 opacity-40 font-mono text-[10px] uppercase tracking-widest">
+            <ShieldCheck size={14} />
+            <span>Section_B // Logic_Validation</span>
+          </div>
+
+          <div className="space-y-1">
+            {quizData.trueFalse.map((q, i) => {
+              const idx = quizData.multipleChoice.length + i + 1;
+              const ans = userAnswers[q.id];
+              const userVal = typeof ans === 'string' ? (ans === 'true') : ans;
+
+              return (
+                <motion.div
+                  initial={{ opacity: 0 }}
+                  whileInView={{ opacity: 1 }}
+                  viewport={{ once: true }}
+                  key={q.id}
+                  className="group flex flex-col md:flex-row md:items-center justify-between gap-8 p-10 border-b border-white/5 hover:bg-white/[0.02] transition-colors"
+                >
+                  <div className="flex items-baseline gap-6 md:w-2/3">
+                    <span className="font-mono text-zinc-600">0{idx}</span>
+                    <p className="font-serif-italic text-xl text-zinc-300 group-hover:text-white transition-colors">{q.question}</p>
+                  </div>
+
+                  <div className="flex gap-4 font-mono text-[10px] uppercase tracking-widest">
+                    {[true, false].map((val) => {
+                      const isSel = userVal === val;
+                      const isCorr = q.correctAnswer === val;
+
+                      // Same Glass Logic applied to T/F
+                      let style = "bg-white/[0.02] border-white/10 text-zinc-600 hover:text-white hover:border-white/40 hover:bg-white/[0.05] backdrop-blur-xl transition-all duration-500";
+
+                      if (showResults) {
+                        if (isCorr) style = "bg-white text-black border-white shadow-[0_0_20px_rgba(255,255,255,0.3)]";
+                        else if (isSel) style = "bg-red-500/10 text-red-500 border-red-500";
+                      } else if (isSel) {
+                        style = "bg-white text-black border-white shadow-[0_0_20px_rgba(255,255,255,0.1)]";
+                      }
+
+                      return (
+                        <label key={String(val)} className={`
+                                            cursor-pointer px-8 py-4 border transition-all duration-300 ${style}
+                                        `}>
+                          <input
+                            type="radio" name={q.id} value={String(val)}
+                            checked={isSel}
+                            onChange={() => handleAnswerChange(q.id, val)}
+                            className="hidden" disabled={showResults}
+                          />
+                          {val ? "TRUE" : "FALSE"}
+                        </label>
+                      )
+                    })}
+                  </div>
+                </motion.div>
+              )
+            })}
           </div>
         </section>
 
-        {/* True/False Section */}
-        <section>
-          <h2 className="text-2xl font-semibold mb-4 text-white border-b border-gray-700 pb-2">
-            ✅ True/False Questions
-          </h2>
-          <div className="space-y-6">
-            {quizData.trueFalse.map((q, index) => (
-              <div key={q.id} className="bg-gray-800 p-5 rounded-lg shadow-md">
-                <p className="text-lg font-medium mb-3 text-gray-100">
-                  {index + 1}. {q.question}
-                </p>
-                <div className="flex space-x-4">
-                    {/* True Option */}
-                     <label
-                      className={`flex-1 p-3 rounded border text-center transition-all cursor-pointer ${
-                        showResults ? getTFFeedbackClass(q, true) : 'border-gray-600 hover:bg-gray-700'
-                      } ${userAnswers[q.id] === true || userAnswers[q.id] === 'true' ? 'bg-gray-700' : ''}`}
-                     >
-                        <input
-                            type="radio"
-                            name={q.id}
-                            value="true" // Value is string 'true'
-                            checked={userAnswers[q.id] === true || userAnswers[q.id] === 'true'}
-                            onChange={() => handleAnswerChange(q.id, true)} // Store boolean true
-                            className="mr-2 accent-green-500"
-                            disabled={showResults}
-                        />
-                        True
-                         {showResults && q.correctAnswer === true && <span className="ml-2 text-green-400 font-bold">(Correct)</span>}
-                         {showResults && (userAnswers[q.id] === true || userAnswers[q.id] === 'true') && q.correctAnswer === false && <span className="ml-2 text-red-400 font-bold">(Your Answer - Incorrect)</span>}
-                    </label>
+      </div>
 
-                     {/* False Option */}
-                    <label
-                      className={`flex-1 p-3 rounded border text-center transition-all cursor-pointer ${
-                        showResults ? getTFFeedbackClass(q, false) : 'border-gray-600 hover:bg-gray-700'
-                      } ${userAnswers[q.id] === false || userAnswers[q.id] === 'false' ? 'bg-gray-700' : ''}`}
-                     >
-                        <input
-                            type="radio"
-                            name={q.id}
-                            value="false" // Value is string 'false'
-                            checked={userAnswers[q.id] === false || userAnswers[q.id] === 'false'}
-                            onChange={() => handleAnswerChange(q.id, false)} // Store boolean false
-                            className="mr-2 accent-red-500"
-                            disabled={showResults}
-                        />
-                        False
-                         {showResults && q.correctAnswer === false && <span className="ml-2 text-green-400 font-bold">(Correct)</span>}
-                         {showResults && (userAnswers[q.id] === false || userAnswers[q.id] === 'false') && q.correctAnswer === true && <span className="ml-2 text-red-400 font-bold">(Your Answer - Incorrect)</span>}
-                    </label>
-                </div>
-                 {/* Optional: Show correct answer text if user was wrong */}
-                 {showResults && (userAnswers[q.id] === true || userAnswers[q.id] === 'true' ? true : userAnswers[q.id] === false || userAnswers[q.id] === 'false' ? false : undefined) !== q.correctAnswer && (
-                     <p className="mt-2 text-sm text-green-400">
-                        Correct Answer: {q.correctAnswer ? 'True' : 'False'}
-                    </p>
-                 )}
-              </div>
-            ))}
-          </div>
-        </section>
-
-        {/* Submit Button and Results */}
-        <section className="text-center mt-10">
-          {!showResults && (
-             <button
-               onClick={handleSubmit}
-               className="bg-gradient-to-r from-green-500 to-blue-600 hover:from-green-600 hover:to-blue-700 text-white font-bold py-3 px-8 rounded-lg text-lg transition duration-300 shadow-md"
+      {/* STICKY FOOTER / RESULTS (Same as before) */}
+      <div className="fixed bottom-0 left-0 right-0 z-50 p-6 md:p-12 pointer-events-none">
+        <div className="max-w-5xl mx-auto flex justify-end pointer-events-auto">
+          {!showResults ? (
+            <button
+              onClick={handleSubmit}
+              className="group bg-white/[0.03] backdrop-blur-2xl text-white px-12 py-6 rounded-none border border-white/10 hover:border-white hover:bg-white hover:text-black transition-all duration-700 flex items-center gap-4 shadow-[0_0_50px_rgba(255,255,255,0.1)] hover:shadow-[0_0_50px_rgba(255,255,255,0.3)]"
             >
-              Check Answers
-             </button>
-          )}
-
-          {showResults && (
-            <div className="mt-6 bg-gray-900 p-6 rounded-lg shadow-xl border border-cyan-500">
-              <h3 className="text-2xl font-bold text-cyan-400 mb-3">Quiz Results</h3>
-              <p className="text-xl text-white">
-                You scored <span className="text-yellow-400 font-bold">{score}</span> out of <span className="text-yellow-400 font-bold">{totalQuestions}</span> correct.
-              </p>
-              {/* Optional: Add more feedback based on score */}
-              {score === totalQuestions && <p className="mt-3 text-green-400">Excellent work! You&apos;ve mastered the basics.</p>}
-              {score >= totalQuestions * 0.7 && score < totalQuestions && <p className="mt-3 text-yellow-400">Good job! Solid understanding.</p>}
-               {score < totalQuestions * 0.7 && <p className="mt-3 text-red-400">Keep reviewing the beginner material to strengthen your foundation!</p>}
+              <span className="font-mono text-[10px] uppercase tracking-[0.4em]">Finalize_Protocol</span>
+              <ArrowRight size={14} className="group-hover:translate-x-2 transition-transform" />
+            </button>
+          ) : (
+            <div className="bg-white/[0.02] backdrop-blur-3xl border border-white/10 p-8 min-w-[300px] flex items-center justify-between gap-12 shadow-2xl animate-in slide-in-from-bottom-10 fade-in duration-1000">
+              <div>
+                <span className="block font-mono text-[8px] uppercase tracking-[0.4em] text-zinc-500 mb-1">Efficiency</span>
+                <div className="text-4xl font-didone text-white">
+                  {Math.round((score / totalQuestions) * 100)}<span className="text-sm align-top opacity-50">%</span>
+                </div>
+              </div>
+              <div className="text-right">
+                <span className="block font-mono text-[8px] uppercase tracking-[0.4em] text-zinc-500 mb-1">Status</span>
+                <span className={`text-lg font-serif-italic ${score === totalQuestions ? 'text-emerald-400' : 'text-white'}`}>
+                  {score === totalQuestions ? "Optimal" : "Suboptimal"}
+                </span>
+              </div>
             </div>
           )}
-        </section>
+        </div>
       </div>
-    </div>
+
+    </main>
   );
 }

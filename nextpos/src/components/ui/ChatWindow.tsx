@@ -1,10 +1,7 @@
 'use client'
 
 import { useState, FormEvent, useEffect, useRef } from 'react'
-import { Button } from "@/components/ui/button"
-import { Card, CardContent, CardFooter, CardHeader } from "@/components/ui/card"
-import { Input } from "@/components/ui/input"
-import { MessageCircle, X } from 'lucide-react'
+import { MessageCircle, X, Send, Terminal, Cpu, Zap } from 'lucide-react'
 
 interface Message {
   content: string
@@ -13,7 +10,9 @@ interface Message {
 
 export function ChatWindow() {
   const [isOpen, setIsOpen] = useState(false)
-  const [messages, setMessages] = useState<Message[]>([])
+  const [messages, setMessages] = useState<Message[]>([
+    { content: "SYSTEM_INITIALIZED: Awaiting quantum inquiry.", isUser: false }
+  ])
   const [input, setInput] = useState('')
   const messagesEndRef = useRef<HTMLDivElement>(null)
 
@@ -28,94 +27,100 @@ export function ChatWindow() {
     setInput('')
 
     try {
-      // Replace this URL with your actual Python backend URL
-      const response = await fetch('http://localhost:8000/superpos/chat', {
+      const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/superpos/chat`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ message: input }),
       })
 
       if (!response.ok) throw new Error('Failed to get response')
-
       const data = await response.json()
 
-      // Handle potential issues with data format
       if (data?.response) {
-        const botMessage: Message = { content: data.response, isUser: false }
-        setMessages(prev => [...prev, botMessage])
-      } else {
-        throw new Error('Invalid response data')
+        setMessages(prev => [...prev, { content: data.response, isUser: false }])
       }
     } catch (error) {
-      console.error('Error:', error)
-      const errorMessage: Message = { content: 'Sorry, I encountered an error. Please try again.', isUser: false }
-      setMessages(prev => [...prev, errorMessage])
+      setMessages(prev => [...prev, { content: "SIGNAL_ERROR: Connection to Lab_Kernel lost.", isUser: false }])
     }
   }
 
-  // Scroll to the bottom when a new message is added
   useEffect(() => {
-    if (messagesEndRef.current) {
-      messagesEndRef.current.scrollIntoView({ behavior: 'smooth' })
-    }
+    messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' })
   }, [messages])
 
   if (!isOpen) {
     return (
-      <Button 
-        onClick={toggleChat} 
-        className="fixed bottom-4 right-4 rounded-full p-3 bg-gradient-to-r from-cyan-400 to-purple-600 hover:from-cyan-500 hover:to-purple-700 shadow-lg hover:shadow-cyan-500/20"
+      <button
+        onClick={toggleChat}
+        className="fixed bottom-8 right-8 w-16 h-16 rounded-full flex items-center justify-center bg-white/[0.08] border border-white/20 backdrop-blur-2xl text-white hover:bg-white hover:text-black transition-all duration-700 shadow-[0_0_30px_rgba(0,0,0,0.5)] group"
       >
-        <MessageCircle className="h-6 w-6" />
-      </Button>
+        <MessageCircle className="h-6 w-6 opacity-40 group-hover:opacity-100" />
+      </button>
     )
   }
 
   return (
-    <Card className="fixed bottom-4 right-4 w-80 shadow-lg border-0 bg-[#001a2c]/80 backdrop-blur-md text-white">
-      <CardHeader className="flex flex-row items-center justify-between border-b border-white/10">
-        <h2 className="text-lg font-semibold bg-gradient-to-r from-cyan-400 to-purple-600 bg-clip-text text-transparent">
-          SuperposAI
-        </h2>
-        <Button 
-          variant="ghost" 
-          size="icon" 
-          onClick={toggleChat}
-          className="text-white hover:bg-white/10"
-        >
+    <div className="fixed bottom-8 right-8 w-[400px] rounded-[40px] border border-white/20 bg-zinc-950/90 backdrop-blur-3xl text-white overflow-hidden shadow-2xl flex flex-col z-[200] dusty-visual animate-in fade-in zoom-in-95 duration-500">
+
+      {/* HEADER: Technical HUD Style */}
+      <div className="flex items-center justify-between px-8 py-6 border-b border-white/10 bg-white/[0.03]">
+        <div className="flex items-center gap-4">
+          <Cpu size={16} className="text-zinc-500 animate-pulse" />
+          <div className="flex flex-col">
+            <h2 className="text-xs font-didone tracking-[0.3em] uppercase text-quantum">
+              Superpos <span className="italic font-serif-italic capitalize tracking-normal text-zinc-500">Assistant</span>
+            </h2>
+            <span className="text-[8px] font-mono text-zinc-600 uppercase tracking-widest mt-0.5">0x992_VIRTUAL_AID</span>
+          </div>
+        </div>
+        <button onClick={toggleChat} className="opacity-30 hover:opacity-100 transition-opacity p-2">
           <X className="h-4 w-4" />
-        </Button>
-      </CardHeader>
-      <CardContent className="h-64 overflow-y-auto p-4 space-y-4">
+        </button>
+      </div>
+
+      {/* MESSAGE FEED */}
+      <div className="h-[450px] overflow-y-auto p-8 space-y-8 scrollbar-hide">
         {messages.map((message, index) => (
           <div
             key={index}
-            className={`rounded-lg p-3 max-w-[80%] ${
-              message.isUser
-                ? 'ml-auto bg-gradient-to-r from-cyan-400 to-purple-600'
-                : 'bg-white/10 backdrop-blur-sm'
-            }`}
+            className={`flex flex-col ${message.isUser ? 'items-end' : 'items-start'}`}
           >
-            <p className="text-sm">{message.content}</p>
+            <div
+              className={`px-5 py-4 rounded-3xl text-[11px] font-mono leading-relaxed tracking-tight max-w-[90%] shadow-lg ${message.isUser
+                ? 'bg-white text-black font-bold'
+                : 'bg-white/[0.05] border border-white/10 text-zinc-300'
+                }`}
+            >
+              <p>{message.content}</p>
+            </div>
+            <span className="text-[7px] font-mono opacity-20 mt-2 tracking-[0.4em] uppercase">
+              {message.isUser ? 'LOCAL_INPUT' : 'SYSTEM_LOG'}
+            </span>
           </div>
         ))}
-      </CardContent>
-      <CardFooter className="border-t border-white/10 p-4">
-        <form onSubmit={handleSubmit} className="flex w-full space-x-2">
-          <Input
+        <div ref={messagesEndRef} />
+      </div>
+
+      {/* INPUT AREA: Minimalist Lab Control */}
+      <div className="p-6 border-t border-white/5 bg-black/40">
+        <form onSubmit={handleSubmit} className="relative flex items-center">
+          <input
             value={input}
             onChange={(e) => setInput(e.target.value)}
-            placeholder="Type your message..."
-            className="bg-white/10 border-white/20 text-white placeholder:text-white/50 focus:border-cyan-400"
+            placeholder="INQUIRE_SYSTEM..."
+            className="w-full bg-white/[0.03] border border-white/10 rounded-full py-4 pl-6 pr-14 text-[10px] font-mono text-white placeholder:text-zinc-700 focus:border-white/40 focus:bg-white/[0.05] outline-none transition-all uppercase tracking-widest"
           />
-          <Button 
+          <button
             type="submit"
-            className="bg-gradient-to-r from-cyan-400 to-purple-600 hover:from-cyan-500 hover:to-purple-700 text-white"
+            className="absolute right-2 p-3 text-zinc-500 hover:text-white transition-all hover:scale-110"
           >
-            Send
-          </Button>
+            <Zap size={14} />
+          </button>
         </form>
-      </CardFooter>
-    </Card>
+        <div className="mt-4 flex justify-center opacity-10">
+          <Terminal size={10} />
+        </div>
+      </div>
+    </div>
   );
 }

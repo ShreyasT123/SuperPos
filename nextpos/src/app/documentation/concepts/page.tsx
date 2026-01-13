@@ -1,85 +1,106 @@
-import Head from 'next/head';
-import { Book, Atom, Link2, Binary, Waves, HelpCircle, CircuitBoard, ShieldCheck, Cpu } from 'lucide-react'; // Example icons
-import Link from 'next/link';
+"use client";
+
+import React from "react";
+import Image from "next/image";
+import { Atom, Waves, Link2, CircuitBoard, Binary, ShieldCheck, Cpu, Terminal, Plus, ArrowRight } from "lucide-react";
 
 export default function ConceptsPage() {
   return (
-    <div className="max-w-3xl mx-auto px-4 py-8 text-gray-300">
-      <Head>
-        <title>Quantum Concepts | Superpos Docs</title>
-      </Head>
+    <main className="min-h-screen bg-black text-white selection:bg-zinc-800 overflow-x-hidden relative">
 
-      <div className="flex items-center mb-6">
-        <Book className="h-8 w-8 mr-3 text-purple-400" />
-        <h1 className="text-3xl font-bold text-gray-100">Core Quantum Computing Concepts</h1>
+      {/* 1. ATMOSPHERIC SCHEMATICS */}
+      <div className="fixed inset-0 z-0">
+        <div className="absolute inset-0 grayscale mix-blend-overlay opacity-10 pointer-events-none bg-[url('/marble-bg.png')] bg-cover" />
+        {/* Atom Blueprint: Image 2 */}
+        <div className="absolute inset-0 opacity-20 blend-screen mask-radial pointer-events-none grayscale translate-y-40">
+          <Image src="/bg_images/atoms.jpg" alt="Atomic Schematic" fill className="object-cover" />
+        </div>
       </div>
+      <div className="fixed inset-0 z-[100] pointer-events-none grain-overlay" />
 
-      <p className="text-lg text-gray-400 mb-8">
-        Understanding the fundamental principles of quantum mechanics is crucial for effectively using the Superpos platform and comprehending quantum computation. This section provides explanations of key concepts.
-      </p>
+      {/* 2. HEADER */}
+      <header className="relative z-10 pt-40 pb-20 px-12 max-w-6xl mx-auto">
+        <div className="space-y-6">
+          <div className="flex items-center gap-4 font-mono text-[10px] uppercase tracking-[0.6em] text-zinc-500">
+            <Terminal size={14} />
+            <span>Reference_Doc // THEORY_MNF_02</span>
+          </div>
+          <h1 className="text-7xl md:text-9xl font-didone uppercase tracking-tighter text-quantum text-glow">
+            Theoretical <br /> <span className="italic font-serif-italic capitalize tracking-normal text-zinc-500">Manifest</span>
+          </h1>
+          <p className="text-xl font-mono uppercase tracking-widest text-zinc-400 max-w-2xl leading-relaxed">
+            A taxonomy of quantum mechanics and computational foundations.
+          </p>
+        </div>
+      </header>
 
-      <div className="space-y-6">
-         <ConceptCard
-            icon={<Atom size={20} />}
-            title="Qubits: The Quantum Bit"
-            description="Unlike classical bits (0 or 1), qubits can exist in a state of 0, 1, or a superposition of both simultaneously. Learn about their mathematical representation (|ψ⟩ = α|0⟩ + β|1⟩) and the Bloch sphere visualization."
-            link="/docs/concepts/qubits" // Link to a dedicated page if needed
+      {/* 3. CONCEPTS LIST: Styled as Specimen entries */}
+      <div className="relative z-20 max-w-6xl mx-auto px-12 py-32 space-y-1 pb-60">
+        <ConceptSpecimen
+          id="01"
+          title="Qubits"
+          tag="State_Basis"
+          desc="Unlike classical bits, qubits exist in Hilbert space. Mathematical representation: |ψ⟩ = α|0⟩ + β|1⟩."
+          icon={<Atom size={24} />}
         />
-         <ConceptCard
-            icon={<Waves size={20} />}
-            title="Superposition"
-            description="The counter-intuitive ability of a quantum system (like a qubit) to be in multiple states at the same time until measured. Explore analogies and its role in quantum parallelism."
-            link="/docs/concepts/superposition"
+        <ConceptSpecimen
+          id="02"
+          title="Superposition"
+          tag="Linear_Coherence"
+          desc="The ability of a system to exist in multiple configurations simultaneously until a measurement collapse occurs."
+          icon={<Waves size={24} />}
         />
-        <ConceptCard
-            icon={<Link2 size={20} />}
-            title="Entanglement"
-            description="The 'spooky action at a distance' where multiple qubits become linked, sharing the same fate regardless of the distance separating them. Understand Bell states and its importance for algorithms and communication."
-             link="/docs/concepts/entanglement"
+        <ConceptSpecimen
+          id="03"
+          title="Entanglement"
+          tag="Non_Locality"
+          desc="Spooky action at a distance. Non-separable states where measurement of one instantly informs the other."
+          icon={<Link2 size={24} />}
         />
-         <ConceptCard
-            icon={<CircuitBoard size={20} />}
-            title="Quantum Gates"
-            description="The building blocks of quantum circuits. Learn about common single-qubit gates (Hadamard, Pauli X/Y/Z, Phase gates) and multi-qubit gates (CNOT, SWAP, Toffoli) and their effects on qubits."
-            link="/docs/concepts/gates"
+        <ConceptSpecimen
+          id="04"
+          title="Gate_Logic"
+          tag="Unitary_Operators"
+          desc="Unitary transformations (H, X, CNOT) that rotate the statevector across the Bloch Sphere surface."
+          icon={<CircuitBoard size={24} />}
         />
-         <ConceptCard
-            icon={<Binary size={20} />}
-            title="Measurement"
-            description="The process of extracting classical information from a quantum state. Understand how measurement collapses superposition and the probabilistic nature of quantum outcomes."
-            link="/docs/concepts/measurement"
-        />
-         <ConceptCard
-            icon={<ShieldCheck size={20} />}
-            title="Decoherence & Quantum Errors"
-            description="Why quantum states are fragile. Learn about noise sources and how errors (bit flips, phase flips) differ from classical errors, motivating the need for Quantum Error Correction."
-            link="/docs/concepts/errors-decoherence"
-        />
-         <ConceptCard
-            icon={<Cpu size={20} />}
-            title="Introduction to Quantum Algorithms"
-            description="Brief overview of how algorithms like Grover's (search) and Shor's (factoring) leverage quantum phenomena to potentially outperform classical algorithms."
-            link="/docs/concepts/algorithms-intro"
+        <ConceptSpecimen
+          id="05"
+          title="Decoherence"
+          tag="System_Noise"
+          desc="The degradation of quantum information through environmental interaction. The primary obstacle to fault-tolerance."
+          icon={<ShieldCheck size={24} />}
         />
       </div>
-
-       <p className="mt-8 border-t border-gray-700 pt-4 text-gray-400 text-sm">
-            These concepts are explored in more detail within the <Link href="/courses" className="text-cyan-400 hover:underline">Courses</Link> section. For definitions, see the <Link href="/docs/faq-glossary" className="text-cyan-400 hover:underline">Glossary</Link>.
-       </p>
-
-    </div>
+    </main>
   );
 }
 
-// Helper for Concept Cards
-const ConceptCard = ({icon, title, description}: {icon: React.ReactNode, title: string, description: string, link?: string}) => (
-    <div className="p-4 bg-gray-800/50 rounded border border-gray-700 hover:border-purple-500/50 transition-colors duration-300">
-        <div className="flex items-center mb-2">
-            <span className="mr-3 text-purple-400">{icon}</span>
-            <h3 className="text-xl font-semibold text-gray-100">{title}</h3>
+function ConceptSpecimen({ id, title, tag, desc, icon }: any) {
+  return (
+    <div className="group relative border-b border-white/5 py-16 px-12 transition-all duration-700 hover:bg-white hover:text-black overflow-hidden cursor-default">
+      <div className="relative z-10 flex flex-col md:flex-row gap-12 md:items-center">
+
+        <div className="flex md:flex-col justify-between md:justify-start gap-4 min-w-[120px]">
+          <span className="font-mono text-[11px] opacity-20 group-hover:text-black">SPEC_{id}</span>
+          <div className="font-mono text-[9px] uppercase tracking-widest text-zinc-500 group-hover:text-zinc-600">
+            {tag}
+          </div>
         </div>
-        <p className="text-gray-400 text-sm ml-8">{description}</p>
-         {/* Optional link can be added here if needed */}
-         {/* {link && <Link href={link} className="...">Learn More</Link>} */}
+
+        <div className="flex-1 space-y-6">
+          <h2 className="text-5xl font-serif-italic tracking-tighter uppercase group-hover:text-glow-quantum">
+            {title}
+          </h2>
+          <p className="text-[11px] font-mono text-zinc-500 uppercase leading-[2] tracking-tight max-w-2xl group-hover:text-black transition-colors">
+            {desc}
+          </p>
+        </div>
+
+        <div className="w-16 h-16 rounded-full border border-white/5 flex items-center justify-center bg-white/[0.02] group-hover:border-black/20 group-hover:bg-black/5 transition-all duration-500">
+          {icon}
+        </div>
+      </div>
     </div>
-);
+  )
+}

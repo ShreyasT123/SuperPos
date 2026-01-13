@@ -2,87 +2,141 @@
 @tailwind components;
 @tailwind utilities;
 
-body {
-  font-family: Arial, Helvetica, sans-serif;
-}
+@import url('https://fonts.googleapis.com/css2?family=Libre+Bodoni:ital,wght@0,400;1,400&family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400&family=JetBrains+Mono:wght@200;400&display=swap');
 
 @layer base {
-  :root {
-    --background: 0 0% 100%;
-    --foreground: 224 71.4% 4.1%;
-    --card: 0 0% 100%;
-    --card-foreground: 224 71.4% 4.1%;
-    --popover: 0 0% 100%;
-    --popover-foreground: 224 71.4% 4.1%;
-    --primary: 220.9 39.3% 11%;
-    --primary-foreground: 210 20% 98%;
-    --secondary: 220 14.3% 95.9%;
-    --secondary-foreground: 220.9 39.3% 11%;
-    --muted: 220 14.3% 95.9%;
-    --muted-foreground: 220 8.9% 46.1%;
-    --accent: 220 14.3% 95.9%;
-    --accent-foreground: 220.9 39.3% 11%;
-    --destructive: 0 84.2% 60.2%;
-    --destructive-foreground: 210 20% 98%;
-    --border: 220 13% 91%;
-    --input: 220 13% 91%;
-    --ring: 224 71.4% 4.1%;
-    --chart-1: 12 76% 61%;
-    --chart-2: 173 58% 39%;
-    --chart-3: 197 37% 24%;
-    --chart-4: 43 74% 66%;
-    --chart-5: 27 87% 67%;
-    --radius: 0.5rem;
-    --sidebar-background: 0 0% 98%;
-    --sidebar-foreground: 240 5.3% 26.1%;
-    --sidebar-primary: 240 5.9% 10%;
-    --sidebar-primary-foreground: 0 0% 98%;
-    --sidebar-accent: 240 4.8% 95.9%;
-    --sidebar-accent-foreground: 240 5.9% 10%;
-    --sidebar-border: 220 13% 91%;
-    --sidebar-ring: 217.2 91.2% 59.8%;
-  }
-  .dark {
-    --background: 224 71.4% 4.1%;
-    --foreground: 210 20% 98%;
-    --card: 224 71.4% 4.1%;
-    --card-foreground: 210 20% 98%;
-    --popover: 224 71.4% 4.1%;
-    --popover-foreground: 210 20% 98%;
-    --primary: 210 20% 98%;
-    --primary-foreground: 220.9 39.3% 11%;
-    --secondary: 215 27.9% 16.9%;
-    --secondary-foreground: 210 20% 98%;
-    --muted: 215 27.9% 16.9%;
-    --muted-foreground: 217.9 10.6% 64.9%;
-    --accent: 215 27.9% 16.9%;
-    --accent-foreground: 210 20% 98%;
-    --destructive: 0 62.8% 30.6%;
-    --destructive-foreground: 210 20% 98%;
-    --border: 215 27.9% 16.9%;
-    --input: 215 27.9% 16.9%;
-    --ring: 216 12.2% 83.9%;
-    --chart-1: 220 70% 50%;
-    --chart-2: 160 60% 45%;
-    --chart-3: 30 80% 55%;
-    --chart-4: 280 65% 60%;
-    --chart-5: 340 75% 55%;
-    --sidebar-background: 240 5.9% 10%;
-    --sidebar-foreground: 240 4.8% 95.9%;
-    --sidebar-primary: 224.3 76.3% 48%;
-    --sidebar-primary-foreground: 0 0% 100%;
-    --sidebar-accent: 240 3.7% 15.9%;
-    --sidebar-accent-foreground: 240 4.8% 95.9%;
-    --sidebar-border: 240 3.7% 15.9%;
-    --sidebar-ring: 217.2 91.2% 59.8%;
-  }
-}
-
-@layer base {
-  * {
-    @apply border-border;
-  }
   body {
-    @apply bg-background text-foreground;
+    @apply bg-black text-white antialiased;
   }
+}
+
+:root {
+  /* --- DARK & CRISP TUNING --- */
+  --dust-intensity: 0.015;
+  --dust-size: 250px;
+
+  --bg-marble-opacity: 0.08;
+  --bg-stars-opacity: 0.40;
+  /* Slightly brighter stars for contrast */
+
+  --glass-opacity: 0.6;
+  /* Increased for deeper black look */
+  --glass-border: 0.1;
+  --text-glow-opacity: 0.4;
+  --mask-erosion: 30%;
+}
+
+@layer utilities {
+  .blend-screen {
+    mix-blend-mode: screen;
+  }
+
+  .blend-overlay {
+    mix-blend-mode: overlay;
+  }
+
+  .blend-soft {
+    mix-blend-mode: soft-light;
+  }
+
+  /* Masking edges so the diagrams fade out */
+  .mask-radial {
+    mask-image: radial-gradient(circle, black 30%, transparent 100%);
+    -webkit-mask-image: radial-gradient(circle, black 30%, transparent 100%);
+  }
+
+  /* Applied ONLY to images/visuals to keep text sharp */
+  .dusty-visual {
+    mask-image: radial-gradient(circle, #fff var(--mask-erosion), transparent 100%),
+      url('https://grainy-gradients.vercel.app/noise.svg');
+    -webkit-mask-image: radial-gradient(circle, #fff var(--mask-erosion), transparent 100%),
+      url('https://grainy-gradients.vercel.app/noise.svg');
+    mask-size: auto, var(--dust-size);
+  }
+
+  /* Frostier glass for the side panels */
+  .lab-panel {
+    @apply bg-zinc-950/60 border border-white/10 backdrop-blur-3xl shadow-2xl;
+  }
+
+  /* Glass Pane: Deep Obsidian Style */
+  .glass-pane-dark {
+    background: rgba(0, 0, 0, var(--glass-opacity));
+    border: 1px solid rgba(255, 255, 255, var(--glass-border));
+    backdrop-filter: blur(32px);
+  }
+
+  /* High-Contrast Title: Sharper gradient */
+  .text-quantum-bright {
+    font-family: 'Libre Bodoni', serif;
+    background: linear-gradient(to bottom, #ffffff 60%, #a1a1aa 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+
+  /* Editorial Style for the Logo */
+  .font-didone {
+    font-family: 'Libre Bodoni', serif;
+    font-weight: 400;
+  }
+
+  .text-quantum {
+    background: linear-gradient(to bottom, #ffffff 40%, #71717a 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+
+  /* The "Theory" link style for mobile */
+  .font-serif-italic {
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+  }
+}
+
+.text-glow {
+  text-shadow: 0 0 15px rgba(255, 255, 255, 0.5);
+}
+
+.text-glow-emerald {
+  text-shadow: 0 0 12px rgba(16, 185, 129, 0.6);
+}
+
+.text-glow-quantum {
+  text-shadow: 0 0 20px rgba(255, 255, 255, 0.2);
+}
+
+/* Frosty Glass for the Input Panels */
+.panel-glass {
+  /* Match the grid's darker, more transparent feel */
+  background: rgba(255, 255, 255, 0.02);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(32px);
+}
+
+/* Custom Technical Scrollbar */
+.lab-scroll {
+  scrollbar-width: thin;
+  scrollbar-color: rgba(255, 255, 255, 0.1) transparent;
+}
+
+.lab-scroll::-webkit-scrollbar {
+  width: 2px;
+  /* Ultra thin */
+}
+
+.lab-scroll::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.lab-scroll::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 10px;
+  transition: background 0.3s ease;
+}
+
+.lab-scroll:hover::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.3);
+  /* Glows slightly on hover */
 }

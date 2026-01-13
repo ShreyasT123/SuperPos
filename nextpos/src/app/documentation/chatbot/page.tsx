@@ -1,70 +1,97 @@
-import Head from 'next/head';
-import { BotMessageSquare, MessageSquareWarning, Lightbulb } from 'lucide-react'; // Example icons
-import Link from 'next/link';
+"use client";
+
+import React from "react";
+import Image from "next/image";
+import {
+  MessageSquareWarning,
+  Cpu, Activity
+} from "lucide-react";
 
 export default function ChatbotPage() {
   return (
-    <div className="max-w-3xl mx-auto px-4 py-8 text-gray-300">
-      <Head>
-        <title>Quantum Chatbot Guide | Superpos Docs</title>
-      </Head>
+    <main className="min-h-screen bg-black text-white selection:bg-zinc-800 overflow-x-hidden relative">
 
-      <div className="flex items-center mb-6">
-        <BotMessageSquare className="h-8 w-8 mr-3 text-blue-400" />
-        <h1 className="text-3xl font-bold text-gray-100">Using the Quantum Chatbot Assistant</h1>
-      </div>
-
-      <p className="text-lg text-gray-400 mb-6">
-        Superpos includes an AI-powered chatbot assistant, leveraging Google&apos;s Gemini AI, to provide you with real-time help and explanations as you navigate the platform and learn about quantum computing.
-      </p>
-
-       <div className="p-4 bg-blue-900/20 border border-blue-500/30 rounded-lg text-center mb-8">
-         <p className="text-blue-300"><Lightbulb className="inline h-5 w-5 mr-1"/>Think of the chatbot as your interactive guide and quick reference tool.</p>
-      </div>
-
-      <h2 className="text-2xl font-semibold text-gray-100 mb-4">How to Access the Chatbot</h2>
-      <p className="mb-6">
-          You can typically find the chatbot interface as a persistent button or panel within the Superpos application (e.g., often in the bottom-right corner). Clicking it will open the chat window.
-          {/* [Add specific instructions based on your UI implementation] */}
-      </p>
-
-      <h2 className="text-2xl font-semibold text-gray-100 mb-4">What Can You Ask?</h2>
-       <p className="mb-6">The chatbot is designed to assist with a variety of queries:</p>
-      <ul className="list-disc list-inside space-y-3 mb-8 pl-4">
-        <li>
-            <strong className="text-gray-200">Conceptual Explanations:</strong> &quot;Explain superposition in simple terms.&quot;, &quot;What does the Hadamard gate do?&quot;, &quot;What is quantum entanglement?&quot;
-        </li>
-         <li>
-            <strong className="text-gray-200">Platform Usage:</strong> &quot;How do I add a CNOT gate?&quot;, &quot;Where can I see the state vector?&quot;, &quot;How does the fault tolerance simulator work?&quot;
-        </li>
-        <li>
-            <strong className="text-gray-200">Troubleshooting (Basic):</strong> &quot;Why is my simulation result unexpected?&quot;, &quot;What does this error message mean?&quot; (Note: For complex issues, check the FAQ or Forum).
-        </li>
-         <li>
-            <strong className="text-gray-200">Definitions:</strong> &quot;Define &apos;decoherence&apos;.&quot;, &quot;What is a Bloch Sphere?&quot;
-        </li>
-      </ul>
-
-      <h2 className="text-2xl font-semibold text-gray-100 mb-4">Tips for Effective Interaction</h2>
-      <ul className="list-disc list-inside space-y-2 mb-8 pl-4">
-        <li><strong className="text-gray-200">Be Specific:</strong> Clearer questions yield better answers. Instead of &quot;It&apos;s not working,&quot; try &quot;When I add an X gate after an H gate to qubit 0, the probability histogram doesn&apos;t change. Why?&quot;</li>
-        <li><strong className="text-gray-200">Ask Follow-up Questions:</strong> If an answer isn&apos;t clear, ask for clarification or examples.</li>
-        <li><strong className="text-gray-200">Understand Limitations:</strong> The chatbot is an AI assistant based on its training data and the platform&apos;s context. It may not always have the answer to highly complex, cutting-edge research questions or specific coding bugs in external libraries.</li>
-       </ul>
-
-      <div className="p-4 bg-gray-800/50 rounded border border-gray-700 flex items-start">
-        <MessageSquareWarning className="h-6 w-6 mr-3 text-yellow-400 mt-1 flex-shrink-0" />
-        <div>
-            <h3 className="font-semibold text-yellow-400">Privacy Note</h3>
-            <p className="text-sm text-gray-400">
-                Conversations may be processed by the underlying AI service (Gemini AI). Avoid entering sensitive personal information into the chat.
-            </p>
+      {/* 1. ATMOSPHERIC SCHEMATICS */}
+      <div className="fixed inset-0 z-0">
+        <div className="absolute inset-0 opacity-30 mix-blend-overlay pointer-events-none">
+          <Image src="/marble-bg.png" alt="Texture" fill className="object-cover" />
+        </div>
+        {/* Assistant Schematic: Your Image 3 */}
+        <div className="absolute inset-0 opacity-50 blend-screen mask-radial pointer-events-none translate-x-20">
+          <Image src="/bg_images/download (34).jpg" alt="Neural Map" fill className="object-cover" />
         </div>
       </div>
+      <div className="fixed inset-0 z-[100] pointer-events-none grain-overlay" />
 
-       <p className="mt-8 border-t border-gray-700 pt-4 text-gray-400 text-sm">
-           For more detailed definitions, visit the <Link href="/docs/faq-glossary" className="text-cyan-400 hover:underline">Glossary</Link>. If the chatbot can&apos;t help, try the <Link href="/forum" className="text-cyan-400 hover:underline">Community Forum</Link>.
-       </p>
-    </div>
+      {/* 2. EDITORIAL HEADER */}
+      <header className="relative z-10 pt-40 pb-20 px-12 max-w-5xl mx-auto border-b border-white/5">
+        <div className="space-y-8">
+          <div className="flex items-center gap-4 font-mono text-[10px] uppercase tracking-[0.6em] text-zinc-500">
+            <Cpu size={14} className="text-glow-emerald" />
+            <span>Reference_Doc // AI_BUS_09</span>
+          </div>
+          <h1 className="text-7xl md:text-8xl font-didone uppercase tracking-tighter text-quantum text-glow">
+            Orbital <br /> <span className="italic font-serif-italic capitalize tracking-normal text-zinc-500">Assistant</span>
+          </h1>
+          <p className="text-xl font-serif-italic text-zinc-400 italic leading-relaxed max-w-2xl">
+            "Leveraging Gemini_1.5 Flash for real-time theoretical resolution and platform synchronization."
+          </p>
+        </div>
+      </header>
+
+      <div className="relative z-20 max-w-5xl mx-auto px-12 py-24 space-y-32 pb-60">
+
+        {/* SECTION: ACCESS PROTOCOL */}
+        <section className="grid md:grid-cols-12 gap-12 items-start">
+          <div className="md:col-span-4 font-mono text-[9px] uppercase tracking-[0.5em] text-zinc-600 sticky top-40">
+            01 // Access_Path
+          </div>
+          <div className="md:col-span-8 glass-pane-dark p-10 rounded-[40px] border border-white/10 dusty-visual">
+            <p className="text-[11px] font-mono uppercase tracking-widest text-zinc-400 leading-[2.2]">
+              The assistant is a <span className="text-white">Persistent Neural Node</span> located in the lower-right quadrant of the simulation environment. Initialize via the <span className="text-white text-glow">Terminal Icon</span> to engage the theoretical bus.
+            </p>
+          </div>
+        </section>
+
+        {/* SECTION: QUERY DICTIONARY (What can you ask?) */}
+        <section className="space-y-12">
+          <div className="flex items-center gap-4 opacity-50 font-mono text-[10px] uppercase tracking-widest">
+            <Activity size={12} />
+            <span>Query_Dictionary</span>
+          </div>
+
+          {/* Change gap-1 to gap-4 or gap-6 for better definition */}
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 relative z-20">
+            <QueryTile label="Concept_Resolution" example="Explain Bell's Inequality in simple terms." />
+            <QueryTile label="Logic_Synthesis" example="How do I add a Toffoli gate to Qubit_02?" />
+            <QueryTile label="Diagnostic_Output" example="Why is my state-vector collapsing prematurely?" />
+            <QueryTile label="Vocabulary_Fetch" example="Define 'Decoherence' within a noisy environment." />
+          </div>
+        </section>
+
+        {/* SECTION: PRIVACY LOG */}
+        <section className="max-w-2xl mx-auto p-10 border border-white/5 rounded-3xl bg-white/[0.01] flex items-start gap-8">
+          <MessageSquareWarning className="text-zinc-600 mt-1" size={24} />
+          <div className="space-y-4">
+            <h4 className="font-mono text-[10px] uppercase tracking-[0.4em] text-zinc-400">Data_Privacy_Protocol</h4>
+            <p className="text-[10px] font-mono uppercase text-zinc-600 leading-loose">
+              All inquiries are processed via Gemini_Cloud. Refrain from injecting PII (Personally Identifiable Information) into the theoretical stream.
+            </p>
+          </div>
+        </section>
+
+      </div>
+    </main>
   );
+}
+
+function QueryTile({ label, example }: { label: string, example: string }) {
+  return (
+    <div className="group bg-zinc-950/40 border border-white/5 p-10 transition-all duration-700 hover:bg-white hover:text-black">
+      <span className="block font-mono text-[8px] opacity-30 uppercase tracking-[0.4em] mb-4 group-hover:text-black">Node_{label}</span>
+      <p className="font-serif-italic italic text-lg text-zinc-400 group-hover:text-black transition-colors">
+        &quot;{example}&quot;
+      </p>
+    </div>
+  )
 }

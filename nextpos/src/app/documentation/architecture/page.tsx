@@ -1,103 +1,195 @@
-import Head from 'next/head';
-import { Layers3, ArrowRightLeft, Component, Database } from 'lucide-react'; // Example icons
-import Image from 'next/image'; // If you have diagrams
-import Link from 'next/link';
+"use client";
+
+import React from "react";
+import Image from "next/image";
+import {
+  Terminal, Activity, Plus,
+  Cpu, Server, Zap
+} from "lucide-react";
 
 export default function ArchitecturePage() {
   return (
-    <div className="max-w-4xl mx-auto px-4 py-8 text-gray-300">
-      <Head>
-        <title>System Architecture | Superpos Docs</title>
-      </Head>
+    <main className="min-h-screen bg-black text-white selection:bg-zinc-800 overflow-x-hidden relative">
 
-      <div className="flex items-center mb-6">
-        <Layers3 className="h-8 w-8 mr-3 text-yellow-400" />
-        <h1 className="text-3xl font-bold text-gray-100">System Architecture</h1>
+      {/* 1. ATMOSPHERIC MAIN_FRAME BACKGROUNDS */}
+      <div className="fixed inset-0 z-0">
+        {/* <div className="absolute inset-0 mix-blend-overlay opacity-20 pointer-events-none">
+          <Image src="/marble-bg.png" alt="Texture" fill className="object-cover" />
+        </div> */}
+        {/* Floor Schematic: Your Image 5 */}
+        <div className="absolute inset-0 opacity-50 blend-screen mask-radial pointer-events-none translate-y-20">
+          <Image src="/bg_images/logic-grid.jpg" alt="Logic Grid" fill className="object-cover" />
+        </div>
+        {/* Core Energy: Your Image 4 (Centered behind content) */}
+        {/* <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[80vw] h-[80vw] opacity-[0.60] blend-screen pointer-events-none"> */}
+        {/* <Image src="/bg_images/download (41).jpg" alt="Fracture Core" fill className="object-contain animate-pulse" />
+        </div> */}
+      </div>
+      <div className="fixed inset-0 z-[100] pointer-events-none grain-overlay" />
+
+      {/* 2. EDITORIAL HEADER */}
+      <header className="relative z-10 pt-40 pb-20 px-12 max-w-6xl mx-auto border-b border-white/5">
+        <div className="space-y-6">
+          <div className="flex items-center gap-4 font-mono text-[10px] uppercase tracking-[0.6em] text-zinc-500">
+            <Terminal size={14} />
+            <span>Reference_Doc // SYS_ARCH_02</span>
+          </div>
+          <h1 className="text-7xl md:text-9xl font-didone uppercase tracking-tighter text-quantum text-glow">
+            System <br /> <span className="italic font-serif-italic capitalize tracking-normal text-zinc-500">Architecture</span>
+          </h1>
+          <p className="text-xl font-mono uppercase tracking-widest text-zinc-400 max-w-2xl leading-relaxed">
+            A modular client-server framework engineered for high-fidelity simulation and neural data aggregation.
+          </p>
+        </div>
+      </header>
+
+      <div className="relative z-20 max-w-6xl mx-auto px-12 py-32 space-y-40 pb-60">
+
+        {/* 3. HIGH LEVEL OVERVIEW: "The Signal Path" */}
+        <section className="grid md:grid-cols-2 gap-20 items-center">
+          <div className="space-y-8">
+            <div className="flex items-center gap-3 font-mono text-[9px] uppercase tracking-widest text-zinc-600">
+              <Activity size={12} />
+              <span>01 // Signal_Flow</span>
+            </div>
+            <p className="text-lg font-mono text-zinc-400 uppercase leading-[1.8] tracking-tighter">
+              Communication is established between the <span className="text-white text-glow">Orbital UI (Next.js)</span> and the <span className="text-white text-glow">Simulation Kernel (Django)</span> via an asynchronous REST protocol.
+            </p>
+          </div>
+          {/* Minimalist Flow Visualization */}
+          <div className="flex items-center justify-between p-12 glass-pane-dark rounded-[40px] border border-white/10 relative overflow-hidden group">
+            <div className="absolute inset-0 opacity-10 blend-screen scale-150 group-hover:scale-100 transition-transform duration-[3s]">
+              <Image src="/bg_images/atoms.jpg" alt="pattern" fill className="object-cover" />
+            </div>
+            <div className="z-10 flex flex-col items-center gap-2">
+              <div className="w-12 h-12 rounded-xl bg-white flex items-center justify-center text-black"><Cpu size={20} /></div>
+              <span className="font-mono text-[8px] uppercase opacity-40">Client</span>
+            </div>
+            <div className="flex-1 h-[1px] bg-white/10 mx-6 relative">
+              <div className="absolute inset-0 bg-white/40 animate-[shimmer_2s_infinite]" />
+            </div>
+            <div className="z-10 flex flex-col items-center gap-2">
+              <div className="w-12 h-12 rounded-xl border border-white/20 flex items-center justify-center"><Server size={20} /></div>
+              <span className="font-mono text-[8px] uppercase opacity-40">Kernel</span>
+            </div>
+          </div>
+        </section>
+
+        {/* 4. COMPONENT BREAKDOWN: "Module Manifest" */}
+        <section className="space-y-24">
+          <div className="text-center space-y-4">
+            <h2 className="text-5xl font-serif-italic italic text-white/80">Hardware Node Mapping</h2>
+            <div className="w-24 h-[1px] bg-white/10 mx-auto" />
+          </div>
+
+          <div className="grid grid-cols-1 gap-1">
+            <ArchCategory
+              id="0x01"
+              title="Frontend Orbital Layer"
+              subtitle="Next.js // React // Graphics_Bus"
+              components={[
+                { name: "Circuit_Architect", role: "Visual state manipulation and JSON synthesis", tech: "Three.js" },
+                { name: "Analytical_Projections", role: "2D/3D Probability distribution rendering", tech: "Plotly.js" },
+                { name: "Orbital_Chat_UI", role: "Interface for the neural theoretical assistant", tech: "Context_API" }
+              ]}
+            />
+            <ArchCategory
+              id="0x02"
+              title="Simulation Kernel"
+              subtitle="Django_REST // Python // Logic_Core"
+              components={[
+                { name: "REST_Controller", role: "Signal routing and API request management", tech: "DRF" },
+                { name: "Interpreter_Bus", role: "Parsing circuit JSON into executable Cirq objects", tech: "Python" },
+                { name: "Sim_Processor", role: "High-fidelity execution of quantum gates", tech: "Cirq_v1.4" }
+              ]}
+            />
+            <ArchCategory
+              id="0x03"
+              title="Neural Linkages"
+              subtitle="External // AI_Bus // Search_API"
+              components={[
+                { name: "Briefing_Aggregator", role: "Intelligence gathering and summarization", tech: "Tavily x Gemini" },
+                { name: "Theoretical_Oracle", role: "Real-time query resolution and concept aiding", tech: "Gemini_1.5" }
+              ]}
+            />
+          </div>
+        </section>
+
+        {/* 5. DATA FLOW LOGS */}
+        <section className="glass-pane-dark p-16 rounded-[60px] border border-white/10 dusty-visual">
+          <div className="space-y-12">
+            <div className="flex items-center gap-3 font-mono text-[10px] uppercase tracking-widest text-zinc-500 opacity-60">
+              <Plus size={14} />
+              <span>Execution_Protocols</span>
+            </div>
+            <div className="grid md:grid-cols-3 gap-12">
+              <FlowLog
+                title="Simulation_Path"
+                path="UI -> API -> Interpreter -> Cirq -> Analyzer -> Projections"
+              />
+              <FlowLog
+                title="Briefing_Path"
+                path="UI -> Controller -> Tavily_API -> Gemini_Decoding -> Feed"
+              />
+              <FlowLog
+                title="Query_Path"
+                path="UI -> Neural_Bus -> Gemini_Model -> Context_Injection -> Chat"
+              />
+            </div>
+          </div>
+        </section>
+
       </div>
 
-      <p className="text-lg text-gray-400 mb-8">
-        Superpos is built using a modern client-server architecture designed for responsiveness, scalability, and efficient handling of quantum simulations and external API interactions.
-      </p>
-
-      <h2 className="text-2xl font-semibold text-gray-100 mb-4">High-Level Overview</h2>
-      <p className="mb-6">
-        The system primarily consists of a <strong className="text-cyan-400">Frontend Client</strong> (built with Next.js) that users interact with, and a <strong className="text-purple-400">Backend Server</strong> (built with Django REST Framework) that handles logic, performs simulations via Cirq, and communicates with external services.
-      </p>
-      {/* Optional: Insert high-level diagram image */}
-      {/* <div className="my-8 p-4 bg-gray-800 rounded border border-gray-700 flex justify-center">
-           <Image src="/path/to/high-level-diagram.png" alt="High Level Architecture Diagram" width={600} height={400} />
-      </div> */}
-
-        <h2 className="text-2xl font-semibold text-gray-100 mb-4">Component Breakdown</h2>
-        <p className="mb-6">The system is modular, with distinct components responsible for specific functionalities:</p>
-
-       <div className="space-y-6">
-            {/* Frontend Components */}
-            <ArchComponentCategory title="Frontend Components (Next.js/React)" borderColor="border-cyan-500/50">
-                <ArchComponent name="Circuit Designer UI (1)" role="Visual circuit design and manipulation." tech="Next.js, ShadCN, Three.js" />
-                <ArchComponent name="Visualization Component (5)" role="Displays 2D/3D simulation results." tech="Plotly.js, Three.js" />
-                <ArchComponent name="Course Material Interface (2)" role="Presents educational content." tech="React components" />
-                <ArchComponent name="Quantum Chatbot UI (3)" role="Handles user interaction with the AI assistant." tech="React components" />
-                <ArchComponent name="Algorithm Demos UI (4)" role="Interface for RSA & FT simulators." tech="React components" />
-                <ArchComponent name="Quantum News Feed UI (6)" role="Displays fetched and summarized news." tech="React components" />
-                <ArchComponent name="(State Management)" role="Manages application state (e.g., using React Context or Zustand)." tech="React Hooks/Libraries" />
-                <ArchComponent name="(API Client)" role="Handles communication with backend API." tech="Axios" />
-            </ArchComponentCategory>
-
-            {/* Backend Components */}
-            <ArchComponentCategory title="Backend Components (Django REST)" borderColor="border-purple-500/50">
-                <ArchComponent name="REST API Controller (7)" role="Manages API requests, routes data, central coordinator." tech="Django REST Framework" />
-                 <ArchComponent name="Circuit Interpreter (9)" role="Parses circuit JSON from frontend requests." tech="Python" />
-                <ArchComponent name="Quantum Circuit Builder (10)" role="Constructs Cirq circuit objects." tech="Python, Cirq" />
-                <ArchComponent name="Simulation Processor (11)" role="Executes simulations using Cirq engine." tech="Cirq" />
-                <ArchComponent name="Result Analyzer (12)" role="Formats raw Cirq results for frontend." tech="Python" />
-                <ArchComponent name="News Aggregator (8)" role="Fetches, caches, and processes news via Tavily API." tech="Python, Django Cache/Redis" />
-                 <ArchComponent name="(Chatbot Handler)" role="Interfaces with Gemini API for chatbot responses." tech="Python, Google AI SDK" />
-                  {/* Add Database Models if applicable */}
-                 {/* <ArchComponent name="(Database Models)" role="Stores user data, saved circuits, etc. (if implemented)." tech="Django ORM, PostgreSQL/SQLite" /> */}
-            </ArchComponentCategory>
-
-             {/* External Services */}
-            <ArchComponentCategory title="External Services" borderColor="border-pink-500/50">
-                <ArchComponent name="Cirq (as library)" role="Core quantum simulation engine." tech="Google Quantum AI" />
-                <ArchComponent name="Gemini API (13)" role="Provides AI for chatbot and summarization." tech="Google AI" />
-                <ArchComponent name="Tavily API (14)" role="Supplies real-time quantum news search." tech="Tavily AI" />
-            </ArchComponentCategory>
-       </div>
-
-
-       <h2 className="text-2xl font-semibold text-gray-100 mt-10 mb-4">Data Flow Examples</h2>
-       {/* Use text or link to diagrams from report */}
-       <p className="mb-4">
-           Refer to the flow diagrams in the project report (Figures 1, 2, 3) or the descriptions below for typical interaction flows:
-       </p>
-       <ul className="list-disc list-inside space-y-2 pl-4 text-sm">
-            <li><strong className="text-gray-200">Circuit Simulation:</strong> UI -> Frontend Request -> API Controller -> Interpreter -> Builder -> Processor (Cirq) -> Analyzer -> API Response -> Frontend Visualization.</li>
-            <li><strong className="text-gray-200">News Request:</strong> UI -> Frontend Request -> API Controller -> News Aggregator (Tavily) -> API Response -> Frontend Display.</li>
-             <li><strong className="text-gray-200">Chatbot Query:</strong> UI -> Frontend Request -> API Controller -> Chatbot Handler (Gemini) -> API Response -> Frontend Display.</li>
-       </ul>
-
-        <p className="mt-8 border-t border-gray-700 pt-4 text-gray-400 text-sm">
-            For details on specific technologies, see the <Link href="/docs/tech-api" className="text-cyan-400 hover:underline">Technology Stack</Link> page.
-        </p>
-
-    </div>
+      {/* FOOTER */}
+      <footer className="relative z-10 border-t border-white/5 py-12 px-12 flex justify-between items-center text-[8px] font-mono uppercase tracking-[0.5em] text-zinc-700">
+        <span>SUPERPOS_BLUEPRINT_ARCH_v.02</span>
+        <span>KERNEL_SYNCED</span>
+      </footer>
+    </main>
   );
 }
 
-// Helper Components for Architecture
-const ArchComponentCategory = ({ title, children, borderColor }: { title: string, children: React.ReactNode, borderColor: string }) => (
-    <div className={`p-4 rounded border ${borderColor} bg-gray-800/30`}>
-        <h3 className="text-xl font-semibold text-gray-100 mb-3">{title}</h3>
-        <div className="space-y-2">
-            {children}
-        </div>
-    </div>
-);
+/* --- THEME SPECIFIC COMPONENTS --- */
 
-const ArchComponent = ({ name, role, tech }: { name: string, role: string, tech: string }) => (
-    <div className="text-sm p-2 bg-gray-900/50 rounded border border-gray-700">
-        <p><strong className="text-gray-200">{name}:</strong> {role}</p>
-        <p className="text-xs text-gray-500">Tech: {tech}</p>
+function ArchCategory({ id, title, subtitle, components }: any) {
+  return (
+    <div className="group border border-white/5 bg-zinc-950/40 p-12 transition-all duration-700 hover:bg-white hover:text-black">
+      <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-12">
+        <div className="space-y-2">
+          <span className="font-mono text-[9px] opacity-30 group-hover:opacity-100">{id} // Sector</span>
+          <h3 className="text-4xl font-serif-italic tracking-tighter uppercase">{title}</h3>
+        </div>
+        <span className="font-mono text-[10px] text-zinc-600 group-hover:text-black tracking-widest">{subtitle}</span>
+      </div>
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+        {components.map((c: any) => (
+          <div key={c.name} className="space-y-4">
+            <div className="font-mono text-[11px] uppercase tracking-tighter text-white group-hover:text-black border-b border-white/10 group-hover:border-black/20 pb-2">
+              {c.name}
+            </div>
+            <p className="text-[10px] font-mono text-zinc-500 uppercase leading-relaxed group-hover:text-black">
+              {c.role}
+            </p>
+            <span className="block font-mono text-[8px] text-zinc-700 uppercase tracking-widest group-hover:text-black">
+              Bus: {c.tech}
+            </span>
+          </div>
+        ))}
+      </div>
     </div>
-);
+  )
+}
+
+function FlowLog({ title, path }: { title: string, path: string }) {
+  return (
+    <div className="space-y-4">
+      <div className="flex items-center gap-2 font-mono text-[9px] text-white/40 uppercase tracking-[0.3em]">
+        <Zap size={10} /> <span>{title}</span>
+      </div>
+      <p className="font-mono text-[10px] text-zinc-500 leading-loose uppercase tracking-tight">
+        {path}
+      </p>
+    </div>
+  )
+}

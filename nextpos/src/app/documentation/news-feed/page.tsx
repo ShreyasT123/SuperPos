@@ -1,56 +1,95 @@
-import Head from 'next/head';
-import { Newspaper, Search, Brain, LayoutList } from 'lucide-react'; // Example icons
+"use client";
+
+import React from "react";
+import Image from "next/image";
+import { Terminal, Zap } from "lucide-react";
 
 export default function NewsFeedPage() {
   return (
-    <div className="max-w-3xl mx-auto px-4 py-8 text-gray-300">
-      <Head>
-        <title>Quantum News Feed | Superpos Docs</title>
-      </Head>
+    <main className="min-h-screen bg-black text-white selection:bg-zinc-800 overflow-x-hidden relative">
 
-      <div className="flex items-center mb-6">
-        <Newspaper className="h-8 w-8 mr-3 text-teal-400" />
-        <h1 className="text-3xl font-bold text-gray-100">Quantum News Feed</h1>
+      {/* 1. ATMOSPHERIC SCHEMATICS */}
+      <div className="fixed inset-0 z-0">
+        <div className="absolute inset-0 opacity-40 mix-blend-overlay pointer-events-none bg-[url('/marble-bg.png')] bg-cover" />
+        {/* Logic Glitch: Image 3 */}
+        <div className="absolute inset-0 opacity-30 blend-screen mask-radial pointer-events-none">
+          <Image src="/bg_images/download (17).jpg" alt="Signal Map" fill className="object-cover" />
+        </div>
       </div>
+      <div className="fixed inset-0 z-[100] pointer-events-none grain-overlay" />
 
-      <p className="text-lg text-gray-400 mb-8">
-        Stay informed about the rapidly evolving field of quantum computing directly within the Superpos platform. The Quantum News Feed feature provides curated, up-to-date articles and summaries.
-      </p>
+      {/* 2. HEADER */}
+      <header className="relative z-10 pt-40 pb-20 px-12 max-w-6xl mx-auto border-b border-white/5">
+        <div className="space-y-6">
+          <div className="flex items-center gap-4 font-mono text-[10px] uppercase tracking-[0.6em] text-zinc-500">
+            <Zap size={14} className="text-white opacity-40" />
+            <span>Reference_Doc // INTEL_FEED_06</span>
+          </div>
+          <h1 className="text-7xl md:text-9xl font-didone uppercase tracking-tighter text-quantum text-glow">
+            Signal <br /> <span className="italic font-serif-italic capitalize tracking-normal text-zinc-500">Intelligence</span>
+          </h1>
+          <p className="text-xl font-mono uppercase tracking-widest text-zinc-400 max-w-2xl leading-relaxed">
+            Real-time research aggregation via the Tavily x Gemini decoding pipeline.
+          </p>
+        </div>
+      </header>
 
-      <h2 className="text-2xl font-semibold text-gray-100 mb-4">How it Works</h2>
-      <div className="p-6 bg-gray-800/50 rounded border border-gray-700 space-y-4">
-         <div className="flex items-start">
-             <Search className="h-6 w-6 mr-3 text-teal-300 mt-1 flex-shrink-0"/>
-             <div>
-                <h3 className="font-semibold text-gray-100">Sourcing News (Tavily API)</h3>
-                <p className="text-sm text-gray-400">The backend uses the Tavily Search API to perform real-time searches across the web for the latest news articles specifically related to quantum computing, quantum technology, algorithms, hardware breakthroughs, and related fields.</p>
+      <div className="relative z-20 max-w-6xl mx-auto px-12 py-32 space-y-40 pb-60">
+
+        {/* SECTION: THE ACQUISITION PIPELINE */}
+        <section className="grid md:grid-cols-12 gap-12 items-start">
+          <div className="md:col-span-4 font-mono text-[9px] uppercase tracking-[0.5em] text-zinc-600 sticky top-40">
+            01 // Acquisition_Logic
+          </div>
+          <div className="md:col-span-8 space-y-1">
+            <AcquisitionLayer
+              title="Sourcing_Agent"
+              tech="Tavily_Search_API"
+              desc="Performs high-frequency web-crawls specifically for quantum breakthrough metadata."
+            />
+            <AcquisitionLayer
+              title="Neural_Summary"
+              tech="Gemini_Flash_1.5"
+              desc="Asynchronous processing of raw text into concise theoretical briefs."
+            />
+            <AcquisitionLayer
+              title="UI_Projection"
+              tech="Tailwind_CSS"
+              desc="Dynamic rendering of summarized data into the Field Briefings feed."
+            />
+          </div>
+        </section>
+
+        {/* SECTION: ACCESS ADVISORY */}
+        <section className="glass-pane-dark p-16 rounded-[60px] border border-white/10 dusty-visual flex flex-col md:flex-row gap-16 items-center">
+          <div className="md:w-1/2 space-y-8">
+            <h2 className="text-5xl font-serif-italic tracking-tighter uppercase text-glow leading-tight">Access <br /> <span className="italic text-zinc-600">Advisory</span></h2>
+            <p className="font-mono text-[11px] text-zinc-500 uppercase leading-[2] tracking-tight">
+              Data streams originate from third-party scientific repositories. Superpos maintains the pipe, but not the content. Verify all critical findings through the source link.
+            </p>
+          </div>
+          <div className="md:w-1/2 flex items-center justify-center">
+            <div className="w-32 h-32 rounded-full border border-white/10 flex items-center justify-center animate-pulse">
+              <Terminal size={40} className="opacity-20" />
             </div>
-         </div>
-         <div className="flex items-start">
-             <Brain className="h-6 w-6 mr-3 text-teal-300 mt-1 flex-shrink-0"/>
-             <div>
-                <h3 className="font-semibold text-gray-100">Summarization & Insights (Gemini AI)</h3>
-                <p className="text-sm text-gray-400">To provide quick insights, the fetched articles are often processed using the Gemini AI API to generate concise summaries, highlighting the key takeaways of each news item.</p>
-            </div>
-         </div>
-         <div className="flex items-start">
-             <LayoutList className="h-6 w-6 mr-3 text-teal-300 mt-1 flex-shrink-0"/>
-             <div>
-                <h3 className="font-semibold text-gray-100">Display</h3>
-                <p className="text-sm text-gray-400">The curated news items, along with their titles, summaries, source links, and timestamps, are displayed dynamically in the "Quantum News" section of the Superpos frontend.</p>
-            </div>
-         </div>
+          </div>
+        </section>
+
       </div>
+    </main>
+  );
+}
 
-      <h2 className="text-2xl font-semibold text-gray-100 mt-8 mb-4">Accessing the Feed</h2>
-      <p className="mb-6">
-        Navigate to the dedicated &quot;Quantum News&quot; page or section within the Superpos application. The feed typically updates regularly to ensure you have access to the latest information.
-         {/* [Add specific navigation instructions if needed] */}
-      </p>
-
-      <p className="text-sm text-gray-500 border-t border-gray-700 pt-4">
-          Note: News content is sourced from external APIs (Tavily, Gemini). While filtering is applied, Superpos does not control the content of the original articles. Always refer to the source link for the full context.
+function AcquisitionLayer({ title, tech, desc }: any) {
+  return (
+    <div className="group bg-zinc-950/90 p-10 border border-white/5 transition-all duration-700 hover:bg-white hover:text-black">
+      <div className="flex justify-between items-center mb-6">
+        <span className="font-mono text-[10px] uppercase tracking-[0.3em] text-white group-hover:text-black">{title}</span>
+        <span className="font-mono text-[8px] text-zinc-600 group-hover:text-zinc-400">Bus: {tech}</span>
+      </div>
+      <p className="font-mono text-[11px] text-zinc-500 uppercase leading-relaxed tracking-tighter group-hover:text-black">
+        {desc}
       </p>
     </div>
-  );
+  )
 }

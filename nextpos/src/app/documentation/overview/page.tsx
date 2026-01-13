@@ -1,61 +1,159 @@
-import Head from 'next/head';
-import Link from 'next/link';
-import { Milestone, CircuitBoard, FlaskConical, GraduationCap, Newspaper, BotMessageSquare, Users, BarChart3 } from 'lucide-react'; // Example icons
+"use client";
+
+import React from "react";
+import Image from "next/image";
+import Link from "next/link";
+import {
+  CircuitBoard, FlaskConical,
+  Newspaper, BotMessageSquare, Users,
+  Terminal, ArrowUpRight, Plus, Activity
+} from "lucide-react";
 
 export default function OverviewPage() {
   return (
-    <div className="max-w-3xl mx-auto px-4 py-8 text-gray-300">
-      <Head>
-        <title>Platform Overview | Superpos Docs</title>
-      </Head>
+    <main className="min-h-screen bg-black text-white selection:bg-zinc-800 overflow-x-hidden relative">
 
-      <div className="flex items-center mb-6">
-        <Milestone className="h-8 w-8 mr-3 text-cyan-400" />
-        <h1 className="text-3xl font-bold text-gray-100">Superpos Platform Overview</h1>
+      {/* 1. ATMOSPHERIC SCHEMATICS */}
+      <div className="fixed inset-0 z-0">
+        <div className="absolute inset-0 grayscale opacity-10 mix-blend-overlay pointer-events-none">
+          <Image src="/marble-bg.png" alt="Texture" fill className="object-cover" />
+        </div>
+        {/* The Atom Schematic (Your Image 2) as a blueprint backdrop */}
+        <div className="absolute inset-0 opacity-20 blend-screen mask-radial pointer-events-none grayscale">
+          <Image src="/bg_images/download(20).jpg" alt="Atomic Schematic" fill className="object-cover" />
+        </div>
+      </div>
+      <div className="fixed inset-0 z-[100] pointer-events-none grain-overlay" />
+
+      {/* 2. THE EDITORIAL HEADER */}
+      <header className="relative z-10 pt-40 pb-24 px-12 max-w-5xl mx-auto border-b border-white/5">
+        <div className="space-y-8">
+          <div className="flex items-center gap-4 font-mono text-[10px] uppercase tracking-[0.6em] text-zinc-500">
+            <Terminal size={14} />
+            <span>Reference_Doc // ARCH_OVR_01</span>
+          </div>
+          <h1 className="text-7xl md:text-8xl font-didone uppercase tracking-tighter text-quantum text-glow">
+            Platform <br /> <span className="italic font-serif-italic capitalize tracking-normal text-zinc-500">Overview</span>
+          </h1>
+          <p className="text-xl md:text-2xl font-serif-italic text-zinc-400 italic leading-relaxed max-w-3xl">
+            "Collapse your uncertainty. Architecting the fundamental reality through the mechanics of modular quantum intelligence."
+          </p>
+        </div>
+      </header>
+
+      {/* 3. MAIN CONTENT: THE THESIS */}
+      <div className="relative z-10 max-w-5xl mx-auto px-12 py-24 space-y-40 pb-60">
+
+        {/* SECTION: MISSION */}
+        <section className="grid md:grid-cols-12 gap-12 items-start">
+          <div className="md:col-span-4 font-mono text-[9px] uppercase tracking-[0.5em] text-zinc-600 sticky top-40">
+            01 // The_Mission
+          </div>
+          <div className="md:col-span-8 space-y-8">
+            <p className="text-lg font-mono uppercase tracking-tight text-zinc-400 leading-[2]">
+              Superpos addresses the complexity barriers of existing simulators by providing a <span className="text-white text-glow">Decentralized Intelligence Environment</span> designed to democratize quantum education.
+            </p>
+            <div className="h-[1px] w-24 bg-white/20" />
+          </div>
+        </section>
+
+        {/* SECTION: SYSTEM CAPABILITIES (Specimen Grid) */}
+        <section className="space-y-16">
+          <div className="flex items-center gap-4 opacity-30 font-mono text-[10px] uppercase tracking-widest">
+            <Activity size={12} />
+            <span>System_Capabilities</span>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-px bg-white/5 border border-white/5 rounded-[48px] overflow-hidden">
+            <CapabilityTile
+              title="Circuit Synthesis"
+              desc="Visual drafting layer supporting high-fidelity gate architectures and real-time state synchronization."
+              icon={<CircuitBoard size={20} />}
+            />
+            <CapabilityTile
+              title="Analytical Briefings"
+              desc="Deep-learning News aggregation via Tavily x Gemini decoding for real-time research updates."
+              icon={<Newspaper size={20} />}
+            />
+            <CapabilityTile
+              title="Protocol Demos"
+              desc="Interactive execution of Shor's factorization and Fault Tolerance error mitigation modules."
+              icon={<FlaskConical size={20} />}
+            />
+            <CapabilityTile
+              title="Orbital Assistant"
+              desc="Gemini-powered theoretical aid for instantaneous resolution of quantum complexity."
+              icon={<BotMessageSquare size={20} />}
+            />
+          </div>
+        </section>
+
+        {/* SECTION: TARGET AUDIENCE (Stakeholder Analysis) */}
+        <section className="glass-pane-dark p-16 rounded-[60px] border border-white/10 dusty-visual">
+          <div className="space-y-12">
+            <div className="flex items-center gap-3 font-mono text-[10px] uppercase tracking-widest text-zinc-500 opacity-60">
+              <Users size={14} />
+              <span>Stakeholder_Analysis</span>
+            </div>
+            <h3 className="text-5xl font-serif-italic tracking-tighter uppercase text-glow leading-tight">
+              Designed for the <br /> <span className="italic text-zinc-600">Quantum Class</span>
+            </h3>
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
+              {['Students', 'Researchers', 'Educators', 'Enthusiasts'].map((item) => (
+                <div key={item} className="space-y-2">
+                  <span className="font-mono text-[8px] opacity-20 uppercase tracking-[0.4em]">Node_{item[0]}</span>
+                  <p className="font-mono text-[11px] uppercase tracking-widest text-zinc-400">{item}</p>
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        {/* SECTION: INITIATION (Getting Started) */}
+        <section className="text-center space-y-12">
+          <div className="flex flex-col items-center gap-6">
+            <div className="w-[1px] h-20 bg-gradient-to-b from-transparent to-white/20" />
+            <h2 className="text-4xl font-didone uppercase tracking-[0.3em]">Initialize_Sequence</h2>
+          </div>
+
+          <div className="flex flex-wrap justify-center gap-6">
+            <Link href="/simulator" className="group flex items-center gap-4 px-12 py-5 rounded-full border border-white/10 bg-white text-black font-mono text-[10px] uppercase tracking-[0.4em] hover:bg-zinc-200 transition-all">
+              Execute_Builder <ArrowUpRight size={14} />
+            </Link>
+            <Link href="/course" className="group flex items-center gap-4 px-12 py-5 rounded-full border border-white/10 bg-black text-white font-mono text-[10px] uppercase tracking-[0.4em] hover:bg-white hover:text-black transition-all">
+              Access_Curriculum
+            </Link>
+          </div>
+        </section>
+
       </div>
 
-      <p className="text-lg text-gray-400 mb-6">
-        Welcome to Superpos! This platform is designed to make quantum computing accessible and understandable for everyone, from curious beginners to seasoned researchers. Our mission is to <strong className="text-cyan-400">democratize quantum education</strong> by providing intuitive tools and comprehensive resources.
-      </p>
+      {/* FOOTER */}
+      <footer className="relative z-10 border-t border-white/5 py-12 px-12 flex justify-between items-center text-[8px] font-mono uppercase tracking-[0.5em] text-zinc-700">
+        <span>SUPERPOS_THESIS_v.01</span>
+        <span>SYSTEM_STABLE</span>
+      </footer>
+    </main>
+  );
+}
 
-       <p className="mb-8">
-        Superpos addresses the common challenges of learning quantum computing – complexity and accessibility – by offering a free, web-based, interactive environment.
-      </p>
+/* --- THEME SPECIFIC COMPONENTS --- */
 
-      <h2 className="text-2xl font-semibold text-gray-100 mb-4">Core Features</h2>
-      <ul className="list-disc list-inside space-y-3 mb-8 pl-4">
-        <li>
-            <strong className="text-lime-300 flex items-center"><CircuitBoard size={18} className="mr-2"/>Quantum Circuit Builder:</strong> Design circuits visually using drag-and-drop, configure qubits/gates, and get instant simulation results.
-        </li>
-        <li>
-            <strong className="text-orange-300 flex items-center"><FlaskConical size={18} className="mr-2"/>Application Demonstrations:</strong> Explore practical concepts like Shor's algorithm (RSA) and Fault Tolerance through interactive simulations.
-        </li>
-         <li>
-            <strong className="text-purple-300 flex items-center"><GraduationCap size={18} className="mr-2"/>Interactive Courses:</strong> Follow structured learning paths covering quantum fundamentals, algorithms, and error correction.
-        </li>
-        <li>
-            <strong className="text-teal-300 flex items-center"><Newspaper size={18} className="mr-2"/>Quantum News Feed:</strong> Stay updated with the latest breakthroughs and developments in the quantum world, powered by Tavily and Gemini AI.
-        </li>
-         <li>
-            <strong className="text-blue-300 flex items-center"><BotMessageSquare size={18} className="mr-2"/>Quantum Chatbot Assistant:</strong> Get real-time explanations, guidance, and troubleshooting help powered by Gemini AI.
-        </li>
-        <li>
-            <strong className="text-pink-300 flex items-center"><BarChart3 size={18} className="mr-2"/>Rich Visualizations:</strong> Understand simulation outputs with state vectors, probability histograms, phase plots (2D), and interactive 3D circuit views.
-        </li>
-      </ul>
-
-      <h2 className="text-2xl font-semibold text-gray-100 mb-4">Who is Superpos For?</h2>
-       <div className="flex items-start p-4 bg-gray-800/50 rounded border border-gray-700">
-        <Users className="h-6 w-6 mr-3 text-cyan-400 mt-1" />
-        <p className="text-gray-400">
-            Superpos is designed for a diverse audience, including <strong className="text-gray-200">students</strong> learning quantum concepts, <strong className="text-gray-200">researchers</strong> needing quick simulations or demonstrations, <strong className="text-gray-200">educators</strong> teaching quantum principles, and <strong className="text-gray-200">enthusiasts</strong> curious about the future of computing.
+function CapabilityTile({ title, desc, icon }: { title: string; desc: string; icon: any }) {
+  return (
+    <div className="group bg-zinc-950/40 p-12 transition-all duration-700 hover:bg-white hover:text-black cursor-default">
+      <div className="flex justify-between items-start mb-12">
+        <div className="w-10 h-10 rounded-xl border border-white/10 flex items-center justify-center bg-white/[0.02] group-hover:border-black/20 group-hover:bg-black/5 transition-all duration-500">
+          {icon}
+        </div>
+        <Plus size={14} className="opacity-10 group-hover:opacity-100" />
+      </div>
+      <div className="space-y-4">
+        <h4 className="text-2xl font-serif-italic tracking-tight uppercase group-hover:text-glow-quantum">{title}</h4>
+        <p className="text-[10px] font-mono text-zinc-500 uppercase leading-relaxed tracking-widest group-hover:text-black transition-colors">
+          {desc}
         </p>
       </div>
-
-       <h2 className="text-2xl font-semibold text-gray-100 mt-8 mb-4">Getting Started</h2>
-       <p>
-            Ready to dive in? We recommend starting with the <Link href="/docs/circuit-builder" className="text-cyan-400 hover:underline">Circuit Builder Tutorial</Link> or exploring the <Link href="/courses" className="text-cyan-400 hover:underline">Beginner Course</Link>.
-       </p>
     </div>
-  );
+  )
 }

@@ -11,10 +11,10 @@ interface JsonOutputProps {
   onSimulationResults: (results: any) => void;
 }
 
-export const JsonOutput: React.FC<JsonOutputProps> = ({ 
-  circuit, 
-  qubits, 
-  onSimulationResults 
+export const JsonOutput: React.FC<JsonOutputProps> = ({
+  circuit,
+  qubits,
+  onSimulationResults
 }) => {
   const circuitData = transformCircuit(circuit, qubits);
   const [loading, setLoading] = useState(false);
@@ -25,7 +25,7 @@ export const JsonOutput: React.FC<JsonOutputProps> = ({
     setError(null);
 
     try {
-      const response = await fetch('http://localhost:8000/superpos/simulate', {
+      const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/superpos/simulate`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -70,7 +70,7 @@ export const JsonOutput: React.FC<JsonOutputProps> = ({
         </Button>
       </div>
       <div className="relative">
-        <div 
+        <div
           className="resize-y overflow-auto min-h-[100px] max-h-[500px] border border-gray-700 rounded"
         >
           <pre className="text-green-400 text-sm p-2">
