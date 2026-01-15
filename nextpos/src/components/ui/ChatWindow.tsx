@@ -1,7 +1,7 @@
 'use client'
 
 import { useState, FormEvent, useEffect, useRef } from 'react'
-import { MessageCircle, X, Send, Terminal, Cpu, Zap } from 'lucide-react'
+import { MessageCircle, X, Terminal, Cpu, Zap } from 'lucide-react'
 
 interface Message {
   content: string
@@ -39,7 +39,7 @@ export function ChatWindow() {
       if (data?.response) {
         setMessages(prev => [...prev, { content: data.response, isUser: false }])
       }
-    } catch (error) {
+    } catch {
       setMessages(prev => [...prev, { content: "SIGNAL_ERROR: Connection to Lab_Kernel lost.", isUser: false }])
     }
   }

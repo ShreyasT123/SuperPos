@@ -155,7 +155,7 @@ export default function DocumentationPage() {
 
 /* --- RESKINNED SUB-COMPONENTS --- */
 
-function ManifestCard({ id, title, desc, icon, href }: any) {
+function ManifestCard({ id, title, desc, icon, href }: { id: string; title: string; desc: string; icon: React.ReactNode; href: string }) {
   return (
     <Link href={href} className="group relative glass-pane-dark p-12 rounded-[48px] overflow-hidden transition-all duration-700 hover:px-16 hover:bg-zinc-900/80">
       <div className="flex justify-between items-start mb-12">
@@ -174,7 +174,7 @@ function ManifestCard({ id, title, desc, icon, href }: any) {
     </Link>
   )
 }
-function LedgerItem({ title, href }: any) {
+function LedgerItem({ title, href }: { title: string; href: string }) {
   return (
     <Link
       href={href}

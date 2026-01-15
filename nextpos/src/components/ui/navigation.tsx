@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from 'react'
 import Link from 'next/link'
-import { Menu, X, Search } from 'lucide-react'
+import { Menu, X, Search, ArrowUpRight } from 'lucide-react'
 
 function ClientOnly({ children }: { children: React.ReactNode }) {
   const [hasMounted, setHasMounted] = useState(false);
@@ -37,13 +37,30 @@ export function Navigation() {
             <div className="hidden md:flex items-center space-x-1">
               <NavLink href="/laboratory">Laboratory</NavLink>
               <NavLink href="/algorithms">Algorithms</NavLink>
-              <NavLink href="/documentation">Documentation</NavLink>
-              <NavLink href="/course">Course</NavLink>
+              <NavLink href="/documentation">Archive</NavLink>
+              <NavLink href="/course">Syllabus</NavLink>
               <NavLink href="/news">News</NavLink>
+              <NavLink href="/origins">Origins</NavLink>
 
+              {/* Separator Line */}
               <div className="w-[1px] h-4 bg-white/10 mx-4" />
 
-              <button className="p-2 opacity-40 hover:opacity-100 transition-opacity">
+              {/* External Publication Link */}
+              <a
+                href="https://ieeexplore.ieee.org/document/10859909/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="
+                  text-[10px] font-mono block py-2 px-4 
+                  text-zinc-400 hover:text-white uppercase tracking-[0.3em] 
+                  transition-all duration-500 ease-out hover:bg-white/5 rounded-sm flex items-center gap-2
+                "
+              >
+                Publication <ArrowUpRight size={10} className="mb-0.5" />
+              </a>
+
+              {/* Search Icon */}
+              <button className="p-2 opacity-40 hover:opacity-100 transition-opacity ml-2">
                 <Search size={16} strokeWidth={1.5} />
               </button>
             </div>
@@ -58,15 +75,25 @@ export function Navigation() {
         </div>
       </nav>
 
-      {/* MOBILE MENU: Fullscreen Low-key Overaly */}
+      {/* MOBILE MENU: Fullscreen Low-key Overlay */}
       {isMenuOpen && (
         <div className="fixed inset-0 z-[140] bg-black/95 backdrop-blur-2xl md:hidden flex flex-col justify-center items-center">
           <div className="flex flex-col space-y-8 text-center">
             <NavLink href="/laboratory" onClick={toggleMenu} mobile>Laboratory</NavLink>
             <NavLink href="/algorithms" onClick={toggleMenu} mobile>Algorithms</NavLink>
-            <NavLink href="/course" onClick={toggleMenu} mobile>Course</NavLink>
-            <NavLink href="/documentation" onClick={toggleMenu} mobile>Documentation</NavLink>
+            <NavLink href="/documentation" onClick={toggleMenu} mobile>Archive</NavLink>
+            <NavLink href="/course" onClick={toggleMenu} mobile>Syllabus</NavLink>
             <NavLink href="/news" onClick={toggleMenu} mobile>News</NavLink>
+            <NavLink href="/origins" onClick={toggleMenu} mobile>Origins</NavLink>
+
+            <a
+              href="https://ieeexplore.ieee.org/document/10859909/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-2xl font-serif-italic block py-2 px-4 text-zinc-400 hover:text-white uppercase tracking-[0.3em] transition-all flex items-center justify-center gap-3"
+            >
+              Publication <ArrowUpRight size={18} />
+            </a>
           </div>
           <div className="absolute bottom-12 font-mono text-[10px] opacity-20 tracking-[0.5em]">
             SYSTEM_ACCESS_V.01

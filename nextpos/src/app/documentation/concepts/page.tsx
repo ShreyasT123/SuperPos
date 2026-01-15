@@ -2,7 +2,7 @@
 
 import React from "react";
 import Image from "next/image";
-import { Atom, Waves, Link2, CircuitBoard, Binary, ShieldCheck, Cpu, Terminal, Plus, ArrowRight } from "lucide-react";
+import { Atom, Waves, Link2, CircuitBoard, ShieldCheck, Terminal } from "lucide-react";
 
 export default function ConceptsPage() {
   return (
@@ -76,7 +76,7 @@ export default function ConceptsPage() {
   );
 }
 
-function ConceptSpecimen({ id, title, tag, desc, icon }: any) {
+function ConceptSpecimen({ id, title, tag, desc, icon }: { id: string; title: string; tag: string; desc: string; icon: React.ReactNode }) {
   return (
     <div className="group relative border-b border-white/5 py-16 px-12 transition-all duration-700 hover:bg-white hover:text-black overflow-hidden cursor-default">
       <div className="relative z-10 flex flex-col md:flex-row gap-12 md:items-center">

@@ -2,10 +2,9 @@
 
 import React from "react";
 import Image from "next/image";
-import Link from "next/link";
 import {
-  BarChart3, Orbit, FileText, SlidersHorizontal,
-  Terminal, Activity, Plus, ArrowUpRight, Cpu
+  BarChart3, Orbit,
+  Activity, Plus, Cpu
 } from "lucide-react";
 
 export default function VisualizationPage() {
@@ -87,7 +86,7 @@ export default function VisualizationPage() {
         {/* SECTION 03: 3D TOPOLOGY */}
         <section className="glass-pane-dark rounded-[60px] p-20 border border-white/10 overflow-hidden relative group">
           {/* Background 3D Energy: Image 4 */}
-          <div className="absolute inset-0 opacity-[0.03] blend-screen pointer-events-none group-hover:scale-105 transition-transform duration-[4s]">
+          <div className="absolute inset-0 opacity-[0.03] blend-screen pointer-events-none group-hover:scale-105 transition-transform [transition-duration:4s]">
             <Image src="/bg_images/logic-grid.jpg" alt="Energy" fill className="object-cover" />
           </div>
 

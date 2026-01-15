@@ -58,7 +58,7 @@ export default function ArchitecturePage() {
           </div>
           {/* Minimalist Flow Visualization */}
           <div className="flex items-center justify-between p-12 glass-pane-dark rounded-[40px] border border-white/10 relative overflow-hidden group">
-            <div className="absolute inset-0 opacity-10 blend-screen scale-150 group-hover:scale-100 transition-transform duration-[3s]">
+            <div className="absolute inset-0 opacity-10 blend-screen scale-150 group-hover:scale-100 transition-transform [transition-duration:3s]">
               <Image src="/bg_images/atoms.jpg" alt="pattern" fill className="object-cover" />
             </div>
             <div className="z-10 flex flex-col items-center gap-2">
@@ -152,18 +152,18 @@ export default function ArchitecturePage() {
 
 /* --- THEME SPECIFIC COMPONENTS --- */
 
-function ArchCategory({ id, title, subtitle, components }: any) {
+function ArchCategory({ id, title, subtitle, components }: { id: string; title: string; subtitle: string; components: { name: string; role: string; tech: string }[] }) {
   return (
     <div className="group border border-white/5 bg-zinc-950/40 p-12 transition-all duration-700 hover:bg-white hover:text-black">
       <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-12">
         <div className="space-y-2">
-          <span className="font-mono text-[9px] opacity-30 group-hover:opacity-100">{id} // Sector</span>
+          <span className="font-mono text-[9px] opacity-30 group-hover:opacity-100">{id} {"//"} Sector</span>
           <h3 className="text-4xl font-serif-italic tracking-tighter uppercase">{title}</h3>
         </div>
         <span className="font-mono text-[10px] text-zinc-600 group-hover:text-black tracking-widest">{subtitle}</span>
       </div>
       <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-        {components.map((c: any) => (
+        {components.map((c) => (
           <div key={c.name} className="space-y-4">
             <div className="font-mono text-[11px] uppercase tracking-tighter text-white group-hover:text-black border-b border-white/10 group-hover:border-black/20 pb-2">
               {c.name}

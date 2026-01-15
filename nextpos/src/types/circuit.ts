@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 // Gate Types
-export type GateType = 
-  | 'h' | 'x' | 'cnot' | 'rz' | 'rx' | 'ry' 
+export type GateType =
+  | 'h' | 'x' | 'cnot' | 'rz' | 'rx' | 'ry'
   | 'swap' | 'ccx' | 'cz' | 'cy' | 'crz' | 'measure';
 
 // Gate Parameters

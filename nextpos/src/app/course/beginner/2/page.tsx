@@ -32,7 +32,7 @@ export default function QubitsPage() {
             Superposition <br /> <span className="italic font-serif-italic capitalize tracking-normal text-zinc-500">Logic</span>
           </h1>
           <p className="text-xl font-serif-italic text-zinc-400 italic leading-relaxed max-w-2xl">
-            "Existing in two places at once. The fundamental duality of quantum information."
+            &quot;Existing in two places at once. The fundamental duality of quantum information.&quot;
           </p>
         </div>
       </header>
@@ -47,7 +47,7 @@ export default function QubitsPage() {
           <div className="md:col-span-8 space-y-12">
             <div className="glass-pane-dark p-12 rounded-[40px] border border-white/10 dusty-visual space-y-8">
               <p className="text-[11px] font-mono text-zinc-500 uppercase leading-[2.2]">
-                A qubit's state |ψ⟩ is a linear combination of the basis states |0⟩ and |1⟩.
+                A qubit&apos;s state |ψ⟩ is a linear combination of the basis states |0⟩ and |1⟩.
               </p>
 
               {/* Math Block */}
@@ -120,7 +120,7 @@ export default function QubitsPage() {
   );
 }
 
-function AnalogyTile({ title, desc, icon }: any) {
+function AnalogyTile({ title, desc, icon }: { title: string; desc: string; icon: React.ReactNode }) {
   return (
     <div className="glass-pane-dark p-10 rounded-[32px] border border-white/5 hover:border-white/20 transition-all group">
       <div className="flex items-center justify-between mb-6">

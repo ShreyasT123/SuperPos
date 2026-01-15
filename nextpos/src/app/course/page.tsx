@@ -13,7 +13,7 @@ import {
 const courses = [
   {
     id: "01",
-    title: "Quantum FundaQuantum Fundamentals",
+    title: "Quantum Fundamentals",
     subtitle: "The Qubit Basis",
     desc: "Understanding the fundamental building block: the qubit and its unique superposition properties.",
     level: "beginner",
@@ -192,7 +192,7 @@ export default function CoursesPage() {
   );
 }
 
-function SyllabusItem({ course, index }: any) {
+function SyllabusItem({ course, index }: { course: { id: string; title: string; subtitle: string; desc: string; level: string; duration: string; slug: string; bg: string; icon: React.ReactNode }; index: number }) {
   return (
     <motion.div
       layout
@@ -210,7 +210,7 @@ function SyllabusItem({ course, index }: any) {
               <div className="flex items-center gap-6">
                 <span className="font-mono text-[11px] opacity-20 group-hover:text-black">MOD_{course.id}</span>
                 <div className="h-[1px] w-12 bg-white/10 group-hover:bg-black/20" />
-                <span className="font-mono text-[9px] uppercase tracking-widest text-zinc-500 group-hover:text-zinc-600">{course.level} // {course.duration}</span>
+                <span className="font-mono text-[9px] uppercase tracking-widest text-zinc-500 group-hover:text-zinc-600">{course.level} {"//"} {course.duration}</span>
               </div>
 
               <div className="space-y-4">
@@ -232,7 +232,7 @@ function SyllabusItem({ course, index }: any) {
           {/* RIGHT: Visual Context */}
           <div className="md:col-span-5 relative bg-black overflow-hidden group-hover:bg-white transition-colors duration-700">
             {/* Background Schematic Overlay */}
-            <div className="absolute inset-0 opacity-30 mix-blend-screen grayscale group-hover:invert group-hover:mix-blend-multiply group-hover:opacity-10 transition-all duration-[2s]">
+            <div className="absolute inset-0 opacity-30 mix-blend-screen grayscale group-hover:invert group-hover:mix-blend-multiply group-hover:opacity-10 transition-all [transition-duration:2s]">
               <Image src={course.bg} alt="Schematic" fill className="object-cover" />
             </div>
 

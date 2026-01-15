@@ -20,8 +20,7 @@ export default function QuantumLanding() {
         </div> */}
         <div className="absolute inset-0 mix-blend-screen dusty-visual"
           style={{ opacity: 'calc(var(--bg-stars-opacity) - 0.1)' }}>
-          {/* <Image src="/bg_images/atoms.jpg" alt="Atmosphere" fill className="object-cover" /> */}
-          <Image src="/bg_images/land.jpg" alt="Atmosphere" fill className="object-cover" />
+          <Image src="/bg_images/p2.jpg" alt="Atmosphere" fill className="object-cover" />
         </div>
       </div>
 
@@ -31,8 +30,8 @@ export default function QuantumLanding() {
       {/* 3. NAVIGATION */}
       <nav className="relative z-[110] flex items-center justify-between px-12 py-10 text-[10px] tracking-[0.4em] uppercase font-mono opacity-60 hover:opacity-100 transition-opacity">
         <div className="flex gap-12">
-          <a href="#" className="hover:text-white border-b border-transparent hover:border-white/20 pb-1 text-glow">Origins</a>
-          <a href="#" className="hover:text-white border-b border-transparent hover:border-white/20 pb-1 text-glow">Particles</a>
+          <a href="/origins" className="hover:text-white border-b border-transparent hover:border-white/20 pb-1 text-glow">Origins</a>
+          <a href="https://ieeexplore.ieee.org/document/10859909/" className="hover:text-white border-b border-transparent hover:border-white/20 pb-1 text-glow">Publication</a>
         </div>
         <div className="text-2xl tracking-[0.6em] font-light text-glow">QUANTUM</div>
         <Search size={16} className="cursor-pointer opacity-50 hover:opacity-100" />
@@ -72,12 +71,13 @@ export default function QuantumLanding() {
         >
           {/* Background Visual using mix-blend-screen for "Clear" look */}
           <div className="absolute inset-0 flex items-center justify-center opacity-40 mix-blend-screen group-hover:opacity-60 transition-all duration-1000 dusty-visual">
-            <Image
-              // src="/bg_images/download (24).jpg"
-              src="/bg_images/atomst.jpg"
-              alt="Wave Pattern"
-              fill
-              className="object-cover scale-110 group-hover:scale-100 transition-transform duration-1000"
+            <video
+              src="/waves.mp4"
+              autoPlay
+              loop
+              muted
+              playsInline
+              className="w-full h-full object-cover scale-110 group-hover:scale-100 transition-transform duration-1000"
             />
           </div>
 
@@ -99,9 +99,9 @@ export default function QuantumLanding() {
         {/* 6. FEATURE GRID (Three Columns) */}
         <section className="grid grid-cols-1 md:grid-cols-3 gap-8">
           {[
-            { title: "Entanglement", img: "/bg_images/download (41).jpg", },
-            { title: "Superposition", img: "/bg_images/atoms.jpg", },
-            { title: "Tunneling", img: "/bg_images/download (22).jpg", }
+            { title: "Entanglement", img: "/entanglement.jpg", },
+            { title: "Superposition", img: "/superposition.jpg", },
+            { title: "Tunneling", img: "/bg.jpg", }
           ].map((item, i) => (
             <div key={i}
               className="group relative rounded-[48px] border border-white/10 h-[650px] p-12 flex flex-col justify-between overflow-hidden hover:border-white/30 transition-all duration-700"
@@ -149,9 +149,9 @@ export default function QuantumLanding() {
               </p>
             </div>
 
-            <div className="md:col-span-6 relative aspect-[4/5] dusty-visual mix-blend-screen opacity-50 grayscale invert translate-x-20 rounded-[60px] overflow-hidden">
+            <div className="md:col-span-6 relative aspect-[4/5] dusty-visual mix-blend-screen opacity-50 translate-x-20 rounded-[60px] overflow-hidden">
               <Image
-                src="/bg_images/atoms.jpg"
+                src="/entanglement.jpg"
                 alt="Schematic"
                 fill
                 className="object-cover scale-110 rounded-[60px]"

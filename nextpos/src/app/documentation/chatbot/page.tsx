@@ -34,7 +34,7 @@ export default function ChatbotPage() {
             Orbital <br /> <span className="italic font-serif-italic capitalize tracking-normal text-zinc-500">Assistant</span>
           </h1>
           <p className="text-xl font-serif-italic text-zinc-400 italic leading-relaxed max-w-2xl">
-            "Leveraging Gemini_1.5 Flash for real-time theoretical resolution and platform synchronization."
+            &quot;Leveraging Gemini_1.5 Flash for real-time theoretical resolution and platform synchronization.&quot;
           </p>
         </div>
       </header>

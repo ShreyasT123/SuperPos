@@ -2,8 +2,8 @@
 import React, { useState } from 'react';
 import Image from 'next/image';
 import {
-  ShieldCheck, ShieldAlert, Terminal, Check, X,
-  Circle, Activity, ArrowRight
+  ShieldCheck, Terminal,
+  Activity, ArrowRight
 } from 'lucide-react';
 import { motion } from 'framer-motion';
 

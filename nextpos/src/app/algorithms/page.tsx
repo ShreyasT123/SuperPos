@@ -80,8 +80,8 @@ export default function DemosPage() {
       <section className="relative z-10 max-w-7xl mx-auto px-12 py-20 pb-60">
         <div className="grid grid-cols-1 gap-12">
           <AnimatePresence mode='popLayout'>
-            {filteredDemos.map((demo, index) => (
-              <DemoSpecimen key={demo.id} demo={demo} index={index} />
+            {filteredDemos.map((demo) => (
+              <DemoSpecimen key={demo.id} demo={demo} />
             ))}
           </AnimatePresence>
         </div>
@@ -90,7 +90,7 @@ export default function DemosPage() {
   )
 }
 
-function DemoSpecimen({ demo, index }: { demo: any; index: number }) {
+function DemoSpecimen({ demo }: { demo: { id: string; title: string; subtitle: string; description: string; link: string; img: string; icon: React.ReactNode } }) {
   return (
     <motion.div
       layout
@@ -132,7 +132,7 @@ function DemoSpecimen({ demo, index }: { demo: any; index: number }) {
           {/* RIGHT: High-Concept Visualization (Based on your Images) */}
           <div className="md:col-span-5 relative bg-black/40 overflow-hidden">
             {/* The intricate math diagram from your inspo */}
-            <div className="absolute inset-0 opacity-40 mix-blend-screen group-hover:scale-110 group-hover:opacity-60 transition-all duration-[2s]">
+            <div className="absolute inset-0 opacity-40 mix-blend-screen group-hover:scale-110 group-hover:opacity-60 transition-all [transition-duration:2s]">
               <Image
                 src={demo.img}
                 alt="Mathematical Visualization"

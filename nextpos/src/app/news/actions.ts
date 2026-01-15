@@ -98,7 +98,7 @@ async function fetchQuantumNews(): Promise<NewsItem[] | { error: string }> {
 
     // --- Step 2: Initialize Gemini Client ---
     const genAI = new GoogleGenerativeAI(GEMINI_API_KEY);
-    const model = genAI.getGenerativeModel({ model: GEMINI_MODEL_NAME });
+    const model = genAI.getGenerativeModel({ model: GEMINI_MODEL_NAME || "gemini-1.5-flash" });
 
     const generationConfig = {
         temperature: 0.7, // Adjust creativity vs. factuality
@@ -196,12 +196,14 @@ async function fetchQuantumNews(): Promise<NewsItem[] | { error: string }> {
     console.log(`Successfully summarized ${summarizedNews.filter(n => !n.summary.startsWith('Could not')).length} news items.`);
     return summarizedNews;
 }
-export async function getLatestBriefings() {
-
+export async function getLatestBriefings(): Promise<{ success: true; data: NewsItem[] } | { success: false; error: string }> {
     try {
-        const news = await fetchQuantumNews(); // Your existing logic
-        return { success: true, data: news };
-    } catch (error) {
+        const news = await fetchQuantumNews();
+        if ('error' in news) {
+            return { success: false, error: news.error as string };
+        }
+        return { success: true, data: news as NewsItem[] };
+    } catch {
         return { success: false, error: "SIGNAL_INTERFERENCE: Could not establish connection." };
     }
 }

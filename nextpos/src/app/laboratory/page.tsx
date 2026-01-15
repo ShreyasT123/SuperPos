@@ -28,7 +28,7 @@ function LaboratoryContent() {
       {/* 1. THE SCHEMATIC BACKGROUNDS */}
       <div className="fixed inset-0 z-0 opacity-60 mix-blend-screen mask-radial pointer-events-none">
         <Image
-          src="/bg_images_and_asethetics/download (17).jpg"
+          src="/bg_images/p2.jpg"
           alt="Technical Grid"
           fill
           className="object-cover"
@@ -74,7 +74,7 @@ function LaboratoryContent() {
 
         {/* DRAFTING AREA */}
         <div className="col-span-12 lg:col-span-9 space-y-12">
-          <section className="relative rounded-[48px] border border-white/10 bg-zinc-950/40 backdrop-blur-3xl p-10 overflow-hidden dusty-visual">
+          <section className="relative rounded-[48px] border border-white/10 bg-black/60 backdrop-blur-md p-10 overflow-hidden dusty-visual">
             <div className="absolute top-6 left-10 opacity-20 font-mono text-[9px] tracking-[0.5em] uppercase text-glow">
               Schematic_Draft_01 // Array_{qubits}x{steps}
             </div>

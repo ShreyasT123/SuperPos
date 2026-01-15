@@ -32,7 +32,7 @@ export default function BeginnerCourse() {
             Quantum <br /> <span className="italic font-serif-italic capitalize tracking-normal text-zinc-500">Computing</span>
           </h1>
           <p className="text-xl font-serif-italic text-zinc-400 italic leading-relaxed max-w-2xl">
-            "Welcome to the multiverse of computation, where Schrödinger meets silicon."
+            &quot;Welcome to the multiverse of computation, where Schrödinger meets silicon.&quot;
           </p>
         </div>
       </header>
@@ -54,7 +54,7 @@ export default function BeginnerCourse() {
               <div className="bg-zinc-950/60 p-8 rounded-3xl border-l-2 border-white/20">
                 <span className="font-mono text-[9px] uppercase tracking-widest text-zinc-400 block mb-2">Analogy: The_Maze_Solver</span>
                 <p className="font-serif-italic text-lg text-zinc-300">
-                  "A classical computer walks every path of a maze sequentially. A quantum computer floods the maze like water, finding the exit instantaneously."
+                  &quot;A classical computer walks every path of a maze sequentially. A quantum computer floods the maze like water, finding the exit instantaneously.&quot;
                 </p>
               </div>
             </div>
@@ -121,7 +121,7 @@ export default function BeginnerCourse() {
 
 /* --- SUB-COMPONENTS --- */
 
-function ComparisonTile({ title, classical, quantum, icon }: any) {
+function ComparisonTile({ title, classical, quantum, icon }: { title: string; classical: string; quantum: string; icon: React.ReactNode }) {
   return (
     <div className="bg-zinc-950/40 p-10 group hover:bg-white hover:text-black transition-all duration-700">
       <div className="mb-8 opacity-40 group-hover:opacity-100">{icon}</div>
@@ -140,7 +140,7 @@ function ComparisonTile({ title, classical, quantum, icon }: any) {
   )
 }
 
-function ImpactCard({ title, desc, icon }: any) {
+function ImpactCard({ title, desc, icon }: { title: string; desc: string; icon: React.ReactNode }) {
   return (
     <div className="glass-pane-dark p-8 rounded-3xl border border-white/5 flex items-start gap-6 hover:border-white/20 transition-all group">
       <div className="p-3 bg-white/[0.03] rounded-xl text-zinc-400 group-hover:text-white transition-colors">

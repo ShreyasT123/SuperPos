@@ -68,7 +68,7 @@ export default function AlgorithmsPage() {
                         Computational <br /> <span className="italic font-serif-italic capitalize tracking-normal text-zinc-500">Protocols</span>
                     </h1>
                     <p className="text-xl font-serif-italic text-zinc-400 italic leading-relaxed max-w-2xl">
-                        "A catalog of implemented quantum logic sequences, from amplitude amplification to prime factorization."
+                        &quot;A catalog of implemented quantum logic sequences, from amplitude amplification to prime factorization.&quot;
                     </p>
                 </div>
             </header>
@@ -93,7 +93,7 @@ export default function AlgorithmsPage() {
 
 /* --- THEME SPECIFIC COMPONENTS --- */
 
-function ProtocolSpecimen({ protocol, index }: any) {
+function ProtocolSpecimen({ protocol, index }: { protocol: { id: string; title: string; complexity: string; abstract: string; tags: string[]; link: string; img: string }; index: number }) {
     return (
         <motion.div
             initial={{ opacity: 0, y: 30 }}
@@ -139,7 +139,7 @@ function ProtocolSpecimen({ protocol, index }: any) {
                     {/* RIGHT: Specimen Visual */}
                     <div className="md:col-span-5 relative bg-black overflow-hidden group-hover:bg-white transition-colors duration-700">
                         {/* Background Schematic Overlay */}
-                        <div className="absolute inset-0 opacity-40 mix-blend-screen grayscale group-hover:invert group-hover:mix-blend-multiply group-hover:opacity-20 transition-all duration-[2s]">
+                        <div className="absolute inset-0 opacity-40 mix-blend-screen grayscale group-hover:invert group-hover:mix-blend-multiply group-hover:opacity-20 transition-all [transition-duration:2s]">
                             <Image
                                 src={protocol.img}
                                 alt="Visual"

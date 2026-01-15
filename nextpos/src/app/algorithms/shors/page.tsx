@@ -17,7 +17,7 @@ export default function RSAEncryptionApp() {
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
 
-  const handleApiCall = async (url: string, options: RequestInit, onSuccess: (data: any) => void) => {
+  const handleApiCall = async <T,>(url: string, options: RequestInit, onSuccess: (data: T) => void) => {
     setIsLoading(true);
     setError(null);
     try {
@@ -25,18 +25,19 @@ export default function RSAEncryptionApp() {
       const data = await response.json();
       if (!response.ok) throw new Error(data.detail || "System Error");
       onSuccess(data);
-    } catch (err: any) {
-      setError(err.message || "SIGNAL_INTERFERENCE: Connection lost.");
+    } catch (err: unknown) {
+      const errorMessage = err instanceof Error ? err.message : "SIGNAL_INTERFERENCE: Connection lost.";
+      setError(errorMessage);
     } finally {
       setIsLoading(false);
     }
   };
 
-  const generateKeys = () => handleApiCall(`${process.env.NEXT_PUBLIC_API_URL}/superpos/rsa_generate_keys/`, { method: "POST" }, (data) => setKeys(data));
+  const generateKeys = () => handleApiCall<{ n: string; e: string }>(`${process.env.NEXT_PUBLIC_API_URL}/superpos/rsa_generate_keys/`, { method: "POST" }, (data) => setKeys(data));
 
   const encryptMessage = () => {
     if (!keys || !message) return;
-    handleApiCall(`${process.env.NEXT_PUBLIC_API_URL}/superpos/rsa_encrypt/`, {
+    handleApiCall<{ encrypted_message: string }>(`${process.env.NEXT_PUBLIC_API_URL}/superpos/rsa_encrypt/`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ message, n: keys.n, e: keys.e }),
@@ -45,7 +46,7 @@ export default function RSAEncryptionApp() {
 
   const decryptMessage = () => {
     if (!decryptInput.encryptedMessage || !decryptInput.n || !decryptInput.e) return;
-    handleApiCall(`${process.env.NEXT_PUBLIC_API_URL}/superpos/rsa_decrypt/`, {
+    handleApiCall<{ decrypted_message: string }>(`${process.env.NEXT_PUBLIC_API_URL}/superpos/rsa_decrypt/`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ encrypted_message: decryptInput.encryptedMessage, n: decryptInput.n, e: decryptInput.e }),
@@ -57,7 +58,7 @@ export default function RSAEncryptionApp() {
 
       {/* 1. ATMOSPHERIC SCHEMATICS (Using your assets) */}
       <div className="fixed inset-0 z-0">
-        <div className="absolute inset-0 grayscale mix-blend-overlay opacity-10 pointer-events-none">
+        <div className="absolute inset-0 mix-blend-overlay opacity-10 pointer-events-none">
           <Image src="/marble-bg.png" alt="Texture" fill className="object-cover" />
         </div>
         <div className="absolute inset-0 opacity-20 blend-screen mask-radial">
@@ -74,7 +75,7 @@ export default function RSAEncryptionApp() {
         </h1>
         <p className="font-mono text-[10px] tracking-[0.4em] uppercase text-zinc-500 max-w-2xl mx-auto leading-loose">
           The Architecture of Secrecy // Simulating the vulnerability <br />
-          of RSA Moduli to Shor's Factorization logic.
+          of RSA Moduli to Shor&apos;s Factorization logic.
         </p>
       </header>
 
@@ -89,11 +90,11 @@ export default function RSAEncryptionApp() {
             </div>
             <h2 className="text-4xl font-serif-italic italic text-white/80">Prime factorization is the lock. Quantum computing is the key.</h2>
             <p className="text-[11px] font-mono text-zinc-500 uppercase leading-[2] tracking-tight">
-              Shor's algorithm finds the <span className="text-white">period of a function</span> to factor large integers exponentially faster than classical sieves. This demonstration simulates that efficiency.
+              Shor&apos;s algorithm finds the <span className="text-white">period of a function</span> to factor large integers exponentially faster than classical sieves. This demonstration simulates that efficiency.
             </p>
           </div>
-          <div className="relative aspect-video opacity-40 grayscale blend-screen">
-            <Image src="/bg_images/download (25).jpg" alt="Waves" fill className="object-contain" />
+          <div className="relative aspect-video opacity-40  blend-screen">
+            <Image src="/bg_images/wave1.png" alt="Waves" fill className="object-contain" />
           </div>
         </section>
 
@@ -186,7 +187,7 @@ export default function RSAEncryptionApp() {
               onClick={decryptMessage}
               className="w-full py-5 rounded-full border border-white/20 hover:bg-white hover:text-black font-mono text-[10px] uppercase tracking-[0.4em] transition-all"
             >
-              Initiate Shor's Simulation
+              Initiate Shor&apos;s Simulation
             </button>
 
             {decryptedMessage && (

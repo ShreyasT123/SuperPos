@@ -80,7 +80,7 @@ export default function NewsFeedPage() {
   );
 }
 
-function AcquisitionLayer({ title, tech, desc }: any) {
+function AcquisitionLayer({ title, tech, desc }: { title: string; tech: string; desc: string }) {
   return (
     <div className="group bg-zinc-950/90 p-10 border border-white/5 transition-all duration-700 hover:bg-white hover:text-black">
       <div className="flex justify-between items-center mb-6">

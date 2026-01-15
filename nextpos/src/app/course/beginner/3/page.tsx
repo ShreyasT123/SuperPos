@@ -3,8 +3,8 @@
 import React from "react";
 import Image from "next/image";
 import {
-  Binary, Atom, RotateCw, Combine,
-  Terminal, ArrowRight, Zap
+  Atom,
+  Terminal
 } from "lucide-react";
 
 export default function QuantumGatesPage() {
@@ -32,7 +32,7 @@ export default function QuantumGatesPage() {
             Unitary <br /> <span className="italic font-serif-italic capitalize tracking-normal text-zinc-500">Operators</span>
           </h1>
           <p className="text-xl font-serif-italic text-zinc-400 italic leading-relaxed max-w-2xl">
-            "If qubits are the actors, quantum gates are the directors—orchestrating the collapse."
+            &quot;If qubits are the actors, quantum gates are the directors—orchestrating the collapse.&quot;
           </p>
         </div>
       </header>
@@ -65,17 +65,17 @@ export default function QuantumGatesPage() {
             <GateSpecimen
               symbol="X" name="Pauli-X (NOT)"
               desc="Flips state |0⟩ to |1⟩. Equivalent to a 180° rotation around the X-axis."
-              icon={<Binary size={20} />}
+            // icon={<Binary size={20} />}
             />
             <GateSpecimen
               symbol="H" name="Hadamard"
               desc="Creates Superposition. Maps basis states |0⟩ and |1⟩ to equal probability amplitudes."
-              icon={<Atom size={20} />}
+            // icon={<Atom size={20} />}
             />
             <GateSpecimen
               symbol="Z" name="Pauli-Z"
               desc="Phase Flip. Changes the phase of the |1⟩ component without affecting probability."
-              icon={<RotateCw size={20} />}
+            // icon={<RotateCw size={20} />}
             />
           </div>
         </section>
@@ -89,17 +89,17 @@ export default function QuantumGatesPage() {
             <GateSpecimen
               symbol="CNOT" name="Controlled-NOT"
               desc="The 'If-Then' logic of quantum. Flips the target qubit only if the control is |1⟩. Essential for entanglement."
-              icon={<Combine size={20} />}
+            // icon={<Combine size={20} />}
             />
             <GateSpecimen
               symbol="SWAP" name="Exchange Gate"
               desc="Swaps the state of two qubits perfectly. |ψ⟩|φ⟩ → |φ⟩|ψ⟩."
-              icon={<ArrowRight size={20} />}
+            // icon={<ArrowRight size={20} />}
             />
             <GateSpecimen
               symbol="CCX" name="Toffoli Gate"
               desc="Controlled-Controlled-NOT. A reversible version of the classical AND gate."
-              icon={<Zap size={20} />}
+            // icon={<Zap size={20} />}
             />
           </div>
         </section>
@@ -109,7 +109,7 @@ export default function QuantumGatesPage() {
   );
 }
 
-function GateSpecimen({ symbol, name, desc, icon }: any) {
+function GateSpecimen({ symbol, name, desc }: { symbol: string; name: string; desc: string }) {
   return (
     <div className="group flex items-start gap-8 p-10 bg-zinc-950/40 border border-white/5 hover:bg-white hover:text-black transition-all duration-700 rounded-[32px]">
       <div className="w-16 h-16 flex items-center justify-center bg-white/[0.03] border border-white/10 rounded-2xl group-hover:bg-black/5 group-hover:border-black/10 transition-colors">

@@ -36,7 +36,7 @@ export default function OverviewPage() {
             Platform <br /> <span className="italic font-serif-italic capitalize tracking-normal text-zinc-500">Overview</span>
           </h1>
           <p className="text-xl md:text-2xl font-serif-italic text-zinc-400 italic leading-relaxed max-w-3xl">
-            "Collapse your uncertainty. Architecting the fundamental reality through the mechanics of modular quantum intelligence."
+            &quot;Collapse your uncertainty. Architecting the fundamental reality through the mechanics of modular quantum intelligence.&quot;
           </p>
         </div>
       </header>
@@ -139,7 +139,7 @@ export default function OverviewPage() {
 
 /* --- THEME SPECIFIC COMPONENTS --- */
 
-function CapabilityTile({ title, desc, icon }: { title: string; desc: string; icon: any }) {
+function CapabilityTile({ title, desc, icon }: { title: string; desc: string; icon: React.ReactNode }) {
   return (
     <div className="group bg-zinc-950/40 p-12 transition-all duration-700 hover:bg-white hover:text-black cursor-default">
       <div className="flex justify-between items-start mb-12">

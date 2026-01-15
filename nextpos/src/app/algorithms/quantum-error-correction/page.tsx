@@ -3,8 +3,8 @@
 import React, { useState } from "react";
 import Image from "next/image";
 import {
-  Terminal, ShieldCheck, ShieldAlert, Cpu,
-  Settings2, Activity, Zap, Plus, ArrowUpRight
+  Terminal, ShieldCheck, ShieldAlert,
+  Settings2, Activity, Plus
 } from "lucide-react";
 
 export default function FaultToleranceSimulator() {
@@ -14,7 +14,14 @@ export default function FaultToleranceSimulator() {
   const [protocol, setProtocol] = useState<string>("non_ft");
   const [syndromeRounds, setSyndromeRounds] = useState<number>(3);
   const [measurementError, setMeasurementError] = useState<number>(0.0);
-  const [simulationResult, setSimulationResult] = useState<any>(null);
+  const [simulationResult, setSimulationResult] = useState<{
+    success: boolean;
+    secret: string;
+    corrected_state: string;
+    ideal_measurement: string[];
+    final_measurement: string[];
+    circuit_text: string;
+  } | null>(null);
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
 
@@ -42,7 +49,7 @@ export default function FaultToleranceSimulator() {
       });
       const data = await response.json();
       setSimulationResult(data);
-    } catch (err: any) {
+    } catch {
       setError("SIGNAL_INTERFERENCE: Connection to QEC_Kernel failed.");
     } finally {
       setIsLoading(false);
@@ -178,6 +185,11 @@ export default function FaultToleranceSimulator() {
           </section>
 
           {/* 5. ANALYTICAL REPORT (Results) */}
+          {error && (
+            <div className="glass-pane-dark p-8 rounded-3xl border-red-500/20 text-red-500 font-mono text-[10px] uppercase tracking-widest mb-8">
+              {error}
+            </div>
+          )}
           {simulationResult && !isLoading && (
             <section className="glass-pane-dark rounded-[60px] p-16 space-y-16 animate-in fade-in slide-in-from-bottom-8 duration-1000">
               <div className="flex justify-between items-start">

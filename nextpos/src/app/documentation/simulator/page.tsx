@@ -77,7 +77,7 @@ export default function CircuitBuilderPage() {
   );
 }
 
-function SequenceStep({ id, title, desc }: any) {
+function SequenceStep({ id, title, desc }: { id: string; title: string; desc: string }) {
   return (
     <div className="group bg-zinc-950/90 border border-white/5 p-12 transition-all duration-700 hover:bg-white hover:text-black cursor-default">
       <span className="block font-mono text-[8px] opacity-20 uppercase tracking-[0.5em] mb-8 group-hover:text-black group-hover:opacity-100 transition-all">SEQ_P_{id}</span>

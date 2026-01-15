@@ -6,7 +6,7 @@ import { ArrowUpRight, Globe, Zap, Terminal, Radar, Loader2, ShieldAlert } from 
 import { getLatestBriefings } from './actions';
 
 export default function QuantumNewsPage() {
-    const [newsData, setNewsData] = useState<any[]>([]);
+    const [newsData, setNewsData] = useState<{ title: string; url: string; summary: string; source: string }[]>([]);
     const [isScanning, setIsScanning] = useState(false);
     const [lastUpdated, setLastUpdated] = useState<string>("");
     const [error, setError] = useState<string | null>(null);
@@ -130,7 +130,7 @@ export default function QuantumNewsPage() {
 }
 
 // --- SUB-COMPONENT: NEWS ARTICLE (Editorial Line Item) ---
-function NewsArticle({ item, index }: { item: any; index: number }) {
+function NewsArticle({ item, index }: { item: { title: string; url: string; summary: string; source: string }; index: number }) {
     return (
         <a
             href={item.url}

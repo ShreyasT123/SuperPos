@@ -4,12 +4,18 @@ import React, { createContext, useContext, useState, useMemo } from 'react';
 import {
     Code, Hash, Square, Combine,
     RotateCw, RotateCcw, Rotate3d, X as XIcon, Circle,
-    ArrowDown, Sigma, Box, Plus
+    ArrowDown, Sigma, Box, Plus, ChevronDown, Play,
+    Terminal,
+    Activity
 } from 'lucide-react';
-import Plot from 'react-plotly.js';
+import dynamic from 'next/dynamic';
 import { Gate, GateDefinition, GateType } from '../../types/circuit';
 import { transformCircuit } from '../../utils/circuitTransformer';
 
+const Plot = dynamic(() => import('react-plotly.js'), {
+    ssr: false, // This forces Next.js to ONLY load it in the browser
+    loading: () => <div className="text-zinc-500 font-mono text-[10px] animate-pulse">Loading_Vis_Engine...</div>
+});
 // --- TYPES & CONSTANTS ---
 
 export enum GateTypeEnum {
@@ -57,21 +63,28 @@ export const gates: GateDefinition[] = [
     { id: 'measure' as GateType, name: 'Measure', icon: Box, color: 'white', qubits: 1, description: 'Measures qubit state.' },
 ];
 
+interface SimulationResult {
+    prob_plot: string;
+    phase_plot: string;
+    circuit: string;
+    state_vector: { binary: string; probability: number }[];
+}
+
 // --- CONTEXT ---
 
 interface SimulatorContextType {
     circuit: Gate[];
     qubits: number;
     steps: number;
-    simResults: any;
+    simResults: SimulationResult | null;
     setCircuit: React.Dispatch<React.SetStateAction<Gate[]>>;
     setQubits: React.Dispatch<React.SetStateAction<number>>;
     setSteps: React.Dispatch<React.SetStateAction<number>>;
-    setSimResults: React.Dispatch<React.SetStateAction<any>>;
+    setSimResults: React.Dispatch<React.SetStateAction<SimulationResult | null>>;
     handleGateAdd: (newGate: Gate) => void;
     handleStepsChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
     handleQubitsChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
-    handleSimulationResults: (results: any) => void;
+    handleSimulationResults: (results: SimulationResult) => void;
     handleGateRemove: (gate: Gate) => void;
 }
 
@@ -81,7 +94,7 @@ export const SimulatorProvider: React.FC<{ children: React.ReactNode }> = ({ chi
     const [circuit, setCircuit] = useState<Gate[]>([]);
     const [qubits, setQubits] = useState(3);
     const [steps, setSteps] = useState(8);
-    const [simResults, setSimResults] = useState<any>(null);
+    const [simResults, setSimResults] = useState<SimulationResult | null>(null);
 
     const handleGateAdd = (newGate: Gate) => setCircuit([...circuit, newGate]);
     const handleStepsChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -94,7 +107,7 @@ export const SimulatorProvider: React.FC<{ children: React.ReactNode }> = ({ chi
         setQubits(value);
         setCircuit([]);
     };
-    const handleSimulationResults = (results: any) => setSimResults(results);
+    const handleSimulationResults = (results: SimulationResult) => setSimResults(results);
     const handleGateRemove = (gateToRemove: Gate) => {
         setCircuit(prev => prev.filter(g => g !== gateToRemove));
     };
@@ -269,7 +282,7 @@ export const GatesPalette: React.FC = () => {
         </div>
     );
 };
-// 5. CircuitCell (Updated with Deletion Logic)
+// 5. CircuitCell (Updated to match Black/40 Theme)
 export const CircuitCell: React.FC<{
     qubit: number;
     step: number;
@@ -277,7 +290,7 @@ export const CircuitCell: React.FC<{
     onDragOver: (e: React.DragEvent) => void;
     onDrop: (e: React.DragEvent) => void;
     isSelected: boolean;
-    onRemove: (gate: Gate) => void; // <--- Prop for removal
+    onRemove: (gate: Gate) => void;
 }> = ({ gate, onDragOver, onDrop, isSelected, onRemove }) => {
 
     const [isHovered, setIsHovered] = useState(false);
@@ -285,14 +298,15 @@ export const CircuitCell: React.FC<{
     return (
         <div
             className={`
-                w-20 h-20 border-r border-b border-white/[0.03] flex items-center justify-center relative group/cell transition-colors
-                ${isSelected ? 'bg-white/[0.05]' : 'hover:bg-white/[0.01]'}
+                w-20 h-20 border-r border-b flex items-center justify-center relative group/cell transition-colors
+                /* MATCHING THEME: Subtle 5% white border like the header */
+                border-white/5
+                ${isSelected ? 'bg-white/[0.05]' : 'hover:bg-white/[0.02]'}
             `}
             onDragOver={(e) => { onDragOver(e); setIsHovered(true); }}
             onDragLeave={() => setIsHovered(false)}
             onDrop={(e) => { onDrop(e); setIsHovered(false); }}
 
-            // Allow Right-Click anywhere in the cell if it's crowded
             onContextMenu={(e) => {
                 if (gate) {
                     e.preventDefault();
@@ -300,8 +314,8 @@ export const CircuitCell: React.FC<{
                 }
             }}
         >
-            {/* Drafting Line */}
-            <div className="absolute w-full h-[1px] bg-white/[0.07] z-0" />
+            {/* Drafting Line - Low opacity to blend with black/40 */}
+            <div className="absolute w-full h-[1px] bg-white/[0.05] z-0" />
 
             {/* Gate Box */}
             <div
@@ -312,15 +326,13 @@ export const CircuitCell: React.FC<{
                         : 'border-dashed border-white/10 opacity-10 group-hover/cell:opacity-40 group-hover/cell:border-white/30'}
                     ${isHovered && !gate ? 'scale-110 opacity-100 bg-white/5 border-solid' : ''}
                 `}
-                // Right Click to Delete
                 onContextMenu={(e) => {
                     if (gate) {
-                        e.preventDefault(); // Stop browser menu
-                        onRemove(gate);     // Delete gate
+                        e.preventDefault();
+                        onRemove(gate);
                     }
                 }}
-                // Double Click to Delete (Alternative for trackpads)
-                onDoubleClick={(e) => {
+                onDoubleClick={() => {
                     if (gate) onRemove(gate);
                 }}
             >
@@ -335,8 +347,6 @@ export const CircuitCell: React.FC<{
         </div>
     );
 };
-
-
 // 6. CircuitConnections (Dynamic Hardware Wiring)
 export const CircuitConnections: React.FC<{ circuit: Gate[] }> = ({ circuit }) => {
     const cellSize = 80;
@@ -530,13 +540,175 @@ export const CircuitGrid: React.FC = () => {
     );
 };
 
-// 8. JsonOutput (Glass Code Editor Style)
+// 9. SimulationResults (Matched Header Styling)
+export const SimulationResults: React.FC = () => {
+    const { simResults } = useSimulator();
+    if (!simResults) return null;
+    const probPlot = JSON.parse(simResults.prob_plot);
+    const phasePlot = JSON.parse(simResults.phase_plot);
+
+    const layoutDefaults = {
+        paper_bgcolor: 'rgba(0,0,0,0)',
+        plot_bgcolor: 'rgba(0,0,0,0)',
+        font: { color: 'rgba(255,255,255,0.5)', family: 'JetBrains Mono', size: 10 },
+        xaxis: {
+            gridcolor: 'rgba(255,255,255,0.05)',
+            zerolinecolor: 'rgba(255,255,255,0.1)',
+            tickfont: { color: 'rgba(18, 67, 229, 1)' }
+        },
+        yaxis: {
+            gridcolor: 'rgba(255,255,255,0.05)',
+            zerolinecolor: 'rgba(255,255,255,0.1)',
+            tickfont: { color: 'rgba(255,255,255,0.3)' }
+        },
+        margin: { l: 40, r: 20, t: 20, b: 40 }
+    };
+
+    return (
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+
+            {/* CARD 1: PROBABILITY */}
+            <div className="rounded-[32px] border border-white/5 bg-black/40 backdrop-blur-md p-10 flex flex-col h-full">
+
+                {/* Header Section matching your reference */}
+                <div className="flex justify-between items-start mb-8 border-b border-white/5 pb-6">
+                    <div className="space-y-1">
+                        <h3 className="text-xl font-didone tracking-[0.2em] uppercase text-quantum text-glow-quantum">
+                            Probability <span className="italic opacity-50 font-serif-italic capitalize tracking-normal">Distribution</span>
+                        </h3>
+                    </div>
+                    {/* Status Pill */}
+                    <div className="hidden md:flex items-center gap-3 font-mono text-[9px] tracking-[0.3em] uppercase text-zinc-500">
+                        <div className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse text-glow-emerald shadow-[0_0_10px_rgba(16,185,129,0.5)]" />
+                        <span>Live_Data</span>
+                    </div>
+                </div>
+
+                {/* Plot Area */}
+                <div className="flex-1 min-h-[350px] w-full relative">
+                    <Plot
+                        data={probPlot.data.map((d: { marker: { color: string; opacity: number; line: { width: number } } }) => ({
+                            ...d,
+                            marker: { color: 'white', opacity: 0.8, line: { width: 0 } }
+                        }))}
+                        layout={{ ...probPlot.layout, ...layoutDefaults }}
+                        config={{ responsive: true, displayModeBar: false }}
+                        className="w-full h-full absolute inset-0"
+                    />
+                </div>
+            </div>
+
+            {/* CARD 2: PHASE */}
+            <div className="rounded-[32px] border border-white/5 bg-black/40 backdrop-blur-md p-10 flex flex-col h-full">
+
+                {/* Header Section matching your reference */}
+                <div className="flex justify-between items-start mb-8 border-b border-white/5 pb-6">
+                    <div className="space-y-1">
+                        <h3 className="text-xl font-didone tracking-[0.2em] uppercase text-quantum text-glow-quantum">
+                            Phase <span className="italic opacity-50 font-serif-italic capitalize tracking-normal">Projections</span>
+                        </h3>
+                    </div>
+                    {/* Status Pill */}
+                    <div className="hidden md:flex items-center gap-3 font-mono text-[9px] tracking-[0.3em] uppercase text-zinc-500">
+                        <div className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse text-glow-emerald shadow-[0_0_10px_rgba(16,185,129,0.5)]" />
+                        <span>Complex_Plane</span>
+                    </div>
+                </div>
+
+                {/* Plot Area */}
+                <div className="flex-1 min-h-[350px] w-full relative">
+                    <Plot
+                        data={phasePlot.data.map((d: { line: { color: string; width: number } }) => ({
+                            ...d,
+                            line: { color: 'white', width: 1 }
+                        }))}
+                        layout={{ ...phasePlot.layout, ...layoutDefaults }}
+                        config={{ responsive: true, displayModeBar: false }}
+                        className="w-full h-full absolute inset-0"
+                    />
+                </div>
+            </div>
+        </div>
+    );
+};
+
+// 10. SimulationTextResults (Matched Header Styling)
+export const SimulationTextResults: React.FC = () => {
+    const { simResults } = useSimulator();
+    if (!simResults) return null;
+    return (
+        <div className="rounded-[32px] border border-white/5 bg-black/40 backdrop-blur-md p-12 mt-8">
+
+            {/* Main Header */}
+            <div className="flex justify-between items-center mb-12 border-b border-white/5 pb-6">
+                <h3 className="text-2xl font-didone tracking-[0.3em] uppercase text-quantum text-glow-quantum">
+                    Simulation <span className="italic opacity-50 font-serif-italic capitalize tracking-normal">Logs</span>
+                </h3>
+                <div className="flex items-center gap-2 font-mono text-[9px] tracking-[0.3em] uppercase text-zinc-500">
+                    <span>Output_Buffer</span>
+                    <span className="text-white">::</span>
+                    <span>Verified</span>
+                </div>
+            </div>
+
+            <div className="grid md:grid-cols-2 gap-16">
+
+                {/* Circuit ASCII Art */}
+                <div className="space-y-6">
+                    <div className="flex items-center gap-3">
+                        <Terminal size={14} className="text-zinc-600" />
+                        <h4 className="text-[10px] font-mono uppercase tracking-[0.4em] text-zinc-500">
+                            Schematic_Render
+                        </h4>
+                    </div>
+
+                    <div className="bg-white/[0.02] border border-white/5 p-8 rounded-2xl overflow-x-auto lab-scroll">
+                        <pre className="text-[10px] font-mono text-zinc-300 leading-loose whitespace-pre">
+                            {simResults.circuit}
+                        </pre>
+                    </div>
+                </div>
+
+                {/* State Vector Table */}
+                <div className="space-y-6">
+                    <div className="flex items-center gap-3">
+                        <Activity size={14} className="text-zinc-600" />
+                        <h4 className="text-[10px] font-mono uppercase tracking-[0.4em] text-zinc-500">
+                            State_Vector_Matrix
+                        </h4>
+                    </div>
+
+                    <div className="space-y-1 max-h-[300px] overflow-y-auto pr-2 lab-scroll">
+                        {simResults.state_vector.map((s, i: number) => (
+                            <div key={i} className="group flex justify-between items-center py-4 px-6 rounded-xl border border-white/5 bg-white/[0.01] hover:bg-white/[0.05] hover:border-white/10 transition-all duration-500">
+                                <div className="flex items-center gap-4">
+                                    <span className="font-mono text-[9px] text-zinc-600 opacity-50">IDX_{i.toString().padStart(2, '0')}</span>
+                                    <span className="font-mono text-[11px] text-zinc-300 group-hover:text-white transition-colors">|{s.binary}⟩</span>
+                                </div>
+                                <div className="flex items-center gap-3">
+                                    <div className="h-[1px] w-8 bg-zinc-800 group-hover:bg-zinc-600 transition-colors" />
+                                    <span className="font-mono text-[11px] text-white font-bold tracking-widest text-glow">
+                                        {(s.probability * 100).toFixed(2)}%
+                                    </span>
+                                </div>
+                            </div>
+                        ))}
+                    </div>
+                </div>
+            </div>
+        </div>
+    );
+};
+
+
 export const JsonOutput: React.FC = () => {
     const { circuit, qubits, handleSimulationResults } = useSimulator();
     const circuitData = transformCircuit(circuit, qubits);
     const [loading, setLoading] = useState(false);
+    const [isExpanded, setIsExpanded] = useState(false); // Default state
 
-    const handleSubmit = async () => {
+    const handleSubmit = async (e: React.MouseEvent) => {
+        e.stopPropagation(); // Prevent toggling accordion when clicking run
         setLoading(true);
         try {
             const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/superpos/simulate`, {
@@ -554,89 +726,67 @@ export const JsonOutput: React.FC = () => {
     };
 
     return (
-        <div className="rounded-[40px] border border-white/5 bg-zinc-950/20 backdrop-blur-2xl p-10 space-y-8">
-            <div className="flex items-center justify-between border-b border-white/5 pb-6">
-                <div className="flex items-center gap-3 opacity-40 font-mono text-[10px] uppercase tracking-widest">
-                    <Code size={14} />
-                    <span>Source_Definition</span>
+        <div className="rounded-[32px] border border-white/5 bg-zinc-950/40 backdrop-blur-2xl transition-all duration-500 hover:border-white/10">
+            {/* Header / Control Bar */}
+            <div
+                className="flex items-center justify-between p-6 cursor-pointer group"
+                onClick={() => setIsExpanded(!isExpanded)}
+            >
+                <div className="flex items-center gap-4">
+                    <div className={`p-2 rounded-lg bg-white/[0.03] transition-colors ${isExpanded ? 'text-white' : 'text-zinc-600 group-hover:text-zinc-400'}`}>
+                        <Code size={16} />
+                    </div>
+                    <div className="flex flex-col">
+                        <span className="font-mono text-[10px] uppercase tracking-[0.2em] text-zinc-400 group-hover:text-white transition-colors">
+                            Source_Definition
+                        </span>
+                        <div className="flex items-center gap-2 mt-1">
+                            <span className="text-[8px] font-mono text-zinc-600 uppercase tracking-widest">
+                                {isExpanded ? 'View_Active' : 'View_Collapsed'}
+                            </span>
+                            <ChevronDown
+                                size={10}
+                                className={`text-zinc-500 transition-transform duration-500 ${isExpanded ? 'rotate-180' : ''}`}
+                            />
+                        </div>
+                    </div>
                 </div>
+
                 <button
                     onClick={handleSubmit}
                     disabled={loading}
-                    className="px-8 py-2 rounded-full border border-white/20 text-[9px] font-mono uppercase tracking-[0.3em] hover:bg-white hover:text-black transition-all"
+                    className="px-8 py-3 rounded-full border border-white/10 bg-white/[0.02] hover:bg-white hover:text-black hover:border-white transition-all text-[9px] font-mono uppercase tracking-[0.3em] flex items-center gap-3 group/btn shadow-[0_0_20px_rgba(0,0,0,0.2)]"
                 >
-                    {loading ? 'Executing...' : 'Run Simulation'}
+                    {loading ? 'Executing...' : (
+                        <>
+                            <span>Run_Sim</span>
+                            <Play size={10} className="fill-current" />
+                        </>
+                    )}
                 </button>
             </div>
-            <pre className="font-mono text-[11px] text-zinc-500 leading-relaxed overflow-auto max-h-[300px] scrollbar-hide">
-                {JSON.stringify(circuitData, null, 2)}
-            </pre>
-        </div>
-    );
-};
 
-// 9. SimulationResults (Editorial Plot Style)
-export const SimulationResults: React.FC = () => {
-    const { simResults } = useSimulator();
-    if (!simResults) return null;
-    const probPlot = JSON.parse(simResults.prob_plot);
-    const phasePlot = JSON.parse(simResults.phase_plot);
+            {/* Collapsible Content Area */}
+            <div
+                className={`
+                    overflow-hidden transition-all duration-700 [transition-timing-function:cubic-bezier(0.23,1,0.32,1)]
+                    ${isExpanded ? 'max-h-[500px] opacity-100' : 'max-h-0 opacity-0'}
+                `}
+            >
+                <div className="p-6 pt-0">
+                    <div className="bg-black/40 border border-white/5 rounded-2xl p-6 overflow-hidden relative">
+                        <pre className="font-mono text-[10px] text-zinc-500 leading-relaxed overflow-auto max-h-[300px] scrollbar-hide">
+                            {JSON.stringify(circuitData, null, 2)}
+                        </pre>
 
-    const layoutDefaults = {
-        paper_bgcolor: 'rgba(0,0,0,0)',
-        plot_bgcolor: 'rgba(0,0,0,0)',
-        font: { color: 'rgba(255,255,255,0.4)', family: 'JetBrains Mono', size: 9 },
-        xaxis: { gridcolor: 'rgba(255,255,255,0.05)', zerolinecolor: 'rgba(255,255,255,0.1)' },
-        yaxis: { gridcolor: 'rgba(255,255,255,0.05)', zerolinecolor: 'rgba(255,255,255,0.1)' },
-    };
-
-    return (
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-            <div className="rounded-[40px] border border-white/5 bg-zinc-950/20 p-10">
-                <h3 className="text-xl font-serif italic mb-8 opacity-80 text-glow">Probability Distribution</h3>
-                <Plot
-                    data={probPlot.data.map((d: any) => ({ ...d, marker: { color: 'white' } }))}
-                    layout={{ ...probPlot.layout, ...layoutDefaults }}
-                    config={{ responsive: true, displayModeBar: false }}
-                    className="w-full h-[400px]"
-                />
-            </div>
-            <div className="rounded-[40px] border border-white/5 bg-zinc-950/20 p-10">
-                <h3 className="text-xl font-serif italic mb-8 opacity-80 text-glow">State Phase Projections</h3>
-                <Plot
-                    data={phasePlot.data.map((d: any) => ({ ...d, line: { color: 'white', width: 1 } }))}
-                    layout={{ ...phasePlot.layout, ...layoutDefaults }}
-                    config={{ responsive: true, displayModeBar: false }}
-                    className="w-full h-[400px]"
-                />
-            </div>
-        </div>
-    );
-};
-
-// 10. SimulationTextResults
-export const SimulationTextResults: React.FC = () => {
-    const { simResults } = useSimulator();
-    if (!simResults) return null;
-    return (
-        <div className="rounded-[40px] border border-white/5 bg-white/[0.05] p-12">
-            <div className="grid md:grid-cols-2 gap-12">
-                <div>
-                    <h4 className="text-[10px] font-mono uppercase tracking-[0.4em] text-zinc-600 mb-6">Circuit Schematic</h4>
-                    <pre className="text-[11px] font-mono text-zinc-400 opacity-60 overflow-auto">{simResults.circuit}</pre>
-                </div>
-                <div>
-                    <h4 className="text-[10px] font-mono uppercase tracking-[0.4em] text-zinc-600 mb-6">StateVector Log</h4>
-                    <div className="space-y-2">
-                        {simResults.state_vector.map((s: any, i: number) => (
-                            <div key={i} className="flex justify-between border-b border-white/5 pb-2 font-mono text-[10px] uppercase">
-                                <span className="text-zinc-500">|{s.binary}⟩</span>
-                                <span className="text-white">{(s.probability * 100).toFixed(2)}%</span>
-                            </div>
-                        ))}
+                        {/* Decorative footer inside code block */}
+                        <div className="absolute bottom-4 right-6 text-[8px] font-mono text-zinc-700 uppercase tracking-widest pointer-events-none">
+                            JSON_Object // {Object.keys(circuitData).length}_Nodes
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
     );
 };
+
