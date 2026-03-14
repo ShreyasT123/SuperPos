@@ -75,3 +75,12 @@ secrets.json
 
 # Memory test files
 memory_test.py
+
+# Terraform
+.terraform/
+*.tfstate
+*.tfstate.*
+.terraform.lock.hcl
+
+# env
+.env
