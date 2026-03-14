@@ -711,7 +711,7 @@ export const JsonOutput: React.FC = () => {
         e.stopPropagation(); // Prevent toggling accordion when clicking run
         setLoading(true);
         try {
-            const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/superpos/simulate`, {
+            const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/superpos/simulate/`, {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({ circuit_data: JSON.stringify(circuitData) })

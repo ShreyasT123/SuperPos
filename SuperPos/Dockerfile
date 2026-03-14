@@ -22,7 +22,6 @@ RUN pip install --upgrade pip && pip install -r requirements.txt
 COPY . /app/
 
 # Collect static files
-RUN python manage.py collectstatic --noinput
 
 # Run the application
 # Azure App Service sets the PORT environment variable. Default to 8000 if not set.
