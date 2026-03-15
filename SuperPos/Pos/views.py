@@ -22,6 +22,12 @@ from .serializers import FactorInputSerializer
 ai.configure_genai(os.environ.get("GENERATIVEAI_API_KEY"))
 
 
+@api_view(["GET"])
+def health_check(request):
+    """Health check endpoint."""
+    return Response({"status": "healthy", "service": "SuperPos Backend"})
+
+
 @api_view(["POST"])
 def run_fault_tolerance(request):
     try:

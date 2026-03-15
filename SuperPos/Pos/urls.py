@@ -9,5 +9,6 @@ urlpatterns = [
     path('simulate/', views.simulate_custom_circuit, name='simulate'),
     path('chat/', views.chat, name='chat'),
     path('run_fault_tolerance/', views.run_fault_tolerance, name='fault_tolerance'),
+    path('health/', views.health_check, name='health_check'),
 
 ]

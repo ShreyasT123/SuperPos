@@ -1,6 +1,6 @@
 'use client'
 
-import React, { createContext, useContext, useState, useMemo } from 'react';
+import React, { createContext, useContext, useState, useMemo, useEffect } from 'react';
 import {
     Code, Hash, Square, Combine,
     RotateCw, RotateCcw, Rotate3d, X as XIcon, Circle,
@@ -210,6 +210,43 @@ export const GateButton: React.FC<{ gate: GateDefinition; onDragStart: (e: React
         </div>
     );
 };
+// 4. Backend Health Indicator
+export const BackendHealth: React.FC = () => {
+    const [status, setStatus] = useState<'healthy' | 'unhealthy' | 'checking'>('checking');
+
+    useEffect(() => {
+        const checkHealth = async () => {
+            try {
+                const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/superpos/health/`);
+                if (response.ok) {
+                    setStatus('healthy');
+                } else {
+                    setStatus('unhealthy');
+                }
+            } catch (err) {
+                setStatus('unhealthy');
+            }
+        };
+        checkHealth();
+        // Refresh every 30 seconds
+        const interval = setInterval(checkHealth, 30000);
+        return () => clearInterval(interval);
+    }, []);
+
+    return (
+        <div className="flex items-center gap-3 font-mono text-[9px] tracking-[0.3em] uppercase text-zinc-500 mb-6 p-4 rounded-2xl bg-white/[0.02] border border-white/5">
+            <div className={`w-2 h-2 rounded-full ${
+                status === 'healthy' ? 'bg-emerald-500 animate-pulse shadow-[0_0_10px_rgba(16,185,129,0.5)]' :
+                status === 'unhealthy' ? 'bg-red-500 shadow-[0_0_10px_rgba(239,68,68,0.5)]' :
+                'bg-zinc-600 animate-pulse'
+            }`} />
+            <span className={status === 'unhealthy' ? 'text-red-400' : ''}>
+                Backend_System: {status.toUpperCase()}
+            </span>
+        </div>
+    );
+};
+
 export const GatesPalette: React.FC = () => {
     const { qubits, steps, handleQubitsChange, handleStepsChange } = useSimulator();
     const [angle, setAngle] = useState<number>(0);
@@ -225,6 +262,8 @@ export const GatesPalette: React.FC = () => {
 
     return (
         <div className="flex flex-col h-full max-h-[calc(100vh-250px)] overflow-y-auto pr-4 lab-scroll">
+            
+            <BackendHealth />
 
             {/* 1. CONFIGURATION SECTION (Now inside the scroll) */}
             <div className="mb-10 space-y-4">
