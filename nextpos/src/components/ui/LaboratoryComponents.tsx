@@ -224,6 +224,7 @@ export const BackendHealth: React.FC = () => {
                     setStatus('unhealthy');
                 }
             } catch (err) {
+                console.log(err)
                 setStatus('unhealthy');
             }
         };
